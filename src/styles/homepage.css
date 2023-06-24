@@ -13,7 +13,7 @@
 .route-container{
   display:flex;
   flex-direction: row;
-  width: 100px;
+  width: 120px;
   align-items: center;
   justify-content: space-between;
 }
@@ -22,4 +22,12 @@
   text-decoration: none;
   font-family: Inter, 'Times New Roman', Times, serif;
   font-weight: 600;
+}
+.main-container{
+  display:flex;
+  flex-direction: column;
+  background-image: url("/src/assets/homepage.png");
+}
+.main-container > h3 {
+  white-space: pre-line;
 }
