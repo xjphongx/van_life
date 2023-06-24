@@ -1,0 +1,25 @@
+.nav-bar-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF7ED;
+  padding: 15px 30px;
+}
+.vanlife-header{
+  font-weight: 800;
+  font-family: Inter, 'Times New Roman', Times, serif;
+}
+.route-container{
+  display:flex;
+  flex-direction: row;
+  width: 100px;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-link-route{
+  color:rgb(83, 83, 83);
+  text-decoration: none;
+  font-family: Inter, 'Times New Roman', Times, serif;
+  font-weight: 600;
+}
