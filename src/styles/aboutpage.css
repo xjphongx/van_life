@@ -1,0 +1,39 @@
+.image{
+  width: 100%;
+  height: auto;
+  -webkit-background-size: cover; /* this deals with image zoom when page is responsive */
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.about-info-container{
+  padding:40px 20px;
+}
+
+.about-info-container > h1 {
+  margin-bottom: 20px;
+}
+.about-info-container > p {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+.destination-container{
+  background-color: #FFCC8D;
+  padding:40px;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.destination-container > h2 {
+  margin-bottom: 35px;
+  font-size: 25px;
+}
+.explore-van-link{
+  padding: 11px 20px;
+  border-radius: 8px;
+  background-color: black;
+  text-decoration: none;
+  color:white;
+  font-size: 15px;
+  font-weight: 500;
+ 
+}

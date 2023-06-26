@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #FFF7ED;
-  padding: 15px 30px;
+  padding: 30px 45px;
 }
 .vanlife-header{
   font-weight: 800;
@@ -21,33 +21,41 @@
 }
 .nav-link-route{
   color:rgb(83, 83, 83);
-  text-decoration: none;
-  font-family: Inter, 'Times New Roman', Times, serif;
   font-weight: 600;
+}
+.nav-link-route:hover{
+  color:#161616;
+  text-decoration: underline;
 }
 .main-container{
   display:flex;
   flex-direction: column;
   background-image: url("/src/assets/homepage.png");
-  background-repeat: repeat ;
-  background-size: 1fr 1fr;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover; /* this deals with image zoom when page is responsive */
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 350px;
   position:relative;
-
   height:100vh;
 } 
 .content-container{
   padding:60px 30px;
   position:absolute;
   top:0px;
-  bottom: 50px;
+  
   width: 100%;
   
 }
-.main-container > .content-container >h3 {
+.main-container > .content-container > h3 {
   white-space: pre-line;
   font-size: 15px;
   font-weight: 300;
   color:white;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .main-container > .content-container > h1 {
   color: white;
@@ -63,7 +71,9 @@
   padding-bottom: 15px;
   cursor:pointer;
   max-width: 800px;
+  font-size: 20px;
+  font-weight: 500;
 }.find-van-button:hover{
-  opacity: .85;
-  transition: opacity 0.8s;
+  transform: translate(1px, 1px)
+
 }
