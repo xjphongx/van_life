@@ -5,6 +5,10 @@
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+h1, h2, h3, button {
+    font-family: Inter, 'Times New Roman', Times, serif;
 }
 
 nav > a {
