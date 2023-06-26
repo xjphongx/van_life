@@ -8,7 +8,9 @@
 }
 .vanlife-header{
   font-weight: 800;
+  font-size: 25px;
   font-family: Inter, 'Times New Roman', Times, serif;
+  color:black;
 }
 .route-container{
   display:flex;
@@ -31,7 +33,7 @@
   background-size: 1fr 1fr;
   position:relative;
 
-  height:75vh;
+  height:100vh;
 } 
 .content-container{
   padding:60px 30px;
