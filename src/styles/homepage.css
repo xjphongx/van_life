@@ -27,7 +27,41 @@
   display:flex;
   flex-direction: column;
   background-image: url("/src/assets/homepage.png");
+  background-repeat: repeat ;
+  background-size: 1fr 1fr;
+  position:relative;
+
+  height:75vh;
+} 
+.content-container{
+  padding:60px 30px;
+  position:absolute;
+  top:0px;
+  bottom: 50px;
+  width: 100%;
+  
 }
-.main-container > h3 {
+.main-container > .content-container >h3 {
   white-space: pre-line;
+  font-size: 15px;
+  font-weight: 300;
+  color:white;
+}
+.main-container > .content-container > h1 {
+  color: white;
+}
+.find-van-button{
+  background-color: rgb(255, 127, 22);
+  color:white;
+  border-style: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor:pointer;
+  max-width: 800px;
+}.find-van-button:hover{
+  opacity: .85;
+  transition: opacity 0.8s;
 }
