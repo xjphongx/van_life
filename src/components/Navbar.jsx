@@ -7,7 +7,7 @@ export default function Navbar(){
       <Link to="/" className="vanlife-header">#VANLIFE</Link>
       <div className="route-container">
         <Link to="/about" className="nav-link-route">About</Link>
-        <Link className="nav-link-route">Vans</Link>
+        <Link to="/vans" className="nav-link-route">Vans</Link>
       </div>
     </nav>
   )
