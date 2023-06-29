@@ -8,13 +8,32 @@ export default function Vans(){
     //helper function to get van data from mirage JS API
     async function getVans() {
       const response = await fetch("/api/vans")
-      const vanData = await response.json()
-      setVans(vanData)
+      const data = await response.json()
+      setVans(data.vans)
     }
     getVans() //call helper function
   },[])
   
   console.log(vans)
+
+  const vansElement = vans.map(van=>{
+    //captialize the first character of the type
+    //ex: given "simple" div will output Simple
+    const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1)
+
+    return (
+      <div key={van.id} className="van-tile">
+        <img  src={van.imageUrl}/>
+        <div className="van-info">
+          <h3>{van.name}</h3>
+          <p>${van.price} <span>/day</span></p>
+        </div>
+        <p className={`type-tag-${van.type}`} >{captialWord}</p>
+
+      </div>
+    )
+  })
+  
   
   return(
     <main>
@@ -26,6 +45,11 @@ export default function Vans(){
           <button className='filter-button'>Rugged</button>
           <button className='clear-filter-button'>Clear filters</button>
         </div>
+        
+      </div>
+      <div className='grid-container'>
+        {vansElement}
+        
       </div>
     </main>
   )

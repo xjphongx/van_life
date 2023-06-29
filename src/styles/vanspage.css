@@ -1,5 +1,5 @@
 .option-container{
-  background-color: lightblue;
+  
   width: 100%;
   min-width: 500px;
   height: 130px;
@@ -36,3 +36,64 @@
   color:#4D4D4D;
   white-space: nowrap;
 }
+
+/* Below is for the van tiles */
+.grid-container{
+  display:grid;
+  grid-template-columns: 300px 300px;
+  padding:20px 45px;
+  column-gap: 40px;
+  row-gap: 40px;
+  margin-bottom: 50px;
+
+}
+.van-tile{
+  display:flex;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+}
+.van-tile > img {
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+}
+.van-info{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.van-info > h3 , p {
+  font-size: 23px;
+  font-weight: 700;
+}
+.van-info > p > span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.type-tag-simple, .type-tag-rugged, .type-tag-luxury {
+  color: white;
+  font-weight: 300;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.type-tag-simple{
+  background-color: #E17654;
+}
+.type-tag-rugged{
+  background-color:#115E59 ;
+}
+.type-tag-luxury{
+  background-color: #161616;
+}
+  
+
