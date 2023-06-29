@@ -1,0 +1,38 @@
+.option-container{
+  background-color: lightblue;
+  width: 100%;
+  min-width: 500px;
+  height: 130px;
+  padding:20px 45px;
+
+}
+.option-container > h1 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.filter-van-container {
+  display:flex;
+  flex-direction: row;
+  gap: 20px;
+  min-width: 400px;
+}
+.filter-button{
+  background-color: #FFEAD0 ;
+  border-radius: 5px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.filter-button:hover{
+  opacity: .70 ;
+  transition: opacity .5s;
+}
+.clear-filter-button {
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-left: 15px;
+  color:#4D4D4D;
+  white-space: nowrap;
+}

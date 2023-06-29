@@ -5,12 +5,14 @@
   align-items: center;
   background-color: #FFF7ED;
   padding: 30px 45px;
+  flex-shrink: 0;
 }
 .vanlife-header{
   font-weight: 800;
   font-size: 25px;
   font-family: Inter, 'Times New Roman', Times, serif;
   color:black;
+  margin-right: 50px;
 }
 .route-container{
   display:flex;
@@ -22,6 +24,8 @@
 .nav-link-route{
   color:rgb(83, 83, 83);
   font-weight: 600;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .nav-link-route:hover{
   color:#161616;

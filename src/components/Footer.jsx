@@ -9,7 +9,8 @@ export default function Footer() {
     paddingLeft:70,
     paddingRight:70,
     textAlign: 'center',
-    fontFamily: 'Inter', 
+    fontFamily: 'Inter',
+    whiteSpace: 'nowrap', 
   }
   return(
       <footer style={styles} > Copyright 2022 #VANLIFE</footer>

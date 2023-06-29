@@ -9,7 +9,7 @@ import Home from './routes/Home';
 import About from './routes/About';
 import Vans from './routes/Vans';
 
-
+import "../server"
 
 
 function App() {
