@@ -14,19 +14,27 @@ import "../server"
 
 function App() {
   return (
-    <BrowserRouter> 
-      <header>
-        <Navbar/>
-      </header>
-      
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/vans" element={<Vans/>}/>
-      </Routes>
+    <div className="page-container">
+      <BrowserRouter> 
+        <header>
+          <Navbar/>
+        </header>
+        
+        <main>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/vans" element={<Vans/>}/>
+          </Routes>
+        </main>
+          
+        <footer>
+          <Footer/>
+        </footer>
 
-      <Footer/>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
+      
   )
 }
 

@@ -13,6 +13,6 @@ export default function Footer() {
     whiteSpace: 'nowrap', 
   }
   return(
-      <footer style={styles} > Copyright 2022 #VANLIFE</footer>
+      <div className="footer"  > Copyright 2022 #VANLIFE</div>
   )
 }
