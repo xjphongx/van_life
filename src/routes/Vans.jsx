@@ -22,7 +22,7 @@ export default function Vans(){
     const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1)
 
     return (
-      <div key={van.id} className="van-tile">
+      <div onClick={()=>console.log("clicked")} key={van.id} className="van-tile">
         <img  src={van.imageUrl}/>
         <div className="van-info">
           <h3>{van.name}</h3>
@@ -47,7 +47,7 @@ export default function Vans(){
         </div>
         
       </div>
-      <div className='grid-container'>
+      <div className='van-list'>
         {vansElement}
         
       </div>
