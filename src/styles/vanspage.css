@@ -97,17 +97,17 @@
 }
 
 /* adding responsiveness to vans */
-@media only screen and (min-width:1200px){
+@media only screen and (min-width:1100px){
   .grid-container{
     grid-template-columns: 300px 300px 300px;
   }
 }
-@media only screen and (min-width:1500px){
+@media only screen and (min-width:1400px){
   .grid-container{
     grid-template-columns: 300px 300px 300px 300px;
   }
 }
-@media only screen and (min-width:1800px){
+@media only screen and (min-width:1700px){
   .grid-container{
     grid-template-columns: 300px 300px 300px 300px 300px;
   }
