@@ -95,5 +95,23 @@
 .type-tag-luxury{
   background-color: #161616;
 }
-  
+
+/* adding responsiveness to vans */
+@media only screen and (min-width:1200px){
+  .grid-container{
+    grid-template-columns: 300px 300px 300px;
+  }
+}
+@media only screen and (min-width:1500px){
+  .grid-container{
+    grid-template-columns: 300px 300px 300px 300px;
+  }
+}
+@media only screen and (min-width:1800px){
+  .grid-container{
+    grid-template-columns: 300px 300px 300px 300px 300px;
+  }
+}
+
+
 
