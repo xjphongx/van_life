@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 export default function Vans(){
   const [vans, setVans] = React.useState([])
@@ -14,7 +15,7 @@ export default function Vans(){
     getVans() //call helper function
   },[])
   
-  console.log(vans)
+ 
 
   const vansElement = vans.map(van=>{
     //captialize the first character of the type
@@ -23,13 +24,15 @@ export default function Vans(){
 
     return (
       <div onClick={()=>console.log("clicked")} key={van.id} className="van-tile">
-        <img  src={van.imageUrl}/>
-        <div className="van-info">
-          <h3>{van.name}</h3>
-          <p>${van.price} <span>/day</span></p>
-        </div>
-        <p className={`type-tag-${van.type}`} >{captialWord}</p>
-
+        <Link to={`/vans/${van.id}`}>
+          <img className="van-image" src={van.imageUrl}/>
+          <div className="van-info">
+            <h3>{van.name}</h3>
+            <p>${van.price} <span>/day</span></p>
+          </div>
+          <p className={`type-tag-${van.type}`} >{captialWord}</p>
+        </Link>
+          
       </div>
     )
   })

@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './routes/Home';
 import About from './routes/About';
 import Vans from './routes/Vans';
+import VansDetail from './routes/VansDetail';
 
 import "../server"
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/vans" element={<Vans/>}/>
+            <Route path="vans/:id" element={<VansDetail/>}/>
           </Routes>
         </main>
           

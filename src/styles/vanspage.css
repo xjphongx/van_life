@@ -54,7 +54,7 @@
   height: 400px;
   cursor: pointer;
 }
-.van-tile > img {
+.van-image {
   width: 300px;
   height: 300px;
   border-radius: 15px;
