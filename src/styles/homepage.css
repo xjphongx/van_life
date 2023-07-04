@@ -100,9 +100,7 @@
   text-align: center;
   font-family: Inter, 'Times New Roman', Times, serif;
   white-space: nowrap;
-  position:absolute;
-  bottom: 0;
   width: 100%;
- /*  height: 2rem; */
+  height: 100%;
   
 }

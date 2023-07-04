@@ -19,7 +19,22 @@ h1, h2, h3, button ,p, a{
     border-style: none;
 
 }
-
 nav > a {
     text-decoration: none;
+}
+.page-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.header-section{
+    flex:0 1 auto;
+}
+.main-section {
+    flex: 1 1 auto;
+    position: relative;
+    
+}
+.footer-section{
+    flex: 0 1 60px;
 }
