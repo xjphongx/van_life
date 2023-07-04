@@ -39,7 +39,7 @@ export default function Vans(){
   
   
   return(
-    <main>
+    <div>
       <div className='option-container'>
         <h1>Explore our van options</h1>
         <div className='filter-van-container'>
@@ -54,6 +54,6 @@ export default function Vans(){
         {vansElement}
         
       </div>
-    </main>
+    </div>
   )
 }
