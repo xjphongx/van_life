@@ -15,13 +15,14 @@ import "../server"
 
 function App() {
   return (
-    <div className="page-container">
-      <BrowserRouter> 
-        <header>
+    
+    <BrowserRouter> 
+      <div className="page-container">
+        <header className="header-section">
           <Navbar/>
         </header>
         
-        <main>
+        <main className="main-section">
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
@@ -30,12 +31,12 @@ function App() {
           </Routes>
         </main>
           
-        <footer>
+        <footer className="footer-section">
           <Footer/>
         </footer>
-
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
+    
       
   )
 }
