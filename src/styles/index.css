@@ -36,7 +36,6 @@ nav > a {
     flex: 1 1 auto;
     min-height: 100vh;
     position: relative;
-    
 }
 .footer-section{
     flex: 0 1 60px;

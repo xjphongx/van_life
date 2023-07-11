@@ -19,7 +19,7 @@
 .route-container{
   display:flex;
   flex-direction: row;
-  width: 120px;
+  width: 150px;
   align-items: center;
   justify-content: space-between;
 }
@@ -33,6 +33,10 @@
   color:#161616;
   text-decoration: underline;
 }
+.nav-link-route:focus{
+  text-decoration: underline;
+}
+
 .main-container{
   display:flex;
   flex-direction: column;

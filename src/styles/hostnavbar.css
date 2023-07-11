@@ -1,0 +1,25 @@
+/* same main section from index.css */
+.layout-section{
+    flex: 1 1 auto;
+    min-height: 100vh;
+    position: relative;
+    margin-left: 45px;
+}
+.host-nav-bar-container{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  color:rgb(83,83,83);
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+.host-link-route:visited{/* prevents the link from changing color once visited */
+  color:rgb(83,83,83);
+}
+.host-link-route:hover{
+  text-decoration: underline;
+}
+.host-link-route:focus{
+  text-decoration: underline;
+}
