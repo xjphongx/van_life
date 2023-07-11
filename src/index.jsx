@@ -5,10 +5,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './routes/Home';
 import Layout from './components/Layout';
 
-import HostLayout from './routes/Host/HostLayout';
-import Dashboard from './components/Dashboard';
-import Income from './components/Income';
-import Review from './components/Review';
+import HostLayout from './components/HostLayout';
+import Dashboard from './routes/Host/Dashboard';
+import Income from './routes/Host/Income';
+import Review from './routes/Host/Review';
 
 import About from './routes/About';
 import Vans from './routes/Vans/Vans';
@@ -26,10 +26,9 @@ function App() {
           <Route element={<Layout/>}> {/* This is for layout route: This Route is the parent  */}
             {/* children route of Main layout */}
             <Route path='/' element={<Home/>}/>
-            <Route path='/host' element={<HostLayout/>}>
-              <Route path='/host/dashboard' element={<Dashboard/>}/>
+            <Route element={<HostLayout/>}>
+              <Route path='/host' element={<Dashboard/>}/>
               <Route path='/host/income' element={<Income/>}/>
-              {/* <Route path='/host/vans' element={<Dashboard/>}/> */}
               <Route path='/host/review' element={<Review/>}/>
             </Route> 
 
