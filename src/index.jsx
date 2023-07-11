@@ -2,30 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-
 import Home from './routes/Home';
 import About from './routes/About';
-import Vans from './routes/Vans';
-import VansDetail from './routes/VansDetail';
+import Vans from './routes/Vans/Vans';
+import VansDetail from './routes/Vans/VansDetail';
 
 import "../server"
+import Layout from './components/Layout';
 
 
 function App() {
   return (
     
     <BrowserRouter> 
-        <Header/>
-          <Routes>
+        <Routes>
+          <Route element={<Layout/>}> {/* This is for layout route: This Route is the parent  */}
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/vans" element={<Vans/>}/>
             <Route path="vans/:id" element={<VansDetail/>}/>
-          </Routes>
-          
-        <Footer/>
+          </Route>
+        </Routes>      
     </BrowserRouter>
     
       
