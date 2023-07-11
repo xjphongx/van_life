@@ -24,29 +24,30 @@ export default function VansDetail(){
 
   return(
     <>
-      {vanData ?  
-        <div className='detail-page-container'>
-          <div className='detail-back-container'>
-            <p className='arrow'> &larr; </p>
-            <Link to='/vans' className='detail-back-button'>Back to all vans</Link>
-          </div>
-          <div className='detail-info-container'>
-            <img className='detail-image' src={vanData.imageUrl} />
-            <div className='detail-info'>
-              <p className={`type-tag-${vanData.type}`}>{vanData.type}</p>
-              <h1>{vanData.name}</h1>
-              <p className= 'detail-info-price'>${vanData.price} <span>/day</span></p>
-              <p className= 'detail-info-description'>{vanData.description}</p>
-              <button className='rent-button'>Rent this van</button>
+      <div className='main-section'>
+        {vanData ?  
+            <div className='detail-page-container'>
+              <div className='detail-back-container'>
+                <p className='arrow'> &larr; </p>
+                <Link to='/vans' className='detail-back-button'>Back to all vans</Link>
+              </div>
+              <div className='detail-info-container'>
+                <img className='detail-image' src={vanData.imageUrl} />
+                <div className='detail-info'>
+                  <p className={`type-tag-${vanData.type}`}>{vanData.type}</p>
+                  <h1>{vanData.name}</h1>
+                  <p className= 'detail-info-price'>${vanData.price} <span>/day</span></p>
+                  <p className= 'detail-info-description'>{vanData.description}</p>
+                  <button className='rent-button'>Rent this van</button>
+                </div>
+              </div>
             </div>
+      
+        : <div className='loading-container'>
+            <h1>Loading...</h1>
           </div>
-        </div>
-          
-       
-      : <div className='loading-container'>
-          <h1>Loading...</h1>
-        </div>
-      }
+        }
+       </div>
     </>
   )
 }

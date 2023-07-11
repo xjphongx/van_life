@@ -13,6 +13,9 @@ export default function Footer() {
     whiteSpace: 'nowrap', 
   }
   return(
-      <div className="footer"  > &#169; 2022 #VANLIFE</div>
+      <footer className="footer-section">
+        <div className="footer"  > &#169; 2022 #VANLIFE</div>
+      </footer>
+     
   )
 }

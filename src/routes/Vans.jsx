@@ -39,7 +39,7 @@ export default function Vans(){
   
   
   return(
-    <div>
+    <div className='main-section'>
       <div className='option-container'>
         <h1>Explore our van options</h1>
         <div className='filter-van-container'>

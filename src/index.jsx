@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from './routes/Home';
@@ -17,24 +17,15 @@ function App() {
   return (
     
     <BrowserRouter> 
-      <div className="page-container">
-        <header className="header-section">
-          <Navbar/>
-        </header>
-        
-        <main className="main-section">
+        <Header/>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/vans" element={<Vans/>}/>
             <Route path="vans/:id" element={<VansDetail/>}/>
           </Routes>
-        </main>
           
-        <footer className="footer-section">
-          <Footer/>
-        </footer>
-      </div>
+        <Footer/>
     </BrowserRouter>
     
       

@@ -7,6 +7,8 @@ html, body {
     padding: 0;
     height: 100%;
     background-color: #FFF7ED;
+    position: relative;
+    min-height: 100vh;
 
 }
 body::-webkit-scrollbar{
@@ -32,6 +34,7 @@ nav > a {
 }
 .main-section {
     flex: 1 1 auto;
+    min-height: 100vh;
     position: relative;
     
 }
