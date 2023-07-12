@@ -23,20 +23,19 @@ function App() {
     
     <BrowserRouter> 
         <Routes>
-          <Route element={<Layout/>}> {/* This is for layout route: This Route is the parent  */}
+          <Route path='/'element={<Layout/>}> {/* This is for layout route: This Route is the parent  */}
             {/* children route of Main layout */}
-            <Route path='/' element={<Home/>}/>
-            <Route element={<HostLayout/>}>
-              <Route path='/host' element={<Dashboard/>}/>
-              <Route path='/host/income' element={<Income/>}/>
-              <Route path='/host/review' element={<Review/>}/>
-            </Route> 
-
-            
-    
-            <Route path='/about' element={<About/>}/>
-            <Route path='/vans' element={<Vans/>}/>
+            <Route index element={<Home/>}/> {/* index places the Home component into the outlet of the parent layout  */}
+            <Route path='about' element={<About/>}/>
+            <Route path='vans' element={<Vans/>}/>
             <Route path='vans/:id' element={<VansDetail/>}/>
+
+            {/* Below is the parent layout route with child routes */}
+            <Route path='host' element={<HostLayout/>}> {/* /host */}
+              <Route index element={<Dashboard/>}/> {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
+              <Route path='income' element={<Income/>}/> {/* /host/income This takes from parent's relative path*/}
+              <Route path='review' element={<Review/>}/>
+            </Route> 
           </Route>
 
           
