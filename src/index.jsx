@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Home from './routes/Home';
 import Layout from './components/Layout';
@@ -38,15 +38,8 @@ function App() {
             </Route> 
           </Route>
 
-          
-
-
-
-
         </Routes>      
     </BrowserRouter>
-    
-      
   )
 }
 
