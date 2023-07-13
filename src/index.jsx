@@ -9,6 +9,7 @@ import HostLayout from './components/HostLayout';
 import Dashboard from './routes/Host/Dashboard';
 import Income from './routes/Host/Income';
 import HostVans from './routes/Host/HostVans';
+import HostVansDetail from './routes/Host/HostVansDetail';
 import Review from './routes/Host/Review';
 
 import About from './routes/About';
@@ -36,6 +37,7 @@ function App() {
               <Route index element={<Dashboard/>}/> {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
               <Route path='income' element={<Income/>}/> {/* /host/income This takes from parent's relative path*/}
               <Route path='host-vans' element={<HostVans/>}/>
+              <Route path='host-vans/:id' element={<HostVansDetail/>}/>
               <Route path='review' element={<Review/>}/>
             </Route> 
           </Route>

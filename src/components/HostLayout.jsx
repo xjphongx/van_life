@@ -5,7 +5,7 @@ export default function HostLayout(){
   return(
     <div className='layout-section'>
       <nav className='host-nav-bar-container'>
-        <NavLink to='/host' end //"end" will stop the url matching and prevent the /host route to not be active when nesting routes
+        <NavLink to='/host' end //"end" will stop the url matching and prevent the /host route to not be active when going through the nesting routes
           className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
         >Dashboard</NavLink>
 

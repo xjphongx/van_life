@@ -115,5 +115,18 @@
   }
 }
 
+/* Below is for the HOST Vans and Vans detail page */
 
-
+.host-vans-list-container{
+  display:flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.host-vans-container{
+  background-color: #FFFFFF;
+}
+.host-van-image-icon{
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
