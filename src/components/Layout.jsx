@@ -8,7 +8,9 @@ export default function Layout(){
   return(
     <>
       <Header/>
-      <Outlet/> {/* Used to render the desire child path */}
+      <main>
+        <Outlet/> {/* Used to render the desire child path */}
+      </main>
       <Footer/>
     </>
   )

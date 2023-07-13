@@ -10,16 +10,24 @@
   flex-direction: row;
   align-items: center;
   gap: 25px;
-  color:rgb(83,83,83);
-  font-weight: 600;
   margin-bottom: 35px;
 }
-.host-link-route:visited{/* prevents the link from changing color once visited */
+.pending-host-link-route{
+  color:rgb(83,83,83);
+  font-weight: 600;
+  
+}
+.active-host-link-route{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
+}
+.pending-host-link-route:visited{/* prevents the link from changing color once visited */
   color:rgb(83,83,83);
 }
-.host-link-route:hover{
+.pending-host-link-route:hover{
   text-decoration: underline;
 }
-.host-link-route:focus{
+.pending-host-link-route:focus{
   text-decoration: underline;
 }

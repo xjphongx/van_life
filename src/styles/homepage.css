@@ -1,4 +1,4 @@
-
+/* Main navbar CSS */
 .nav-bar-container{
   display: flex;
   flex-direction: row;
@@ -7,7 +7,6 @@
   background-color: #FFF7ED;
   margin: 30px 45px;
   flex-shrink: 0;
-
 }
 .vanlife-header{
   font-weight: 800;
@@ -23,18 +22,26 @@
   align-items: center;
   justify-content: space-between;
 }
-.nav-link-route{
+/* pending state */
+.pending-nav-link-route{
   color:rgb(83, 83, 83);
   font-weight: 600;
   margin-left: 10px;
   margin-right: 10px;
 }
-.nav-link-route:hover{
+.pending-nav-link-route:hover{
   color:#161616;
   text-decoration: underline;
 }
-.nav-link-route:focus{
+.pending-nav-link-route:focus{
   text-decoration: underline;
+}
+
+/* active state */
+.active-nav-link-route{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
 }
 
 .main-container{
