@@ -13,12 +13,16 @@ export default function HostVans(){
   },[])
 
   
-  //console.log(vans) // log out the vans with the Host ID of 123
+  console.log(vans) // log out the vans with the Host ID of 123
 
   const vansElement = vans.map((van)=>{
     return(
       <div key={van.id} className="host-vans-container">
         <img className="host-van-image-icon" src={van.imageUrl}/>
+        <div className="host-van-info-container">
+          <h2>{van.name}</h2>
+          <p>${van.price}<span>/day</span></p>
+        </div>
       </div>
       
     )

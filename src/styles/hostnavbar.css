@@ -4,6 +4,7 @@
     min-height: 100vh;
     position: relative;
     margin-left: 45px;
+    margin-right: 45px;
 }
 .host-nav-bar-container{
   display:flex;
