@@ -31,7 +31,6 @@ function App() {
             <Route path='about' element={<About/>}/>
             <Route path='vans' element={<Vans/>}/>
             <Route path='vans/:id' element={<VansDetail/>}/>
-
             {/* Below is the parent layout route with child routes */}
             <Route path='host' element={<HostLayout/>}> {/* /host */}
               <Route index element={<Dashboard/>}/> {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}

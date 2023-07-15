@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 export default function HostVans(){
   const [vans, setVans] = React.useState([])
@@ -17,14 +18,15 @@ export default function HostVans(){
 
   const vansElement = vans.map((van)=>{
     return(
-      <div key={van.id} className="host-vans-container">
-        <img className="host-van-image-icon" src={van.imageUrl}/>
-        <div className="host-van-info-container">
-          <h2>{van.name}</h2>
-          <p>${van.price}<span>/day</span></p>
+      <Link key={van.id} className="host-van-link" to={`/host/host-vans/${van.id}`}>
+        <div  className="host-vans-container">
+          <img className="host-van-image-icon" src={van.imageUrl}/>
+          <div className="host-van-info-container">
+            <h2 className="host-van-name">{van.name}</h2>
+            <p className="host-van-price">${van.price}<span>/day</span></p>
+          </div>
         </div>
-      </div>
-      
+      </Link>
     )
   })
 
@@ -33,7 +35,6 @@ export default function HostVans(){
     <>
       <h1>Your listed vans</h1>
       <div className="host-vans-list-container">
-      
         {vansElement}
       </div>
     </>

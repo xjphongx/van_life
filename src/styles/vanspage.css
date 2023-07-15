@@ -104,7 +104,7 @@
     
   }
 }
-@media only screen and (min-width:1400px){
+@media only screen and (min-width:1379px){
   .van-list{
     grid-template-columns: 300px 300px 300px 300px;
   }
@@ -116,16 +116,18 @@
 }
 
 /* Below is for the HOST Vans and Vans detail page */
-
+/* DEFAULT size is flex column  */
 .host-vans-list-container{
   display:flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 20px;
+  /* background-color: lightblue; */
+  gap:20px;
+  
 }
 .host-vans-container{
   background-color: #FFFFFF;
-  margin-bottom: 25px;
-  width: 500px;
+  min-width: 400px;
   padding:30px;
   display: flex;
   gap:20px;
@@ -135,14 +137,20 @@
   height: 100px;
   border-radius: 5px;
 }
-.host-van-info-container > h2 {
+.host-van-name {
   margin-top: 15px;
   margin-bottom: 10px;
 }
-.host-van-info-container > p {
+.host-van-price {
   color: #4D4D4D;
   font-weight: 500;
 }
-.host-van-info-container > p > span {
+.host-van-price > span {
   font-size: 20px;
+}
+.host-van-link{
+  color: black;
+}
+.host-van-link:visited{ /* prevents hyperlink purple highlight */
+  color: black;
 }

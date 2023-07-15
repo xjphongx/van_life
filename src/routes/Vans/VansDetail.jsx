@@ -4,14 +4,13 @@ import { useParams, Link } from "react-router-dom";
 export default function VansDetail(){
   //get the parameters from the url
   const params = useParams()
-  console.log(params.id)
 
   const [vanData, setVanData] = React.useState(null)
 
   //fetch the data from miragejs when the page finished loading
   React.useEffect(()=>{
     async function getVanDetail(id){
-        //make a fetch request to miragejs server and get the data again
+        //make a fetch request to miragejs server endpoint and get the data again
         const response = await fetch(`/api/vans/${id}`)
         const data = await response.json()
         setVanData(data.vans)

@@ -23,7 +23,7 @@ export default function Vans(){
     const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1)
 
     return (
-      <div onClick={()=>console.log("clicked")} key={van.id} className="van-tile">
+      <div key={van.id} className="van-tile">
         <Link to={`/vans/${van.id}`}>
           <img className="van-image" src={van.imageUrl}/>
           <div className="van-info">
