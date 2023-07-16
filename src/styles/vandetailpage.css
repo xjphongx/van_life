@@ -96,3 +96,30 @@ border-radius: 10px;
   width: 140px;
   height: 140px;
 }
+.vertial-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:5px
+}
+.host-type-tag-simple, .host-type-tag-rugged, .host-type-tag-luxury {
+  color: white;
+  font-weight: 300;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: Inter, 'Times New Roman', Times, serif;
+}
+.host-type-tag-simple{
+  background-color: #E17654;
+}
+.host-type-tag-rugged{
+  background-color:#115E59 ;
+}
+.host-type-tag-luxury{
+  background-color: #161616;
+}
