@@ -35,8 +35,10 @@ function App() {
             <Route path='host' element={<HostLayout/>}> {/* /host */}
               <Route index element={<Dashboard/>}/> {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
               <Route path='income' element={<Income/>}/> {/* /host/income This takes from parent's relative path*/}
-              <Route path='host-vans' element={<HostVans/>}/>
-              <Route path='host-vans/:id' element={<HostVansDetail/>}/>
+              <Route path='vans' element={<HostVans/>}/>
+              <Route path='vans/:id' element={<HostVansDetail/>}>
+                
+              </Route>
               <Route path='review' element={<Review/>}/>
             </Route> 
           </Route>

@@ -13,7 +13,7 @@ export default function HostLayout(){
           className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
         >Income</NavLink>
 
-        <NavLink to='/host/host-vans'
+        <NavLink to='/host/vans'
           className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
         >Vans</NavLink>
 
