@@ -50,7 +50,7 @@ export default function HostVansDetail(){
             {/* Everything below to other comment line... Is a van detail layout */}
             <nav className="host-subnavbar-container">
                 <NavLink
-                  to='.'
+                  to='.' end
                   className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
                 >Details</NavLink>
                 <NavLink
