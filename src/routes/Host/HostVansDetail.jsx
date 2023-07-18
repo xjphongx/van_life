@@ -32,7 +32,7 @@ export default function HostVansDetail(){
           {/* This it he back to all vans button until line 40  */}
           <div className='host-detail-back-container'>
             <p className='arrow'> &larr; </p>
-            <Link to='..' 
+            <Link to='/host/vans' 
               relative="path" //tell react to go back in one level in PATH and NOT in ROUTE hierarchy
               className='detail-back-button'>Back to all vans
             </Link>
