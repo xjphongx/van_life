@@ -142,13 +142,3 @@ border-radius: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.host-van-pricing{
-  font-size: 30px;
-}
-.host-van-pricing > span {
-  font-size: 15px;
-  font-weight: bold;
-  color: gray;
-
-}
-

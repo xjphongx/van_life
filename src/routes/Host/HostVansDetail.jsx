@@ -64,7 +64,7 @@ export default function HostVansDetail(){
 
               </nav>
               {/* To this comment line above */}
-              <Outlet context={currentVan}/>
+              <Outlet context={currentVan}/> {/* passing context like a prop but uses a method to get context */}
           </section>
         </main>
         

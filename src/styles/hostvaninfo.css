@@ -1,3 +1,4 @@
+/* host van detail component */
 .host-van-info-container{
   display:flex;
   flex-direction: column;
@@ -8,3 +9,20 @@
 .host-van-info-container > h4 > span {
   font-weight: 500;
 }
+
+/* host van pricing component */
+.host-van-pricing{
+  font-size: 30px;
+}
+.host-van-pricing > span {
+  font-size: 15px;
+  font-weight: bold;
+  color: gray;
+}
+
+/* host van photos component */
+.host-single-photo{
+  width: 90px;
+}
+
+
