@@ -76,7 +76,7 @@
   font-weight: 500;
 }
 
-.type-tag-simple, .type-tag-rugged, .type-tag-luxury {
+.type-tag-Simple, .type-tag-Rugged, .type-tag-Luxury {
   color: white;
   font-weight: 300;
   width: 100px;
@@ -87,13 +87,13 @@
   border-radius: 5px;
   font-size: 20px;
 }
-.type-tag-simple{
+.type-tag-Simple{
   background-color: #E17654;
 }
-.type-tag-rugged{
+.type-tag-Rugged{
   background-color:#115E59 ;
 }
-.type-tag-luxury{
+.type-tag-Luxury{
   background-color: #161616;
 }
 
@@ -116,6 +116,9 @@
 }
 
 /* Below is for the HOST Vans and Vans detail page */
+.layout-section > h1 {
+  width: 500px;
+}
 /* DEFAULT size is flex column  */
 .host-vans-list-container{
   display:flex;

@@ -86,7 +86,17 @@ border-radius: 10px;
   background-color: white;
   padding:20px;
 }
-
+.host-detail-back-container{
+  background-color: transparent;
+  /* text-decoration: underline; */
+  font-weight: 500;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.host-detail-back-button:visited {
+  color:rgb(83, 83, 83);
+}
 .host-van-detail-label-container{
   display: flex;
   flex-direction: row;
@@ -102,7 +112,7 @@ border-radius: 10px;
   justify-content: center;
   gap:5px
 }
-.host-type-tag-simple, .host-type-tag-rugged, .host-type-tag-luxury {
+.host-type-tag-Simple, .host-type-tag-Sugged, .host-type-tag-Suxury {
   color: white;
   font-weight: 300;
   width: 80px;
@@ -114,12 +124,12 @@ border-radius: 10px;
   font-size: 15px;
   font-family: Inter, 'Times New Roman', Times, serif;
 }
-.host-type-tag-simple{
+.host-type-tag-Simple{
   background-color: #E17654;
 }
-.host-type-tag-rugged{
+.host-type-tag-Rugged{
   background-color:#115E59 ;
 }
-.host-type-tag-luxury{
+.host-type-tag-Luxury{
   background-color: #161616;
 }
