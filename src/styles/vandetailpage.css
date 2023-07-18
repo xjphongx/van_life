@@ -101,12 +101,13 @@ border-radius: 10px;
   display: flex;
   flex-direction: row;
   gap:20px;
+  min-width: 700px;
 }
 .host-van-detail-image-icon{
   width: 140px;
   height: 140px;
 }
-.vertial-container{
+.vertical-container{
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -133,3 +134,21 @@ border-radius: 10px;
 .host-type-tag-Luxury{
   background-color: #161616;
 }
+
+/* host van sub navigation bar */
+.host-subnavbar-container{
+  display: flex;
+  gap:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.host-van-pricing{
+  font-size: 30px;
+}
+.host-van-pricing > span {
+  font-size: 15px;
+  font-weight: bold;
+  color: gray;
+
+}
+

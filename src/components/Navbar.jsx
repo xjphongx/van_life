@@ -7,15 +7,15 @@ export default function Navbar(){
       <Link to="/" className="vanlife-header">#VANLIFE</Link>
       <div className="route-container">
       {/* NavLink has a active and pending state, which is passed through the className prop,  */}
-        <NavLink to='/host' 
+        <NavLink to='host' //to='.' "take me to the current path"
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >Host</NavLink>
 
-        <NavLink to="/about" 
+        <NavLink to="about" 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >About</NavLink>
 
-        <NavLink to="/vans" 
+        <NavLink to="vans" 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >Vans</NavLink>
       </div>

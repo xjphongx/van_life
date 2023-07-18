@@ -20,7 +20,7 @@ export default function Vans(){
   const vansElement = vans.map(van=>{
     //captialize the first character of the type
     //ex: given "simple" div will output Simple
-    const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1)
+    /* const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1) */
 
     return (
       <div key={van.id} className="van-tile">
@@ -30,7 +30,7 @@ export default function Vans(){
             <h3>{van.name}</h3>
             <p>${van.price} <span>/day</span></p>
           </div>
-          <p className={`type-tag-${van.type}`} >{captialWord}</p>
+          <p className={`type-tag-${van.type}`} >{van.type}</p>
         </Link>
           
       </div>

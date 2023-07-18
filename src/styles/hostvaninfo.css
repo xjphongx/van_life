@@ -2,3 +2,9 @@
   display:flex;
   flex-direction: column;
 }
+.host-van-info-container > h4 {
+  margin-bottom: 15px;
+}
+.host-van-info-container > h4 > span {
+  font-weight: 500;
+}

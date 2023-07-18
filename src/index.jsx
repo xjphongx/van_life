@@ -10,6 +10,9 @@ import Dashboard from './routes/Host/Dashboard';
 import Income from './routes/Host/Income';
 import HostVans from './routes/Host/HostVans';
 import HostVansDetail from './routes/Host/HostVansDetail';
+import HostVanInfo from './routes/Host/HostVanInfo';
+import HostVanPricing from './routes/Host/HostVanPricing';
+
 import Review from './routes/Host/Review';
 
 import About from './routes/About';
@@ -37,7 +40,8 @@ function App() {
               <Route path='income' element={<Income/>}/> {/* /host/income This takes from parent's relative path*/}
               <Route path='vans' element={<HostVans/>}/>
               <Route path='vans/:id' element={<HostVansDetail/>}>
-                
+                <Route index element={<HostVanInfo/>}/>
+                <Route path='pricing' element={<HostVanPricing/>}/>
               </Route>
               <Route path='review' element={<Review/>}/>
             </Route> 

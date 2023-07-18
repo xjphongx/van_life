@@ -3,7 +3,6 @@ import {Link, NavLink, Outlet, useParams } from "react-router-dom";
 
 export default function HostVansDetail(){
   const params = useParams()
-  console.log(params)
   const [currentVan,setCurrentVan] = React.useState(null)
   const [captialType, setCaptialType] = React.useState("hi")
 
@@ -29,16 +28,20 @@ export default function HostVansDetail(){
   return(
     <>
       {currentVan? 
-        <div>
-          <div className='detail-back-container'>
+        <main>
+          {/* This it he back to all vans button until line 40  */}
+          <div className='host-detail-back-container'>
             <p className='arrow'> &larr; </p>
-            <Link to='/host/vans' className='detail-back-button'>Back to all vans</Link>
+            <Link to='..' 
+              relative="path" //tell react to go back in one level in PATH and NOT in ROUTE hierarchy
+              className='detail-back-button'>Back to all vans
+            </Link>
           </div> 
-          <div className="host-van-detail-container">
+          <section className="host-van-detail-container">
             {/* This is the container for the van images and labels  */}
             <div className="host-van-detail-label-container">
               <img className="host-van-detail-image-icon" src={currentVan.imageUrl}/>
-              <div className="vertial-container">
+              <div className="vertical-container">
                 <div className={`host-type-tag-${currentVan.type}`}>{captialType}</div>
                 <h1>{currentVan.name}</h1>
                 <p className= 'detail-info-price'>${currentVan.price} <span>/day</span></p>
@@ -47,20 +50,23 @@ export default function HostVansDetail(){
             {/* Everything below to other comment line... Is a van detail layout */}
             <nav className="host-subnavbar-container">
                 <NavLink
+                  to='.'
                   className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
                 >Details</NavLink>
                 <NavLink
+                  to='pricing'
                   className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
                 >Pricing</NavLink>
                 <NavLink
+                  to='photos'
                   className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
                 >Photos</NavLink>
 
               </nav>
               {/* To this comment line above */}
-              <Outlet/>
-          </div>
-        </div>
+              <Outlet context={currentVan}/>
+          </section>
+        </main>
         
         
       : <div className='loading-container'>
@@ -70,3 +76,5 @@ export default function HostVansDetail(){
     </>
   )
 }
+
+
