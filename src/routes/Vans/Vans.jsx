@@ -35,17 +35,21 @@ export default function Vans(){
     /* const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1) */
 
     return (
-      <div key={van.id} className="van-tile">
+      <>
+        <div key={van.id} className="van-tile">
         <Link className="van-link" to={`/vans/${van.id}`}>
           <img className="van-image" src={van.imageUrl}/>
           <div className="van-info">
             <h3>{van.name}</h3>
             <p>${van.price} <span>/day</span></p>
           </div>
-          <p className={`van-type ${van.type} selected` } >{van.type}</p>
+          <p className={`van-type ${van.type}` } >{van.type}</p>
         </Link>
           
-      </div>
+        </div>
+        
+      </>
+      
     )
   })
   
@@ -57,13 +61,13 @@ export default function Vans(){
         <div className='filter-van-container'>
           {/* setSearchParams: look for object with type Simple */}
           <button onClick={()=>setSearchParams({type: "Simple"})} 
-            className={`van-type Simple ${typeFilter==="Simple"?"selected":""}`}
+            className={`filter-button Simple ${typeFilter==="Simple"?"selected":""}`}
             >Simple</button> 
           <button onClick={()=>setSearchParams({type: "Luxury"})} 
-            className={`van-type Luxury ${typeFilter==="Luxury"?"selected":""}`}
+            className={`filter-button Luxury ${typeFilter==="Luxury"?"selected":""}`}
             >Luxury</button>
           <button onClick={()=>setSearchParams({type: "Rugged"})} 
-            className={`van-type Rugged ${typeFilter==="Rugged"?"selected":""}`}
+            className={`filter-button Rugged ${typeFilter==="Rugged"?"selected":""}`}
             >Rugged</button>
           {console.log(typeFilter)}
           {typeFilter&&<button onClick={()=>setSearchParams({})} className='clear-filter-button'>Clear filters</button>}

@@ -33,7 +33,7 @@ export default function VansDetail(){
               <div className='detail-info-container'>
                 <img className='detail-image' src={vanData.imageUrl} />
                 <div className='detail-info'>
-                  <p className={`type-tag-${vanData.type}`}>{vanData.type}</p>
+                  <p className={`van-type ${vanData.type}`}>{vanData.type}</p>
                   <h1>{vanData.name}</h1>
                   <p className= 'detail-info-price'>${vanData.price} <span>/day</span></p>
                   <p className= 'detail-info-description'>{vanData.description}</p>

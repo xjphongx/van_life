@@ -16,29 +16,41 @@
   gap: 20px;
   min-width: 400px;
 }
-.van-type.Simple, .van-type.Luxury, .van-type.Rugged{
+.filter-button.Simple, .filter-button.Luxury, .filter-button.Rugged{
   background-color: #FFEAD0 ;
   border-radius: 5px;
   padding: 10px 25px;
   cursor: pointer;
   font-weight: 600;
 }
-.van-type.Simple:hover {
+.filter-button.Simple.selected{
+  background-color: #E17654;
+  color:white;
+}
+.filter-button.Luxury.selected{
+  background-color: #161616;
+  color:white;
+}
+.filter-button.Rugged.selected{
+  background-color: #115E59;
+  color:white;
+}
+.filter-button.Simple:hover {
   background-color: #E17654;
   transition: background-color .2s;
   color:white;
 }
-.van-type.Luxury:hover{
+.filter-button.Luxury:hover{
   background-color: #161616;
   transition: background-color .2s;
   color:white;
 }
-.van-type.Rugged:hover{
+.filter-button.Rugged:hover{
   background-color:#115E59;
   transition: background-color .2s;
   color:white;
 }
-.van-type:visited{
+.filter-button:visited{
   color:black;
 }
 
@@ -98,24 +110,25 @@
   font-weight: 500;
 }
 
-.van-type.Simple.selected, .van-type.Rugged.selected, .van-type.Luxury.selected {
+.van-type.Simple, .van-type.Rugged, .van-type.Luxury {
   color: white;
-  font-weight: 300;
-  width: 100px;
+  font-weight: 500;
+  font-size: 18px;
+  width: 110px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  font-size: 20px;
 }
-.van-type.Simple.selected {
+
+.van-type.Simple  {
   background-color: #E17654;
 }
-.van-type.Rugged.selected{
+.van-type.Rugged{
   background-color:#115E59 ;
 }
-.van-type.Luxury.selected{
+.van-type.Luxury{
   background-color: #161616;
 }
 
