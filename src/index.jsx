@@ -17,6 +17,7 @@ import HostVanPhotos from './routes/Host/HostVanPhotos';
 import Review from './routes/Host/Review';
 
 import About from './routes/About';
+import NotFoundPage from './routes/NotFoundPage';
 import Vans from './routes/Vans/Vans';
 import VansDetail from './routes/Vans/VansDetail';
 
@@ -47,6 +48,8 @@ function App() {
               </Route>
               <Route path='review' element={<Review/>}/>
             </Route> 
+            {/* Catch all route */}
+            <Route path='*' element={<NotFoundPage/>}/>        
           </Route>
 
         </Routes>      

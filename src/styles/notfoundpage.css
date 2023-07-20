@@ -1,0 +1,22 @@
+.not-found-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: first baseline;
+  margin-left: 45px;
+  margin-right: 30px;
+  height: 80vh;
+  gap:50px;
+  min-width: 715px;
+  max-width: 1221px;
+}
+.not-found-container > h1 {
+  font-size: 60px;
+}
+.not-found-return-link{
+  background-color: #161616;
+  color: white;
+  padding:20px 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
