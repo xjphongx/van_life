@@ -1,11 +1,14 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 export default function VansDetail(){
   //get the parameters from the url
   const params = useParams()
 
   const [vanData, setVanData] = React.useState(null)
+
+  const location = useLocation() 
+  console.log(location) //will return a object with pathname, search, and Link state that was pass from previous page
 
   //fetch the data from miragejs when the page finished loading
   React.useEffect(()=>{
@@ -14,12 +17,14 @@ export default function VansDetail(){
         const response = await fetch(`/api/vans/${id}`)
         const data = await response.json()
         setVanData(data.vans)
-        console.log(vanData)
+        /* console.log(vanData) */
     }
     getVanDetail(params.id)
   },[params.id])//reloads the page when params.id in url changes
   
 
+  //Link State History Concept
+  const search = location.state? location.state.search : "" //this will go to the Link below as a to prop
 
   return(
     <>
@@ -28,7 +33,7 @@ export default function VansDetail(){
             <div className='detail-page-container'>
               <div className='detail-back-container'>
                 <p className='arrow'> &larr; </p>
-                <Link to='/vans' className='detail-back-button'>Back to all vans</Link>
+                <Link to={`..${search}`} relative="path" className='detail-back-button'>Back to all vans</Link>
               </div>
               <div className='detail-info-container'>
                 <img className='detail-image' src={vanData.imageUrl} />

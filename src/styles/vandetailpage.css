@@ -60,6 +60,7 @@ border-radius: 10px;
   font-size: 15px;
   width: 80%;
   min-width: 400px;
+  max-width: 700px;
   line-height: 23px;
 }
 .rent-button {
@@ -78,8 +79,20 @@ border-radius: 10px;
 }
 .rent-button:hover{
   transform: translate(1px, 1px)
+}
+
+@media only screen and (max-width:800px){
+  .detail-info-container{
+    flex-direction: column;
+  }
+  .detail-info-description{
+    max-width: 600px;
+    min-width: 400px;
+  }
+
 
 }
+
 
 /* HOST VAN DETAIL CSS */
 .host-van-detail-container{
@@ -93,6 +106,7 @@ border-radius: 10px;
   display: flex;
   justify-content: left;
   align-items: center;
+  margin-bottom: 20px;
 }
 .host-detail-back-button:visited {
   color:rgb(83, 83, 83);
@@ -142,3 +156,4 @@ border-radius: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
+

@@ -8,7 +8,8 @@ export default function Vans(){
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type") //what the function will filter out based upone van type
 
-
+  
+ 
 
   //fetch data when the van page loads
   React.useEffect(()=>{
@@ -35,9 +36,11 @@ export default function Vans(){
     /* const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1) */
 
     return (
-      <>
-        <div key={van.id} className="van-tile">
-        <Link className="van-link" to={`/vans/${van.id}`}>
+      <div key={van.id} className="van-tile">
+        {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}
+        <Link className="van-link" to={van.id} 
+          state={{search: `?${searchParams.toString()}`}}
+        > 
           <img className="van-image" src={van.imageUrl}/>
           <div className="van-info">
             <h3>{van.name}</h3>
@@ -45,11 +48,7 @@ export default function Vans(){
           </div>
           <p className={`van-type ${van.type}` } >{van.type}</p>
         </Link>
-          
-        </div>
-        
-      </>
-      
+      </div>
     )
   })
   
@@ -69,7 +68,6 @@ export default function Vans(){
           <button onClick={()=>setSearchParams({type: "Rugged"})} 
             className={`filter-button Rugged ${typeFilter==="Rugged"?"selected":""}`}
             >Rugged</button>
-          {console.log(typeFilter)}
           {typeFilter&&<button onClick={()=>setSearchParams({})} className='clear-filter-button'>Clear filters</button>}
           
         </div>
