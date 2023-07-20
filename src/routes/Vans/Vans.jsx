@@ -39,7 +39,7 @@ export default function Vans(){
       <div key={van.id} className="van-tile">
         {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}
         <Link className="van-link" to={van.id} 
-          state={{search: `?${searchParams.toString()}`}}
+          state={{search: `?${searchParams.toString()}`, type: typeFilter}}
         > 
           <img className="van-image" src={van.imageUrl}/>
           <div className="van-info">

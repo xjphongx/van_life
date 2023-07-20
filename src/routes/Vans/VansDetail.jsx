@@ -26,6 +26,9 @@ export default function VansDetail(){
   //Link State History Concept
   const search = location.state? location.state.search : "" //this will go to the Link below as a to prop
 
+  //use a ternary operator to find the type of van based on link state
+  const type = location.state.type ? location.state.type : "all" 
+
   return(
     <>
       <div className='main-section'>
@@ -33,7 +36,7 @@ export default function VansDetail(){
             <div className='detail-page-container'>
               <div className='detail-back-container'>
                 <p className='arrow'> &larr; </p>
-                <Link to={`..${search}`} relative="path" className='detail-back-button'>Back to all vans</Link>
+                <Link to={`..${search}`} relative="path" className='detail-back-button'>Back to {type} Vans</Link>
               </div>
               <div className='detail-info-container'>
                 <img className='detail-image' src={vanData.imageUrl} />
