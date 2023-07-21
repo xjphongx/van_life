@@ -1,25 +1,24 @@
 import React from "react";
 import {Link, useSearchParams} from "react-router-dom"
+import { getVans } from "../../../api";
 
 export default function Vans(){
   const [vans, setVans] = React.useState([])
+  const [loading, setLoading] =React.useState(false)
   
   //gets the query parameter from URL(/localhost/vans?type=Simple)
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type") //what the function will filter out based upone van type
 
-  
- 
-
   //fetch data when the van page loads
   React.useEffect(()=>{
-    //helper function to get van data from mirage JS API
-    async function getVans() {
-      const response = await fetch("/api/vans")
-      const data = await response.json()
-      setVans(data.vans)
+    async function loadVans(){
+      setLoading(true)
+      const data =  await getVans() //getVans from api.js files
+      setVans(data)
+      setLoading(false)
     }
-    getVans() //call helper function
+    loadVans()
   },[])
   
  
@@ -52,6 +51,10 @@ export default function Vans(){
     )
   })
   
+
+  if(loading){
+    return<h1>loading...</h1>
+  }
   
   return(
     <div className='main-section'>
