@@ -1,27 +1,23 @@
 import React from "react";
-import {Link, useSearchParams} from "react-router-dom"
+import {Link, useSearchParams, useLoaderData} from "react-router-dom"
 import { getVans } from "../../../api";
 
+//export Vans loader to allow me to load the data before components render
+export function loader(){
+  return getVans() //fetch the vans data first 
+}
+
+
 export default function Vans(){
-  const [vans, setVans] = React.useState([])
-  const [loading, setLoading] =React.useState(false)
-  
+  //load the vans data and set it to a variable
+  const vans = useLoaderData()
+
+  const [error, setError] = React.useState(null)
   //gets the query parameter from URL(/localhost/vans?type=Simple)
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type") //what the function will filter out based upone van type
-
-  //fetch data when the van page loads
-  React.useEffect(()=>{
-    async function loadVans(){
-      setLoading(true)
-      const data =  await getVans() //getVans from api.js files
-      setVans(data)
-      setLoading(false)
-    }
-    loadVans()
-  },[])
   
- 
+
   //Filter Feature using useSearchParams()
   //filter the list if there is a query parameter of type={"Simple,Rugged,Luxury"}
   //Use a ternary operator to see if typeFilter exists? chooose van to filter after
@@ -30,10 +26,6 @@ export default function Vans(){
     : vans 
 
   const vansElement = filterVansList.map(van=>{
-    //captialize the first character of the type
-    //ex: given "simple" div will output Simple
-    /* const captialWord = van.type.charAt(0).toUpperCase() + van.type.slice(1) */
-
     return (
       <div key={van.id} className="van-tile">
         {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}
@@ -51,9 +43,8 @@ export default function Vans(){
     )
   })
   
-
-  if(loading){
-    return<h1>loading...</h1>
+  if(error){
+    return <h1>there is an error: {error.message}</h1>
   }
   
   return(
@@ -83,9 +74,3 @@ export default function Vans(){
     </div>
   )
 }
-
-
-/* <Link to="?type=Simple" className='filter-button'>Simple</Link>
-          <Link to="?type=Luxury" className='filter-button'>Luxury</Link>
-          <Link to="?type=Rugged" className='filter-button'>Rugged</Link>
-          <Link to="." className='clear-filter-button'>Clear filters</Link> */
