@@ -4,7 +4,7 @@ import { getVans } from "../../../api";
 
 //export Vans loader to allow me to load the data before components render
 export function loader(){
-  return getVans() //fetch the vans data first 
+  return getVans() //fetch the vans data first and this is where useLoaderData() will get its data
 }
 
 

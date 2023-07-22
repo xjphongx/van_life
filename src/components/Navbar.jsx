@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from 'react-router-dom';
+import {BiUserCircle} from 'react-icons/Bi';
 
 export default function Navbar(){
   return(
@@ -18,6 +19,14 @@ export default function Navbar(){
         <NavLink to="vans" 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >Vans</NavLink>
+
+        <NavLink to="login"
+          className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
+        ><BiUserCircle size={25}/>
+        </NavLink>
+
+        
+
       </div>
     </nav>
   )

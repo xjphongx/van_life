@@ -18,16 +18,18 @@
 .route-container{
   display:flex;
   flex-direction: row;
-  width: 150px;
+  width: 210px;
   align-items: center;
   justify-content: space-between;
+  gap:10px;
 }
+
+
+
 /* pending state */
 .pending-nav-link-route{
   color:rgb(83, 83, 83);
   font-weight: 600;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .pending-nav-link-route:hover{
   color:#161616;
@@ -36,6 +38,8 @@
 .pending-nav-link-route:focus{
   text-decoration: underline;
 }
+
+
 
 /* active state */
 .active-nav-link-route{
