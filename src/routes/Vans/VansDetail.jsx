@@ -15,7 +15,7 @@ export default function VansDetail(){
   const vanData = useLoaderData()
 
   //get the parameters from the url
-  const params = useParams()
+  //const params = useParams()
 
   const location = useLocation() 
   //console.log(location) //will return a object with pathname, search, and Link state that was pass from previous page

@@ -22,7 +22,7 @@ import Review from './routes/Host/Review';
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
 import VansDetail, {loader as vanDetailLoader} from './routes/Vans/VansDetail';
-import Login from './routes/Login';
+import Login, {loader as loginLoader} from './routes/Login';
 
 import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
@@ -47,7 +47,7 @@ function App() {
         element={<VansDetail/>}
           loader={vanDetailLoader} //load the data first 
         />
-      <Route path='login' element={<Login/>}/>
+      <Route path='login' element={<Login/>} loader={loginLoader}/>
 
 
       {/* Below is the parent layout route with child routes and protected routes
@@ -56,7 +56,7 @@ function App() {
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
           element={<Dashboard/>} 
-          loader={async ()=> await requireAuth() }/> 
+          loader={async ()=> await requireAuth()}/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 

@@ -9,6 +9,11 @@
 .login-container > h1{
   margin-bottom: 30px;
 }
+.login-container > h2{
+  margin-bottom: 30px;
+  color:red;
+  font-weight: 400;
+}
 .login-form {
   display: flex;
   flex-direction: column;
