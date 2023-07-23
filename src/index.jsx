@@ -12,8 +12,8 @@ import Layout from './components/Layout';
 import HostLayout from './components/HostLayout';
 import Dashboard from './routes/Host/Dashboard';
 import Income from './routes/Host/Income';
-import HostVans from './routes/Host/HostVans';
-import HostVansDetail from './routes/Host/HostVansDetail';
+import HostVans, {loader as hostVanPageLoader} from './routes/Host/HostVans';
+import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/HostVansDetail';
 import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
@@ -21,17 +21,17 @@ import Review from './routes/Host/Review';
 
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
-import VansDetail from './routes/Vans/VansDetail';
+import VansDetail, {loader as vanDetailLoader} from './routes/Vans/VansDetail';
 import Login from './routes/Login';
 
 import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
 import "../server"
 
+import { requireAuth } from '../utils';
 
 
 function App() {
-  
   //New way to use BrowserRouter
   const router = createBrowserRouter(createRoutesFromElements( //createRoutesFromElements will turn Routes into Route Objects for the next method
     <Route path='/'element={<Layout/>} errorElement={<Error/>}> {/* This is for layout route: This Route is the parent  */}
@@ -42,21 +42,49 @@ function App() {
         path='vans' 
         element={<Vans/>} 
         loader={vanPageLoader}/>
-      <Route path='vans/:id' element={<VansDetail/>}/>
+      <Route 
+        path='vans/:id' 
+        element={<VansDetail/>}
+          loader={vanDetailLoader} //load the data first 
+        />
       <Route path='login' element={<Login/>}/>
 
 
-      {/* Below is the parent layout route with child routes */}
+      {/* Below is the parent layout route with child routes and protected routes */}
       <Route path='host' element={<HostLayout/>}> {/* /host */}
-        <Route index element={<Dashboard/>}/> {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
-        <Route path='income' element={<Income/>}/> {/* /host/income This takes from parent's relative path*/}
-        <Route path='vans' element={<HostVans/>}/>
-        <Route path='vans/:id' element={<HostVansDetail/>}>
-          <Route index element={<HostVanInfo/>}/>
-          <Route path='pricing' element={<HostVanPricing/>}/>
-          <Route path='photos' element= {<HostVanPhotos/>}/>
+        {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
+        <Route index 
+          element={<Dashboard/>} 
+          loader={async ()=>{return null}}/> 
+        {/* /host/income This takes from parent's relative path*/}
+        <Route 
+          path='income' 
+          element={<Income/>} 
+          loader={async ()=>{return null}}/> 
+        <Route 
+          path='vans' 
+          element={<HostVans/>} 
+          loader={hostVanPageLoader}/>
+        <Route 
+          path='vans/:id' 
+          element={<HostVansDetail/>} 
+          loader={hostVanDetailPageLoader}>
+          <Route index 
+            element={<HostVanInfo/>} 
+            loader={async ()=>{return null}}/>
+          <Route 
+            path='pricing' 
+            element={<HostVanPricing/>} 
+            loader={async ()=>{return null}}/>
+          <Route 
+            path='photos' 
+            element= {<HostVanPhotos/>} 
+            loader={async ()=>{return null}}/>
         </Route>
-        <Route path='review' element={<Review/>}/>
+
+        <Route path='review' element={<Review/>} loader={async ()=>{
+          return null
+        }}/>
       </Route> 
       {/* Catch all route */}
       <Route path='*' element={<NotFoundPage/>}/>        

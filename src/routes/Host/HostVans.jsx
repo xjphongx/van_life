@@ -1,20 +1,15 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import {NavLink, useLoaderData} from "react-router-dom"
+import { getHostVans } from "../../../api";
+
+//first export a loader for the route prop loader={}
+export function loader(){
+  return getHostVans() //This will get saved into the useLoaderData Hook
+}
 
 export default function HostVans(){
-  const [vans, setVans] = React.useState([])
-
-  //Make fetch request to MirageJS server
-  React.useEffect(()=>{
-    fetch("/api/host/vans") //get the endpoints 
-      .then((response)=>response.json())
-      .then((data)=>{
-        setVans(data.vans)
-      })
-  },[])
-
-  
-  console.log(vans) // log out the vans with the Host ID of 123
+  const vans = useLoaderData() //grab loaded data for this route
+  //console.log(vans) // log out the vans with the Host ID of 123
 
   const vansElement = vans.map((van)=>{
     return(
@@ -29,7 +24,6 @@ export default function HostVans(){
       </NavLink>
     )
   })
-
 
   return(
     <>
