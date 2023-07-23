@@ -16,15 +16,35 @@ export default function Login(){
   //use loaderData to get the return message of loader function
   const message = useLoaderData()
 
+  //useNavigate is the same as <Navigate/>
+  const navigate = useNavigate()
+
+  //status state
+  const [status, setStatus] = React.useState("idle")
+
+  //error state
+  const [error, setError] = React.useState(null)
+
+  
   const [loginFormData, setLoginFormData] = React.useState({email:"",password:""})
 
   function handleSubmit(e){
     e.preventDefault()
-
+    //set the status when submitting
+    setStatus("submitting")
+    setError(null)
     console.log(loginFormData)
     loginUser(loginFormData) //returns a promise of the matched data if the credentials are found and correct
-      .then(data => console.log(data))
-  } 
+      .then(data => {
+        navigate("/host", {replace: true}) //replaces the entry in the history stack
+      })
+      .catch(err=> setError(err)) //catch if there is an error when loading data
+      .finally(()=>setStatus("idle"))//set the status to idle when promise is done
+
+  }
+
+
+  
   function handleChange(e){
     const {name,value} = e.target;
     setLoginFormData((prevState)=>{
@@ -39,6 +59,7 @@ export default function Login(){
     <div className="login-container">
       <h1>Sign in to your account</h1>
       {message && <h2>{message}</h2>}
+      {error && <h2>{error.message}</h2>}
       <form onSubmit={handleSubmit} className="login-form">
         <input
           name="email"
@@ -54,7 +75,9 @@ export default function Login(){
           placeholder="Password"
           value={loginFormData.password}
         />
-        <button>Log in</button>
+        <button disabled={status === "submitting"} >
+          {status=== "submitting" ? "Loggin in..." : "Log in"}
+        </button>
       </form>
       
     </div>

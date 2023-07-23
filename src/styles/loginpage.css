@@ -50,4 +50,8 @@
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+.login-form > button:hover{
+  transform: translate(1px, 1px)
 }
