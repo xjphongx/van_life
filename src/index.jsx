@@ -50,17 +50,22 @@ function App() {
       <Route path='login' element={<Login/>}/>
 
 
-      {/* Below is the parent layout route with child routes and protected routes */}
+      {/* Below is the parent layout route with child routes and protected routes
+          CONCEPT: protect routes are using parallel loading */}
       <Route path='host' element={<HostLayout/>}> {/* /host */}
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
           element={<Dashboard/>} 
-          loader={async ()=>{return null}}/> 
+          loader={async ()=> await requireAuth() }/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 
           element={<Income/>} 
-          loader={async ()=>{return null}}/> 
+          loader={async ()=> await requireAuth()}/> 
+        <Route 
+          path='review' 
+          element={<Review/>} 
+          loader={async ()=> await requireAuth()}/>
         <Route 
           path='vans' 
           element={<HostVans/>} 
@@ -71,20 +76,17 @@ function App() {
           loader={hostVanDetailPageLoader}>
           <Route index 
             element={<HostVanInfo/>} 
-            loader={async ()=>{return null}}/>
+            loader={async ()=> await requireAuth()}/>
           <Route 
             path='pricing' 
             element={<HostVanPricing/>} 
-            loader={async ()=>{return null}}/>
+            loader={async ()=> await requireAuth()}/>
           <Route 
             path='photos' 
             element= {<HostVanPhotos/>} 
-            loader={async ()=>{return null}}/>
+            loader={async ()=> await requireAuth()}/>
         </Route>
 
-        <Route path='review' element={<Review/>} loader={async ()=>{
-          return null
-        }}/>
       </Route> 
       {/* Catch all route */}
       <Route path='*' element={<NotFoundPage/>}/>        

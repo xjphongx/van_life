@@ -1,6 +1,8 @@
 import { redirect } from "react-router-dom"
-
-export function requireAuth() {
+/*
+  Added an async to this function to act like a database call and we want 
+  to make a promise for the data and get it before the component renders    */
+export async function requireAuth() { 
   const isLoggedIn = false
   if(!isLoggedIn){
     throw redirect("/login")
