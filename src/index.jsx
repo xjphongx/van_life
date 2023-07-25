@@ -22,13 +22,14 @@ import Review from './routes/Host/Review';
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
 import VansDetail, {loader as vanDetailLoader} from './routes/Vans/VansDetail';
-import Login, {loader as loginLoader} from './routes/Login';
+import Login, {loader as loginLoader, action as loginAction} from './routes/Login';
 
 import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
 import "../server"
 
 import { requireAuth } from '../utils';
+localStorage.removeItem("loggedin")
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
         element={<VansDetail/>}
           loader={vanDetailLoader} //load the data first 
         />
-      <Route path='login' element={<Login/>} loader={loginLoader}/>
+      <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
 
 
       {/* Below is the parent layout route with child routes and protected routes

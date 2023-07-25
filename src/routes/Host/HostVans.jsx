@@ -3,7 +3,6 @@ import {NavLink, useLoaderData} from "react-router-dom"
 import { getHostVans } from "../../../api";
 import { requireAuth } from "../../../utils";
 
-
 //first export a loader for the route prop loader={}
 export async function loader(){
   await requireAuth() //ensures that the function runs completely before it gets a list of host vans

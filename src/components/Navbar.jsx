@@ -3,6 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import {BiUserCircle} from 'react-icons/Bi';
 
 export default function Navbar(){
+  
+  function fakeLogOut() {
+    console.log("clearing localStorage loggedin")
+    localStorage.removeItem("loggedin")
+    console.log(localStorage.getItem("loggedin"))
+}
+  
   return(
     <nav className="nav-bar-container">
       <Link to="/" className="vanlife-header">#VANLIFE</Link>
@@ -25,6 +32,8 @@ export default function Navbar(){
         ><BiUserCircle size={25}/>
         </NavLink>
 
+        
+        <button onClick={fakeLogOut}>X</button>
         
 
       </div>
