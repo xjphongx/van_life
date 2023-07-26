@@ -55,3 +55,7 @@
 .login-form > button:hover{
   transform: translate(1px, 1px)
 }
+.login-form >button:disabled{
+  background-color: #aaaaaa;
+  cursor: not-allowed;
+}

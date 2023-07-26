@@ -1,30 +1,34 @@
 import React from "react";
-import { useNavigate,useLoaderData,Form, redirect, useActionData } from "react-router-dom";
+import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData } from "react-router-dom";
 
 import { loginUser } from "../../api";
 
 export function loader({request}){
-  console.log(request)
+  //console.log(request)
   const url = new URL(request.url)
   const params = url.searchParams
-  console.log(params)
-  console.log(params.get("message"))
+  //console.log(params)
+  //console.log(params.get("message"))
   return params.get("message")
 }
+
+
 //This is needed for the Form component
 export async function action({request}){
-  console.log(request)
+  //console.log(request)
   const formData = await request.formData()
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
-  console.log(email,password)
+  //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
+  const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host" //get the search params in url
   
   try{ //Error handling
     const data = await loginUser({email,password})// user logs in here
-    console.log(data) 
+    //console.log(data) 
     localStorage.setItem("loggedin", true)//sets the loggedin state to true
-    console.log(localStorage.getItem("loggedin"))
-    return redirect("/host") //once email and password matches, redirect to host page
+    //console.log(localStorage.getItem("loggedin"))
+
+    return redirect(pathname) //once email and password matches, redirect to host page
   } catch(err){
     console.log(err)
     return err.message
@@ -38,31 +42,15 @@ export default function Login(){
   const message = useLoaderData()
 
   //useNavigate is the same as <Navigate/>
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
-  //status state
-  const [status, setStatus] = React.useState("idle")
+  //useNavigation state for idle loading submitting
+  const navigation = useNavigation()
+  //console.log(navigation)
 
   //error handling
   const errorMessage = useActionData()
-
-
-
   
-  function handleSubmit(e){
-    e.preventDefault()
-    //set the status when submitting
-    setStatus("submitting")
-    setError(null)
-    console.log(loginFormData)
-    loginUser(loginFormData) //returns a promise of the matched data if the credentials are found and correct
-      .then(data => {
-        navigate("/host", {replace: true}) //replaces the entry in the history stack
-      })
-      .catch(err=> setError(err)) //catch if there is an error when loading data
-      .finally(()=>setStatus("idle"))//set the status to idle when promise is done
-  }
-
   return(
     <div className="login-container">
       <h1>Sign in to your account</h1>
@@ -79,8 +67,8 @@ export default function Login(){
           type="password"
           placeholder="Password"
         />
-        <button disabled={status === "submitting"} >
-          {status=== "submitting" ? "Loggin in..." : "Log in"}
+        <button disabled={navigation.state === "submitting"} >
+          {navigation.state=== "submitting" ? "Loggin in..." : "Log in"}
         </button>
       </Form>
       
@@ -92,3 +80,16 @@ export default function Login(){
 
 }
 
+/* function handleSubmit(e){
+    e.preventDefault()
+    //set the status when submitting
+    setStatus("submitting")
+    setError(null)
+    console.log(loginFormData)
+    loginUser(loginFormData) //returns a promise of the matched data if the credentials are found and correct
+      .then(data => {
+        navigate("/host", {replace: true}) //replaces the entry in the history stack
+      })
+      .catch(err=> setError(err)) //catch if there is an error when loading data
+      .finally(()=>setStatus("idle"))//set the status to idle when promise is done
+  } */

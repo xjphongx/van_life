@@ -4,11 +4,11 @@ import { getHostVans } from "../../../api";
 import { requireAuth } from "../../../utils";
 
 //get host van data with loader
-export async function loader({params}){
+export async function loader({params, request}){
   {/* <div className='loading-container'>
     <h1>Loading...</h1>
   </div> */}
-  await requireAuth()
+  await requireAuth(request)
   return getHostVans(params.id)
 }
 

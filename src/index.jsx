@@ -57,16 +57,16 @@ function App() {
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
           element={<Dashboard/>} 
-          loader={async ()=> await requireAuth()}/> 
+          loader={async ({request})=> await requireAuth(request)}/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 
           element={<Income/>} 
-          loader={async ()=> await requireAuth()}/> 
+          loader={async ({request})=> await requireAuth(request)}/> 
         <Route 
           path='review' 
           element={<Review/>} 
-          loader={async ()=> await requireAuth()}/>
+          loader={async ({request})=> await requireAuth(request)}/>
         <Route 
           path='vans' 
           element={<HostVans/>} 
@@ -77,15 +77,15 @@ function App() {
           loader={hostVanDetailPageLoader}>
           <Route index 
             element={<HostVanInfo/>} 
-            loader={async ()=> await requireAuth()}/>
+            loader={async ({request})=> await requireAuth(request)}/>
           <Route 
             path='pricing' 
             element={<HostVanPricing/>} 
-            loader={async ()=> await requireAuth()}/>
+            loader={async ({request})=> await requireAuth(request)}/>
           <Route 
             path='photos' 
             element= {<HostVanPhotos/>} 
-            loader={async ()=> await requireAuth()}/>
+            loader={async ({request})=> await requireAuth(request)}/>
         </Route>
 
       </Route> 
