@@ -8,8 +8,13 @@ html, body {
     height: 100%;
     background-color: #FFF7ED;
     position: relative;
-    min-height: 100vh;
+    
 
+}
+.body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 body::-webkit-scrollbar{
     display:none
@@ -28,15 +33,21 @@ nav > a {
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
 .header-section{
     flex:0 1 auto;
 }
 .main-section {
-    flex: 1 1 auto;
-    min-height: 100vh;
+    flex: 2 1 auto;
+   /*  height: 100vh; */
     position: relative;
 }
 .footer-section{
     flex: 0 1 60px;
+    width: 100%;
+    
+    margin-top: auto;
+    
+    
 }
