@@ -16,6 +16,7 @@
   flex-direction: row;
   gap: 20px;
   min-width: 400px;
+  margin-bottom: 20px;
 }
 .filter-button.Simple, .filter-button.Luxury, .filter-button.Rugged{
   background-color: #FFEAD0 ;
@@ -67,13 +68,11 @@
 
 /* Below is for the van tiles */
 .van-list{
-  display:grid;
-  grid-template-columns: 300px 300px ;
-  column-gap: 40px;
-  row-gap: 40px;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  /* padding-bottom: 100px; */
+  
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 30px;
   
 }
 .van-tile{
@@ -134,20 +133,10 @@
 }
 
 /* adding responsiveness to vans */
-@media only screen and (min-width:1100px){
+@media only screen and (max-width:800px){
   .van-list{
-    grid-template-columns: 300px 300px 300px;
-    
-  }
-}
-@media only screen and (min-width:1379px){
-  .van-list{
-    grid-template-columns: 300px 300px 300px 300px;
-  }
-}
-@media only screen and (min-width:1700px){
-  .van-list{
-    grid-template-columns: 300px 300px 300px 300px 300px;
+    display:grid;
+    grid-template-columns: 300px 300px ;
   }
 }
 
