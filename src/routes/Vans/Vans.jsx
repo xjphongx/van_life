@@ -76,7 +76,7 @@ export default function Vans(){
   return(
     <div className='option-container'>
       <h1>Explore our van options</h1>
-      <React.Suspense fallback={<h1>Loading vans</h1>}>
+      <React.Suspense fallback={<h1>Loading Vans...</h1>}>
         <Await resolve={dataPromise.vans}>
           {renderVanElements}
         </Await>

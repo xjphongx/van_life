@@ -40,7 +40,7 @@ nav > a {
 }
 .main-section {
     flex: 2 1 auto;
-   /*  height: 100vh; */
+    /* min-height: 700px; */
     position: relative;
 }
 .footer-section{

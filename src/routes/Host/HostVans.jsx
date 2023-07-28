@@ -37,9 +37,9 @@ export default function HostVans(){
     })
     //return the vans element in a fragment
     return(
-      <>
-        {vansElement}
-      </>
+        <div className="host-vans-list-container">
+          {vansElement}
+        </div>
     )
 
 
@@ -50,15 +50,11 @@ export default function HostVans(){
   return(
     <>
       <h1>Your listed vans</h1>
-      <div className="host-vans-list-container">
       <React.Suspense fallback={<h1>Loading Host vans...</h1>}>
         <Await resolve={dataPromise.hostVans}>
           {renderHostVansElements}
         </Await>
       </React.Suspense>  
-        
-        
-      </div>
     </>
   )
 }

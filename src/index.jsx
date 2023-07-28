@@ -46,7 +46,7 @@ function App() {
       <Route 
         path='vans/:id' 
         element={<VansDetail/>}
-          loader={vanDetailLoader} //load the data first 
+        loader={vanDetailLoader} //load the data first 
         />
       <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
 
