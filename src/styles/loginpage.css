@@ -5,6 +5,7 @@
   align-items: center;
   padding-inline: 27px;
   margin-top: 150px;
+  min-height: 600px; /* A solution to get the foot on the bottom */
 }
 .login-container > h1{
   margin-bottom: 30px;
