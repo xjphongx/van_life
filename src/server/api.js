@@ -4,17 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* Create a separate file to handle fetch request and export and import to desired file */
 //overload the function: this may get an id or not
 export async function getVans(id){
