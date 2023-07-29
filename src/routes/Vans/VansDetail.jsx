@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link, useLocation, useLoaderData, defer,Await } from "react-router-dom";
-import { getVans } from "../../../api";
+import { getVans } from "../../server/api";
 
 
 

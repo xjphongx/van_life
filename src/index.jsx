@@ -37,16 +37,21 @@ function App() {
   const router = createBrowserRouter(createRoutesFromElements( //createRoutesFromElements will turn Routes into Route Objects for the next method
     <Route path='/'element={<Layout/>} errorElement={<Error/>}> {/* This is for layout route: This Route is the parent  */}
       {/* children route of Main layout */}
-      <Route index element={<Home/>}/> {/* index places the Home component into the outlet of the parent layout  */}
+      <Route index element={<Home/>}/> {/* index places the Home component into the outlet of the parent layout, this error handles errors for all children  */}
       <Route path='about' element={<About/>}/>
       <Route 
         path='vans' 
         element={<Vans/>} 
-        loader={vanPageLoader}/>
+        loader={vanPageLoader}
+        errorElement={<Error/>}
+        />
+        
       <Route 
         path='vans/:id' 
         element={<VansDetail/>}
         loader={vanDetailLoader} //load the data first 
+        errorElement={<Error/>}
+
         />
       <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
 
@@ -70,11 +75,15 @@ function App() {
         <Route 
           path='vans' 
           element={<HostVans/>} 
-          loader={hostVanPageLoader}/>
+          loader={hostVanPageLoader}
+          errorElement={<Error/>}
+          />
         <Route 
           path='vans/:id' 
           element={<HostVansDetail/>} 
-          loader={hostVanDetailPageLoader}>
+          loader={hostVanDetailPageLoader}
+          errorElement={<Error/>}>
+           
           <Route index 
             element={<HostVanInfo/>} 
             loader={async ({request})=> await requireAuth(request)}/>

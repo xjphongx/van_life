@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, useSearchParams, useLoaderData, defer,Await} from "react-router-dom"
-import { getVans } from "../../../api";
+import { getVans } from "../../server/api";
 
 //export Vans loader to allow me to load the data before components render
 export function loader(){
@@ -13,15 +13,9 @@ export default function Vans(){
   //load the vans data and set it to a variable
   const dataPromise =  useLoaderData() //CONCEPT: add defer to allow the data to load another time
   
-  const [error, setError] = React.useState(null)
   //gets the query parameter from URL(/localhost/vans?type=Simple)
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type") //what the function will filter out based upone van type
-  
-  
-  if(error){
-    return <h1>there is an error: {error.message}</h1>
-  }
   
   //this is to make the return less nested
   function renderVanElements(vans){

@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink, useLoaderData, defer, Await} from "react-router-dom"
-import { getHostVans } from "../../../api";
+import { getHostVans } from "../../server/api";
 import { requireAuth } from "../../../utils";
 
 //first export a loader for the route prop loader={}
