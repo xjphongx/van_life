@@ -1,13 +1,28 @@
-
-
+export async function getVans(){
+  const res = await fetch("http://localhost:5050/vans")
+  console.log(res)
+  if(!res.ok){
+    throw{
+      //throw an error if response is NOT ok 
+      message: "failed to fetch vans",
+      statusText: res.statusText,
+      status:res.status
+    }
+  }
+  //turn the response into json
+  const dataPromise = await res.json()
+  console.log(dataPromise)
+  return dataPromise
+}
 
 
 
 
 /* Create a separate file to handle fetch request and export and import to desired file */
 //overload the function: this may get an id or not
-export async function getVans(id){
+/* export async function getVans(id){
   const url = id ? `/api/vans/${id}` : "/api/vans"
+ 
   const res = await fetch(url)
 
   console.log(res)
@@ -23,7 +38,7 @@ export async function getVans(id){
   const data = await res.json()
   console.log(data)
   return data.vans
-}
+} */
 
 export async function getHostVans(id){
   const url = id ? `/api/host/vans/${id}` : "/api/host/vans"

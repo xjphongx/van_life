@@ -26,7 +26,7 @@ import Login, {loader as loginLoader, action as loginAction} from './routes/Logi
 
 import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
-import "../server"
+//import "../server"
 
 import { requireAuth } from '../utils';
 localStorage.removeItem("loggedin")
