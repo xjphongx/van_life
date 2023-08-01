@@ -2,4 +2,8 @@ GET http://localhost:5050/vans
 
 ###
 
+GET http://localhost:5050/vans/64c4af96bdcf57cdb5258eb7
 
+###
+
+GET http://localhost:5050/vans?id=1

@@ -14,6 +14,6 @@ try {
 }
 
 let db = mongoose.connection
-console.log(db)
+//console.log(db)
 
 export default db;

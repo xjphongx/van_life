@@ -11,4 +11,4 @@ const vanSchema = new mongoose.Schema({
   visiblity: String,
 })
 
-export default mongoose.model('van', vanSchema)
+export default mongoose.model('Van', vanSchema)

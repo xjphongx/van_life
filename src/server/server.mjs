@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 db.on('error', (error) => console.error(error))
-db.once('open', ()=>{console.log('connected to database')})
+db.once('open', ()=>{console.log('Connected to Mongodb')})
 
 
 app.use("/users", users) //link the users route to a /users path;

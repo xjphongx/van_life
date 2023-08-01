@@ -1,5 +1,7 @@
-export async function getVans(){
-  const res = await fetch("http://localhost:5050/vans")
+//overload the function: this may get an id or not
+export async function getVans(id){
+  const url = id? `http://localhost:5050/vans/${id}`:`http://localhost:5050/vans`
+  const res = await fetch(url)
   console.log(res)
   if(!res.ok){
     throw{
