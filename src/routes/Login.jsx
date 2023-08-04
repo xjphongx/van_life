@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData } from "react-router-dom";
+import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData, Link } from "react-router-dom";
 
 import { loginUser } from "../server/api";
 
@@ -21,13 +21,13 @@ export async function action({request}){
   const password = formData.get("password")
   //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
   const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host" //get the search params in url
-  
+
   try{ //Error handling
     const data = await loginUser({email,password})// user logs in here
     //console.log(data) 
     localStorage.setItem("loggedin", true)//sets the loggedin state to true
     //console.log(localStorage.getItem("loggedin"))
-
+    
     return redirect(pathname) //once email and password matches, redirect to host page
   } catch(err){
     console.log(err)
@@ -60,7 +60,7 @@ export default function Login(){
         <input
           name="email"
           type="email"
-          placeholder="Email address"
+          placeholder="Email Address"
         />
         <input
           name="password"
@@ -71,7 +71,10 @@ export default function Login(){
           {navigation.state=== "submitting" ? "Loggin in..." : "Log in"}
         </button>
       </Form>
-      
+      {/* Sign up option below here */}
+      <div>
+        <p>Don't have an account? <Link to='../signup' className="login-sign-up-button">Sign up</Link> here.</p>
+      </div>
     </div>
   )
 
@@ -79,17 +82,3 @@ export default function Login(){
 
 
 }
-
-/* function handleSubmit(e){
-    e.preventDefault()
-    //set the status when submitting
-    setStatus("submitting")
-    setError(null)
-    console.log(loginFormData)
-    loginUser(loginFormData) //returns a promise of the matched data if the credentials are found and correct
-      .then(data => {
-        navigate("/host", {replace: true}) //replaces the entry in the history stack
-      })
-      .catch(err=> setError(err)) //catch if there is an error when loading data
-      .finally(()=>setStatus("idle"))//set the status to idle when promise is done
-  } */
