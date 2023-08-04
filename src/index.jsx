@@ -23,6 +23,7 @@ import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
 import VansDetail, {loader as vanDetailLoader} from './routes/Vans/VansDetail';
 import Login, {loader as loginLoader, action as loginAction} from './routes/Login';
+import SignUp, {loader as signUpLoader} from './routes/SignUp';
 
 import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
@@ -54,6 +55,7 @@ function App() {
 
         />
       <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
+      <Route path='signup' element={<SignUp/>} loader={signUpLoader} />
 
 
       {/* Below is the parent layout route with child routes and protected routes
