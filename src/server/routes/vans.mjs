@@ -1,8 +1,5 @@
 import express from "express";
-import db from "../db/conn.mjs";
 import Van from "../model/van.mjs";
-
-
 
 const router = express.Router();
 
@@ -10,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res)=>{
   try {
     const vans= await Van.find()
-    return res.json(vans)
+    return res.status(200).json(vans)
   } catch(err){
     res.status(500).json({message: err.message})
   }
@@ -19,15 +16,7 @@ router.get("/", async (req, res)=>{
 //get a specific van object
 router.get("/:id", getVan, (req, res)=>{
   console.log('getting specific van')
-  res.json(res.van)
-  /* 
-  const id = req.params.id
-  try{
-    const vanObject = await vans.find(id)
-    return res.json(vanObject)
-  } catch(err){
-    res.status(500).json({message:err.message})
-  } */
+  res.status(200).json(res.van)
 })
 
 
