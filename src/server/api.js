@@ -32,6 +32,30 @@ export async function getHostVans(id){
     return data.vans
 }
 
+export async function signUpUser(creds){
+  //This part is important, line by line
+  const res = await fetch("http://localhost:5050/users",{
+    method:"POST", 
+    headers:{
+      "Content-Type" : "application/json"
+    },
+    body: JSON.stringify(creds)}
+  )
+
+  if(!res.ok){
+    throw{
+      //throw an error if response is NOT ok 
+      message: "failed to fetch users",
+      statusText: res.statusText,
+      status:res.status
+    }
+  }
+  const dataPromise = await res.json()
+  return dataPromise
+}
+
+
+
 export async function loginUser(creds) {
   console.log(creds)
   const res = await fetch("http://localhost:5050/users",

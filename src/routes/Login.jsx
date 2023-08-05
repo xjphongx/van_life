@@ -15,7 +15,7 @@ export function loader({request}){
 
 //This is needed for the Form component
 export async function action({request}){
-  //console.log(request)
+  console.log(request)
   const formData = await request.formData()
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
