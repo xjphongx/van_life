@@ -1,5 +1,5 @@
 import React from "react";
-import {Form} from "react-router-dom"
+import {Form,Link} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../server/api";
 
@@ -41,46 +41,46 @@ export default function SignUp(){
 
   return(
     <div className="signup-container">
-      <h1>Sign up for a free account ... <FaShuttleVan className="signup-van"/> </h1>
+      <div>
+        <h1>Sign up for a free account ... </h1>
+        <FaShuttleVan className="signup-van" size={30}/>
+      </div>
       
       <Form method="post" className="signup-form" >
-        <div>
-          <input
-          name="firstName"
-          type="name"
-          placeholder="First Name"
-          />
-          <input
-          name="lastName"
-          type="name"
-          placeholder="Last Name"
-          />
+        <div className="name-container">
+          <input name="firstName" type="name" placeholder="First Name"/>
+          <input name="lastName" type="name" placeholder="Last Name"/>
         </div>
-        <input
-          name="email"
-          type="email"
-          placeholder="Email Address"
-        />
-        <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        />
-        <input
-          name="dateOfBirth"
-          type="date"
-          placeholder="Date of Birth MM/DD/YEAR"
-        />
-        <input
-        name="phoneNumber"
-        type="tel"
-        placeholder="Telephone Number"
-        />
+
+        <div className="email-container">
+          <input name="email" type="email" placeholder="Email Address"/>
+          <input name="confirmEmail" type="email" placeholder="Confirm Email Address"/>
+        </div>
+
+        <div className="password-container">
+          <input name="password" type="password" placeholder="Password" />
+          <input name="confirmPassword" type="password" placeholder="Confirm Password"/>
+        </div>
+
+        <div className="info-container">
+          <input name="dateOfBirth" type="date" id="date" className="date-form"/>
+          <input name="phoneNumber" type="tel" placeholder="Telephone Number"/>
+        </div>
+        
+        <p className="signup-terms">
+          By clicking Sign up, you agree to our Terms. Learn how we collect, 
+          use and share your data in our Data Policy and how we use cookies and 
+          similar technology in our Cookies Policy. You may recieve SMS Notifications 
+          from us and can opt out any time.
+        </p>
         
         <button disabled={navigation.state === "submitting"} >
-          {navigation.state=== "submitting" ? "Loggin in..." : "Log in"}
+          {navigation.state=== "submitting" ? "Creating account..." : "Sign up"}
         </button>
       </Form>
+      <div>
+        <p>Already have an account? <Link to='../login' className="signup-login-button">Login in</Link> here.</p>
+      </div>
     </div>
   )
 }

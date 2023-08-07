@@ -21,7 +21,4 @@ GET http://localhost:5050/users/64c4af96bdcf57cdb5258eb4
 POST http://localhost:5050/users
 Content-Type: application/json
 
-{
-  "firstName": "jimmy",
-  "lastName": "isdaf"
-}
+{}

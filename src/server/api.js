@@ -33,7 +33,7 @@ export async function getHostVans(id){
 }
 
 export async function signUpUser(creds){
-  //This part is important, line by line
+  //This part is important, line by line 
   const res = await fetch("http://localhost:5050/users",{
     method:"POST", 
     headers:{
