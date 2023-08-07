@@ -41,7 +41,7 @@ export default function SignUp(){
 
   return(
     <div className="signup-container">
-      <div>
+      <div className="signup-header">
         <h1>Sign up for a free account ... </h1>
         <FaShuttleVan className="signup-van" size={30}/>
       </div>
