@@ -48,23 +48,23 @@ export default function SignUp(){
       
       <Form method="post" className="signup-form" >
         <div className="name-container">
-          <input name="firstName" type="name" placeholder="First Name"/>
-          <input name="lastName" type="name" placeholder="Last Name"/>
+          <input name="firstName" type="name" placeholder="First Name" required/>
+          <input name="lastName" type="name" placeholder="Last Name" required/>
         </div>
 
         <div className="email-container">
-          <input name="email" type="email" placeholder="Email Address"/>
-          <input name="confirmEmail" type="email" placeholder="Confirm Email Address"/>
+          <input name="email" type="email" placeholder="Email Address" required/>
+          <input name="confirmEmail" type="email" placeholder="Confirm Email Address" required/>
         </div>
 
         <div className="password-container">
-          <input name="password" type="password" placeholder="Password" />
-          <input name="confirmPassword" type="password" placeholder="Confirm Password"/>
+          <input name="password" type="password" placeholder="Password" required />
+          <input name="confirmPassword" type="password" placeholder="Confirm Password" required/>
         </div>
 
         <div className="info-container">
-          <input name="dateOfBirth" type="date" id="date" className="date-form"/>
-          <input name="phoneNumber" type="tel" placeholder="Telephone Number"/>
+          <input name="dateOfBirth" type="date" id="date" className="date-form" required/>
+          <input name="phoneNumber" type="tel" placeholder="Telephone Number(Optional)"/>
         </div>
         
         <p className="signup-terms">
