@@ -5,6 +5,7 @@ const router = express.Router();
 
 //get a list of all the records of user
 router.get("/", async (req, res)=>{
+  console.log("getting all users")
   try {
     const users= await User.find()
     return res.json(users)
@@ -21,7 +22,10 @@ router.get("/:id", getUser, (req,res)=>{
 
 //post a new user 
 router.post("/", async (req, res)=>{
-  const user = new User({ //create a new User object
+  console.log("posting to database")
+  try{
+    //save the User object
+    const user = new User({ //create a new User object
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -29,14 +33,25 @@ router.post("/", async (req, res)=>{
     dateOfBirth: req.body.dateOfBirth,
     phone: req.body.phone
   })
-  //save the User object
-  try{
     const newUser = await user.save()
     res.status(201).json(newUser) //201 created a new object
+    
   }catch(err){
     res.status(400).json({message:err.message})
   }
 })
+
+//login in user
+router.post("/login", async (req,res)=>{
+  try{
+    const {email,password} = JSON.parse(req.body)
+    console.log(email,password)
+  }catch(err){
+    res.status(400).json({message:err.message})
+  }
+  
+  
+} )
 
 //middle ware function
 async function getUser(req,res,next) {
@@ -45,7 +60,7 @@ async function getUser(req,res,next) {
     console.log(req.params.id)
     user = await User.findById(req.params.id)
     if(user === null){
-      return res.status(404).json({message:'cannnot find van'})
+      return res.status(404).json({message:'cannnot find User'})
     }
   } catch (err){
     return res.status(500).json({message: err.message})

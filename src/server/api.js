@@ -19,7 +19,7 @@ export async function getVans(id){
 
 
 export async function getHostVans(id){
-  const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
+  const url = id ? `/api/host/vans/${id}` : "http://localhost:5050/vans"
   const res = await fetch(url)
     if (!res.ok) {
         throw {
@@ -57,20 +57,29 @@ export async function signUpUser(creds){
 
 
 export async function loginUser(creds) {
-  console.log(creds)
-  const res = await fetch("http://localhost:5050/users",
-      { method: "post", body: JSON.stringify(creds) }
-  )
-  console.log(res)
-  const data = await res.json()
-  console.log(data)
-  if (!res.ok) {
-      throw {
-          message: data.message,
-          statusText: res.statusText,
-          status: res.status
-      }
-  }
+  try{
+    console.log(creds)
+    const res = await fetch("http://localhost:5050/users", { 
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      body: JSON.stringify(creds) }
+    )
+    console.log(res)
+    const data = await res.json()
+    console.log(data)
+    if (!res.ok) {
+        throw {
+            message: data.message,
+            statusText: res.statusText,
+            status: res.status
+        }
+    }
 
-  return data
+    return data
+  }catch(err){
+    res.status(500).json({message:err.message})
+  }
+  
 }

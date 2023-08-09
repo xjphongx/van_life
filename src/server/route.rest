@@ -12,7 +12,7 @@ GET http://localhost:5050/users
 
 ###
 
-GET http://localhost:5050/users/64c4af96bdcf57cdb5258eb4
+GET http://localhost:5050/users/64c4af96bdcf57cdb5258eb6
 
 
 ###
@@ -22,3 +22,16 @@ POST http://localhost:5050/users
 Content-Type: application/json
 
 {}
+
+###
+GET http://localhost:5050/login
+
+
+###
+POST http://localhost:5050/login
+Content-Type: application/json
+
+{
+  "email":"b@b.com",
+  "password":"p123"
+}

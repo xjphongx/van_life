@@ -1,10 +1,7 @@
 import React from "react";
-import {Form,Link} from "react-router-dom"
+import {Form,Link, redirect} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../server/api";
-
-
-
 
 export function loader(){
 
@@ -28,6 +25,7 @@ export async function action({request}){
   //make the call to the POST method
   try{
     const data = await signUpUser(newUserObject)
+    return redirect('/login')
   }catch(err){
     console.log(err)
     return err.message

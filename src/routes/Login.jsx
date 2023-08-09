@@ -56,7 +56,7 @@ export default function Login(){
       <h1>Sign in to your account</h1>
       {message && <h2>{message}</h2>}
       {errorMessage && <h2>{errorMessage}</h2>}
-      <Form method="post" className="login-form" replace={true}>
+      <Form method="POST" className="login-form" replace={true}>
         <input
           name="email"
           type="email"

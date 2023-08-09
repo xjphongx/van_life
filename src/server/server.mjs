@@ -25,7 +25,7 @@ db.once('open', ()=>{console.log('Connected to Mongodb')})
 
 app.use("/users", users) //link the users route to a /users path;
 app.use("/vans", vans)
-app.use("/login", login)
+app.use("/login", login) 
 
 // start the Express server
 app.listen(PORT, () => {
