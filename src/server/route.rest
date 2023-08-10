@@ -33,7 +33,9 @@ Content-Type: application/json
 
 {
   "email":"a@a.com",
-  "password":"a123"
+  "confirmEmail": "a@a.com",
+  "password":"p123",
+  "confirmPassword":"b123"
 }
 
 

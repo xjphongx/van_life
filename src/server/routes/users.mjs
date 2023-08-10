@@ -21,19 +21,6 @@ router.get("/:id", getUser, (req,res)=>{
 })
 
 
-
-//login in user
-router.post("/login", async (req,res)=>{
-  try{
-    const {email,password} = JSON.parse(req.body)
-    console.log(email,password)
-  }catch(err){
-    res.status(400).json({message:err.message})
-  }
-  
-  
-} )
-
 //middle ware function
 async function getUser(req,res,next) {
   let user;

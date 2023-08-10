@@ -1,7 +1,9 @@
 import React from "react";
-import {Form,Link, redirect} from "react-router-dom"
+import {Form,Link, redirect, useActionData} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../../server/api";
+
+
 
 export function loader(){
 
@@ -9,23 +11,27 @@ export function loader(){
 
 //once the form is submitted as a POST request
 export async function action({request}){
-  console.log(request)
+  //console.log(request)
   const formData = await request.formData()
   const newUserObject = {
     firstName:formData.get("firstName"),
     lastName:formData.get("lastName"),
     email: formData.get("email"),
+    confirmEmail: formData.get("confirmEmail"),
     password: formData.get("password"),
+    confirmPassword: formData.get("confirmPassword"),
     dateOfBirth: formData.get("dateOfBirth"),
     phone: formData.get("phoneNumber")
   }
 
-  console.log(newUserObject)
+  //console.log(newUserObject)
   
   //make the call to the POST method
   try{
+
     const data = await signUpUser(newUserObject)
-    return redirect('/login')
+    console.log(data)
+    
   }catch(err){
     console.log(err)
     return err.message
@@ -35,6 +41,7 @@ export async function action({request}){
 }
 
 export default function SignUp(){
+  const errorMessage = useActionData()
 
 
   return(
@@ -43,7 +50,7 @@ export default function SignUp(){
         <h1>Sign up for a free account ... </h1>
         <FaShuttleVan className="signup-van" size={30}/>
       </div>
-      
+      {errorMessage && <h2>{errorMessage}</h2>}
       <Form method="post" className="signup-form" >
         <div className="name-container">
           <input name="firstName" type="name" placeholder="First Name" required/>

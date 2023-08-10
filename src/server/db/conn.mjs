@@ -1,4 +1,3 @@
-//import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 
 const connectionString = process.env.ATLAS_URI || "";

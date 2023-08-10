@@ -17,7 +17,7 @@ export async function getVans(id){
   return dataPromise
 }
 
-
+//Fix this when ready
 export async function getHostVans(id){
   const url = id ? `/api/host/vans/${id}` : "http://localhost:5050/vans"
   const res = await fetch(url)
@@ -32,21 +32,22 @@ export async function getHostVans(id){
     return data.vans
 }
 
-export async function signUpUser(creds){
+export async function signUpUser(newUser){
   //This part is important, line by line 
+  //This sends a request from the client side to server side endpoint, then it is recieved in signUp.mjs file
   const res = await fetch("http://localhost:5050/signup",{
     method:"POST", 
     headers:{
       "Content-Type" : "application/json"
     },
     credentials: "same-origin",
-    body: JSON.stringify(creds)}
+    body: JSON.stringify(newUser)}
   )
-
+  console.log(res)
   if(!res.ok){
     throw{
       //throw an error if response is NOT ok 
-      message: "failed to fetch users",
+      message: "res.json",
       statusText: res.statusText,
       status:res.status
     }
@@ -56,32 +57,29 @@ export async function signUpUser(creds){
 }
 
 
-
+//Fix this
 export async function loginUser(creds) {
-  try{
-    console.log(creds)
-    const res = await fetch("http://localhost:5050/login", { 
-      method: "POST",
-      headers:{
-        "Content-Type" : "application/json"
-      }, 
-      credentials: "include",
-      body: JSON.stringify(creds) }
-    )
-    console.log(res)
-    const data = await res.json()
-    console.log(data)
-    if (!res.ok) {
-        throw {
-            message: data.message,
-            statusText: res.statusText,
-            status: res.status
-        }
-    }
-
-    return data
-  }catch(err){
-    res.status(500).json({message:err.message})
+  console.log(creds)
+  const res = await fetch("http://localhost:5050/login", { 
+    method: "POST",
+    headers:{
+      "Content-Type" : "application/json"
+    }, 
+    credentials: "include",
+    body: JSON.stringify(creds) }
+  )
+  console.log(res)
+  const data = await res.json()
+  console.log(data)
+  if (!res.ok) {
+      throw {
+          message: data.message,
+          statusText: res.statusText,
+          status: res.status
+      }
   }
+
+  return data
+  
   
 }
