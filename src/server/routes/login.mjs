@@ -29,7 +29,7 @@ router.post("/", async (req,res)=>{
       return new Response(404,{}, {message:"No user with those credentials found"})
     }
     //set password to undefined for now
-    foundUser.password = undefined
+    //foundUser.password = undefined
     return res
 
   }catch(err){

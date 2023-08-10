@@ -6,7 +6,7 @@ const router = express.Router()
 router.use(
   cors({
     credentials:true,
-    origin:'http://loaclhost:5173'
+    origin:'http://localhost:5173'
 }))
 
 router.get('/',(req,res)=>{

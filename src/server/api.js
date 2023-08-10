@@ -34,11 +34,12 @@ export async function getHostVans(id){
 
 export async function signUpUser(creds){
   //This part is important, line by line 
-  const res = await fetch("http://localhost:5050/users",{
+  const res = await fetch("http://localhost:5050/signup",{
     method:"POST", 
     headers:{
       "Content-Type" : "application/json"
     },
+    credentials: "same-origin",
     body: JSON.stringify(creds)}
   )
 
@@ -59,11 +60,12 @@ export async function signUpUser(creds){
 export async function loginUser(creds) {
   try{
     console.log(creds)
-    const res = await fetch("http://localhost:5050/users", { 
+    const res = await fetch("http://localhost:5050/login", { 
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
       }, 
+      credentials: "include",
       body: JSON.stringify(creds) }
     )
     console.log(res)

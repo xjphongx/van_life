@@ -23,6 +23,20 @@ Content-Type: application/json
 
 {}
 
+### 
+GET http://localhost:5050/signup
+
+
+###
+POST http://localhost:5050/signup
+Content-Type: application/json
+
+{
+  "email":"a@a.com",
+  "password":"a123"
+}
+
+
 ###
 GET http://localhost:5050/login
 
