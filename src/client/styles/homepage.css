@@ -51,7 +51,7 @@
 .main-container{
   display:flex;
   flex-direction: column;
-  background-image: url("/src/assets/homepage.png");
+  background-image: url("/src/client/assets/homepage.png");
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: cover; /* this deals with image zoom when page is responsive */
