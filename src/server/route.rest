@@ -35,7 +35,8 @@ Content-Type: application/json
   "email":"a@a.com",
   "confirmEmail": "a@a.com",
   "password":"p123",
-  "confirmPassword":"b123"
+  "confirmPassword":"p123",
+  "dateOfBirth": "2023-08-03"
 }
 
 

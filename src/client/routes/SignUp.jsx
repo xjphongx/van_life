@@ -2,7 +2,7 @@ import React from "react";
 import {Form,Link, redirect, useActionData} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../../server/api";
-
+import {toast, Toaster } from "react-hot-toast";
 
 
 export function loader(){
@@ -28,10 +28,15 @@ export async function action({request}){
   
   //make the call to the POST method
   try{
-
     const data = await signUpUser(newUserObject)
     console.log(data)
-    
+    //if there is an error in the backend
+    if(data.error){
+      toast.error(data.error)
+    }else {
+      toast.success('Signup successful!')
+      redirect('/login')
+    }
   }catch(err){
     console.log(err)
     return err.message
@@ -51,6 +56,7 @@ export default function SignUp(){
         <FaShuttleVan className="signup-van" size={30}/>
       </div>
       {errorMessage && <h2>{errorMessage}</h2>}
+      <Toaster position='top' toastOptions={{duration: 2000}}/>
       <Form method="post" className="signup-form" >
         <div className="name-container">
           <input name="firstName" type="name" placeholder="First Name" required/>

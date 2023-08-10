@@ -6,6 +6,8 @@ import {  Route,
   RouterProvider}
   from 'react-router-dom';
 
+import { Toaster } from 'react-hot-toast';
+
 import Home from './routes/Home';
 import Layout from './components/Layout';
 
@@ -36,7 +38,7 @@ localStorage.removeItem("loggedin")
 function App() {
   //New way to use BrowserRouter
   const router = createBrowserRouter(createRoutesFromElements( //createRoutesFromElements will turn Routes into Route Objects for the next method
-    <Route path='/'element={<Layout/>} errorElement={<Error/>}> {/* This is for layout route: This Route is the parent  */}
+    <Route path='/' element={<Layout/>} errorElement={<Error/>}> {/* This is for layout route: This Route is the parent  */}
       {/* children route of Main layout */}
       <Route index element={<Home/>}/> {/* index places the Home component into the outlet of the parent layout, this error handles errors for all children  */}
       <Route path='about' element={<About/>}/>

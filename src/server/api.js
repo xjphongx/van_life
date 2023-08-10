@@ -12,7 +12,7 @@ export async function getVans(id){
     }
   }
   //turn the response into json
-  const dataPromise = await res.json()
+  const dataPromise = await res.json() //this is for defered data
   console.log(dataPromise)
   return dataPromise
 }
@@ -43,17 +43,19 @@ export async function signUpUser(newUser){
     credentials: "same-origin",
     body: JSON.stringify(newUser)}
   )
-  console.log(res)
-  if(!res.ok){
+  const data = await res.json() //get the promised data
+  
+  //might not need this 
+  /* if(!res.ok){
     throw{
       //throw an error if response is NOT ok 
-      message: "res.json",
+      message: data.error,
       statusText: res.statusText,
       status:res.status
     }
-  }
-  const dataPromise = await res.json()
-  return dataPromise
+  } */
+
+  return data
 }
 
 
