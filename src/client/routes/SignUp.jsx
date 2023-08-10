@@ -1,7 +1,7 @@
 import React from "react";
 import {Form,Link, redirect} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
-import { signUpUser } from "../server/api";
+import { signUpUser } from "../../server/api";
 
 export function loader(){
 

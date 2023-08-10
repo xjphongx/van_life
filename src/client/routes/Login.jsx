@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData, Link } from "react-router-dom";
 
-import { loginUser } from "../server/api";
+import { loginUser } from "../../server/api";
 
 export function loader({request}){
   //console.log(request)

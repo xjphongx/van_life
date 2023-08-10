@@ -29,7 +29,7 @@ import NotFoundPage from './routes/NotFoundPage';
 import Error from './components/Error';
 //import "../server"
 
-import { requireAuth } from '../utils';
+import { requireAuth } from './utils';
 localStorage.removeItem("loggedin")
 
 

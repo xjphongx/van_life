@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, useSearchParams, useLoaderData, defer,Await} from "react-router-dom"
-import { getVans } from "../../server/api";
+import { getVans } from "../../../server/api";
 
 //export Vans loader to allow me to load the data before components render
 export function loader(){
