@@ -1,3 +1,4 @@
+/* This is my backend server endpoint */
 import express from 'express'
 import User from "../model/user.mjs"
 
@@ -27,7 +28,7 @@ router.post("/", async (req, res)=>{
         error: 'password is too short'
       })
     } */
-    
+    /* Form validation in the server */
     //check email if its already used
     const exist = await User.findOne({email})
     if(exist){
