@@ -19,21 +19,10 @@ router.get("/", async (req, res)=>{
 //recieves request from client side to post to backend database
 router.post("/", async (req, res)=>{
   console.log("Sending POST request to sign up a new user")
-    
   try{
     const {firstName,lastName, email, confirmEmail, password, confirmPassword,dateOfBirth,phone} = req.body
   
     /* Form validation in the server */
-    //check email if its already used
-    const userExist = await User.findOne({email})
-    if(userExist){
-      console.log("Email is taken")
-      return res.status(400).json({
-        error: 'Email is taken',
-        emailExist:true
-      })
-    }
-
     //check if email and confirmEmail matches
     if(email!==confirmEmail){
       console.log("Emails do not match")
@@ -50,6 +39,16 @@ router.post("/", async (req, res)=>{
       })
     }
 
+    //check email if its already used
+    const userExist = await User.findOne({email})
+    if(userExist){
+      console.log("Email is taken")
+      return res.status(400).json({
+        error: 'Email is taken',
+        emailExist:true
+      })
+    }
+   
     //check if the date is valid and over 18
     const dateArray = dateOfBirth.split(/-/) //[year, month, day]
     const userYear = Number(dateArray[0])

@@ -56,7 +56,7 @@ export default function SignUp(){
         <FaShuttleVan className="signup-van" size={30}/>
       </div>
       {errorMessage && <h2>{errorMessage}</h2>}
-      <Toaster position='top' toastOptions={{duration: 2000}}/>
+      <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="post" className="signup-form" >
         <div className="name-container">
           <input name="firstName" type="name" placeholder="First Name" required/>
