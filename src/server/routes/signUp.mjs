@@ -35,7 +35,7 @@ router.post("/", async (req, res)=>{
     if(password!==confirmPassword){
       console.log("Passwords do not match")
       return res.status(400).json({
-        error: 'passwords do not match'
+        error: 'Passwords do not match'
       })
     }
 
