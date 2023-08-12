@@ -4,15 +4,12 @@ import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../../server/api";
 import {toast, Toaster } from "react-hot-toast";
 
-
 export function loader(){
 
 }
 
 //once the form is submitted as a POST request
 export async function action({request}){
-  
-  //console.log(request)
   const formData = await request.formData()
   const newUserObject = {
     firstName:formData.get("firstName"),
@@ -25,8 +22,6 @@ export async function action({request}){
     phone: formData.get("phoneNumber")
   }
 
-  //console.log(newUserObject)
-  
   //make the call to the POST method
   try{
     const data = await signUpUser(newUserObject)
@@ -43,14 +38,10 @@ export async function action({request}){
     console.log(err)
     return err.message
   }
-  
-  
 }
 
 export default function SignUp(){
   const errorMessage = useActionData()
-
-
   return(
     <div className="signup-container">
       <div className="signup-header">
