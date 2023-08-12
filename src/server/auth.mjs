@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt"
 
+/* This helper file contains functions to hash an inputted password */
+
 export function hashPassword(password){
   //return a Promise to hash the password
   return new Promise((resolve, reject)=>{
