@@ -20,7 +20,7 @@ export async function getVans(id){
 
 //Fix this when ready
 export async function getHostVans(id){
-  const url = id ? `/api/host/vans/${id}` : "http://localhost:5050/vans"
+  const url = id ? `http://localhost:5050/host/vans/${id}` : "http://localhost:5050/host/vans"
   const res = await fetch(url)
     if (!res.ok) {
         throw {
@@ -29,8 +29,9 @@ export async function getHostVans(id){
             status: res.status
         }
     }
-    const data = await res.json()
-    return data.vans
+    const dataPromise = await res.json()
+    console.log(dataPromise)
+    return dataPromise.vans
 }
 
 export async function signUpUser(newUser){

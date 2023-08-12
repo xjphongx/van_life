@@ -8,6 +8,7 @@ import users from "./routes/users.mjs";
 import vans from "./routes/vans.mjs"
 import signUp from "./routes/signUp.mjs"
 import login from "./routes/login.mjs"
+import host from "./routes/host.mjs"
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -26,6 +27,7 @@ app.use("/users", users) //link the users route to a /users path;
 app.use("/vans", vans)
 app.use('/signup', signUp)
 app.use("/login", login) 
+app.use("/host", host)
 
 // start the Express server
 app.listen(PORT, () => {

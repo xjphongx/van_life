@@ -13,15 +13,14 @@ export default function HostVans(){
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
 
-
-
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
     //Each element will have these html attributes
     const vansElement = hostVans.map((van)=>{
+      console.log(van)
       return(
         <>
-          <NavLink key={van.id} className="host-van-link" to={van.id}>
+          <NavLink key={van._id} className="host-van-link" to={van.id}>
             <div  className="host-vans-container">
               <img className="host-van-image-icon" src={van.imageUrl}/>
               <div className="host-van-info-container">
