@@ -1,6 +1,7 @@
 /* This is my backend server endpoint */
 import express from 'express'
 import User from "../model/user.mjs"
+import {hashPassword, comparePassword} from '../auth.mjs'
 
 const router = express.Router()
 
@@ -93,13 +94,15 @@ router.post("/", async (req, res)=>{
       })
     } */
 
-    //save the User object
+    //create a hashed password to save to db
+    const hashedPassword = await hashPassword(password)
+    //save the User object with a hashed password
     console.log("saving user")
     const user = new User({ //create a new User object
       firstName: firstName,
       lastName: lastName,
       email:email,
-      password: password,
+      password: hashedPassword,
       dateOfBirth: dateOfBirth,
       phone: phone
     })
