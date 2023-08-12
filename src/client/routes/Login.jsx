@@ -4,11 +4,10 @@ import {toast, Toaster } from "react-hot-toast";
 import { loginUser } from "../../server/api";
 
 export function loader({request}){
-  //console.log(request)
   const url = new URL(request.url)
   const params = url.searchParams
-  //console.log(params)
-  //console.log(params.get("message"))
+  /* console.log(params)
+  console.log(params.get("message")) */
   return params.get("message")
 }
 
@@ -20,16 +19,17 @@ export async function action({request}){
   const password = formData.get("password")
   //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
   const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host" //get the search params in url
-
+ 
   try{ //Error handling
     const data = await loginUser({email,password})// user logs in here
     if(data.error){
       toast.error(data.error)
     } else{
       toast.success('Login successful')
+      //REMOVE THIS WHEN IMPLEMENTING LOG OUT
+      localStorage.setItem("loggedin", true)//sets the loggedin state to true
       return redirect(pathname)
     }
-    localStorage.setItem("loggedin", true)//sets the loggedin state to true
     
   } catch(err){
     console.log(err)
@@ -56,7 +56,7 @@ export default function Login(){
   return(
     <div className="login-container">
       <h1>Sign in to your account</h1>
-      {message && <h2>{message}</h2>}
+      {message && <h2>asd{message}</h2>}
       {errorMessage && <h2>{errorMessage}</h2>}
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="POST" className="login-form" replace={true}>

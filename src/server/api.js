@@ -49,7 +49,6 @@ export async function signUpUser(newUser){
 }
 
 export async function loginUser(creds) {
-  console.log(creds)
   const res = await fetch("http://localhost:5050/login", { 
     method: "POST",
     headers:{
