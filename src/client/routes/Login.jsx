@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData, Link } from "react-router-dom";
-
+import {toast, Toaster } from "react-hot-toast";
 import { loginUser } from "../../server/api";
 
 export function loader({request}){
@@ -15,7 +15,6 @@ export function loader({request}){
 
 //This is needed for the Form component
 export async function action({request}){
-  console.log(request)
   const formData = await request.formData()
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
@@ -24,11 +23,14 @@ export async function action({request}){
 
   try{ //Error handling
     const data = await loginUser({email,password})// user logs in here
-    //console.log(data) 
+    if(data.error){
+      toast.error(data.error)
+    } else{
+      toast.success('Login successful')
+      return redirect(pathname)
+    }
     localStorage.setItem("loggedin", true)//sets the loggedin state to true
-    //console.log(localStorage.getItem("loggedin"))
     
-    return redirect(pathname) //once email and password matches, redirect to host page
   } catch(err){
     console.log(err)
     return err.message
@@ -56,6 +58,7 @@ export default function Login(){
       <h1>Sign in to your account</h1>
       {message && <h2>{message}</h2>}
       {errorMessage && <h2>{errorMessage}</h2>}
+      <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="POST" className="login-form" replace={true}>
         <input
           name="email"

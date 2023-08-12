@@ -1,5 +1,4 @@
 
-
 //overload the function: this may get an id or not
 export async function getVans(id){
   const url = id? `http://localhost:5050/vans/${id}`:`http://localhost:5050/vans`
@@ -46,22 +45,9 @@ export async function signUpUser(newUser){
     body: JSON.stringify(newUser)}
   )
   const data = await res.json() //get the promised data
-  
-  //might not need this 
-  /* if(!res.ok){
-    throw{
-      //throw an error if response is NOT ok 
-      message: data.error,
-      statusText: res.statusText,
-      status:res.status
-    }
-  } */
-
   return data
 }
 
-
-//Fix this
 export async function loginUser(creds) {
   console.log(creds)
   const res = await fetch("http://localhost:5050/login", { 
@@ -69,21 +55,9 @@ export async function loginUser(creds) {
     headers:{
       "Content-Type" : "application/json"
     }, 
-    credentials: "include",
+    credentials: "same-origin",
     body: JSON.stringify(creds) }
   )
-  console.log(res)
   const data = await res.json()
-  console.log(data)
-  if (!res.ok) {
-      throw {
-          message: data.message,
-          statusText: res.statusText,
-          status: res.status
-      }
-  }
-
   return data
-  
-  
 }

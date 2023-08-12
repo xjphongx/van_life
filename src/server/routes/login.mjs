@@ -1,5 +1,6 @@
 import express from "express"
 import User from "../model/user.mjs"
+import { comparePassword } from "../auth.mjs"
 
 const router = express.Router()
 
@@ -15,25 +16,34 @@ router.get("/", async (req,res)=>{
 })
 
 
-//login in user
-router.post("/", async (req,res)=>{
+//login in user from localhost/login
+router.post("/", async (req, res)=>{
   console.log("fetch POST request to users")
-    const email = JSON.parse(req.body.email)
-    //const password = JSON.parse(req.body.password)
-    //console.log(email)
   try{
-    
-    const foundUser = await User.findOne({email:'b@b.com'})
-    console.log(foundUser)
-    if(!foundUser){
-      return new Response(404,{}, {message:"No user with those credentials found"})
+    const {email, password} = req.body
+    console.log(email,password)
+    //check if the user already exist
+    const foundUser = await User.findOne({email:email})
+    if(!foundUser){//if there are no users, return an error
+      return res.status(400).json({
+        error: 'No user found.'
+      })
     }
-    //set password to undefined for now
-    //foundUser.password = undefined
+
+    //check the password if it matches
+    const match = await comparePassword(password, foundUser.password)
+    if(match){
+      //assign a JWT
+      res.json('passwords match')
+    } else {
+      res.json({
+        error: 'Passwords do not match'
+      })
+    }
+
     return res
 
   }catch(err){
-    
     res.status(400).json({message:err.message})
   }
   
