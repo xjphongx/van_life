@@ -1,5 +1,5 @@
 import React from "react";
-import {Form,Link, redirect, useActionData} from "react-router-dom"
+import {Form,Link, redirect, useActionData, useNavigate} from "react-router-dom"
 import {FaShuttleVan} from "react-icons/Fa"
 import { signUpUser } from "../../server/api";
 import {toast, Toaster } from "react-hot-toast";
@@ -11,6 +11,7 @@ export function loader(){
 
 //once the form is submitted as a POST request
 export async function action({request}){
+  
   //console.log(request)
   const formData = await request.formData()
   const newUserObject = {
@@ -35,7 +36,8 @@ export async function action({request}){
       toast.error(data.error)
     }else {
       toast.success('Signup successful!')
-      redirect('/login')
+      return redirect('/login')
+      
     }
   }catch(err){
     console.log(err)

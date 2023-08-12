@@ -27,15 +27,24 @@ router.post("/", async (req, res)=>{
     if(email!==confirmEmail){
       console.log("Emails do not match")
       return res.status(400).json({
-        error: 'Emails do not match'
+        error: 'Emails do not match.'
       })
     }
+    
+    //chech if password is valid and over 6 characters
+    if(!password || password.length < 6){
+      console.log("Password is required and should be at least 6 characters long")
+      return res.status(400).json({
+        error: 'Password is required and must be 6 characters long.'
+      })
+    }
+
 
     //check if password and confirmPassword matches
     if(password!==confirmPassword){
       console.log("Passwords do not match")
       return res.status(400).json({
-        error: 'Passwords do not match'
+        error: 'Passwords do not match.'
       })
     }
 
@@ -44,7 +53,7 @@ router.post("/", async (req, res)=>{
     if(userExist){
       console.log("Email is taken")
       return res.status(400).json({
-        error: 'Email is taken',
+        error: 'Email is taken.',
         emailExist:true
       })
     }
@@ -61,28 +70,28 @@ router.post("/", async (req, res)=>{
     if(userYear>minimumYear){ //checks if user has a valid birth year, must be 18 years away from current year
       console.log("Must be 18 years and older")
       return res.status(400).json({
-        error: 'Must be 18 years and older'
+        error: 'Must be 18 years and older.'
       })
     } else if(userYear === minimumYear && userMonth >minimumMonth){ //checks if month is a valid month
       console.log("Must be 18 years and older")
       return res.status(400).json({
-        error: 'Must be 18 years and older'
+        error: 'Must be 18 years and older.'
       })
     } else if (userYear === minimumYear && userMonth ===minimumMonth && userDay > minimumDay){//checks if day is valid
       console.log("Must be 18 years and older")
       return res.status(400).json({
-        error: 'Must be 18 years and older'
+        error: 'Must be 18 years and older.'
       })
     }
     
     //check if the phone number exist 
-    const phoneExist = await User.findOne({phone})
+    /* const phoneExist = await User.findOne({phone})
     if(phoneExist){
-      console.log("Phone number already in use")
+      console.log("Phone number already in use", phoneExist)
       return res.status(400).json({
         error: 'Phone number already in use',
       })
-    }
+    } */
 
     //save the User object
     console.log("saving user")
