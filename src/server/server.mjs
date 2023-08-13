@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "./loadEnvironment.mjs"
 import db from "./db/conn.mjs";
+import cookieParser from "cookie-parser"
 
 import authRoutes from "./routes/authRoutes.mjs"
 import users from "./routes/users.mjs";
@@ -12,14 +13,17 @@ import host from "./routes/host.mjs"
 
 const PORT = process.env.PORT || 5050;
 const app = express();
+const URL = "http://localhost:5173" //client side url
 
 //connecting mongodb to this entry point
 db.on('error', (error) => console.error(error))
 db.once('open', ()=>{console.log('Connected to Mongodb')})
 
 //middleware
-app.use(cors());
+app.use(cors({credentials:true, origin:URL})); //cors arguments for cookies 
 app.use(express.json());
+app.use(cookieParser())//used for JWT
+app.use(express.urlencoded({extended:false}))//used for JWT
 
 //entry points
 //app.use('/', authRoutes)

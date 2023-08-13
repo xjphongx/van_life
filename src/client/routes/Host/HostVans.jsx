@@ -5,6 +5,7 @@ import { requireAuth } from "../../utils";
 
 //first export a loader for the route prop loader={}
 export async function loader({request}){
+  console.log(request)
   await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
   return defer({hostVans:getHostVans()}) //This will get saved into the useLoaderData Hook
 }
@@ -20,7 +21,7 @@ export default function HostVans(){
       console.log(van)
       return(
         <>
-          <NavLink key={van._id} className="host-van-link" to={van.id}>
+          <NavLink key={van._id} className="host-van-link" to={van._id}>
             <div  className="host-vans-container">
               <img className="host-van-image-icon" src={van.imageUrl}/>
               <div className="host-van-info-container">

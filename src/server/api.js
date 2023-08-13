@@ -19,19 +19,29 @@ export async function getVans(id){
 }
 
 //Fix this when ready
-export async function getHostVans(id){
-  const url = id ? `http://localhost:5050/host/vans/${id}` : "http://localhost:5050/host/vans"
-  const res = await fetch(url)
-    if (!res.ok) {
-        throw {
-            message: "Failed to fetch vans",
-            statusText: res.statusText,
-            status: res.status
-        }
+export async function getHostVans(hostId){
+  
+  const url = "http://localhost:5050/host/vans"
+  const res = await fetch(url, { 
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      credentials: "same-origin",
+      body: JSON.stringify({}) //change this <---- issue right here
     }
-    const dataPromise = await res.json()
-    console.log(dataPromise)
-    return dataPromise.vans
+  )
+  console.log(res)
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch vans",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const dataPromise = await res.json()
+  console.log(dataPromise)
+  return dataPromise.vans
 }
 
 export async function signUpUser(newUser){
@@ -55,7 +65,7 @@ export async function loginUser(creds) {
     headers:{
       "Content-Type" : "application/json"
     }, 
-    credentials: "same-origin",
+    credentials: "include", //this allows cookies to be sent over
     body: JSON.stringify(creds) }
   )
   const data = await res.json()

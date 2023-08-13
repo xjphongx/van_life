@@ -2,7 +2,12 @@ import express from "express"
 import Van from "../model/van.mjs"
 import User from "../model/user.mjs"
 
+import jwt from "jsonwebtoken"
+
 const router = express.Router()
+
+
+
 
 //get a list of all the records of host vans
 router.get("/vans", async (req,res)=>{
@@ -18,10 +23,12 @@ router.get("/vans", async (req,res)=>{
 
 //post request to server endpoint and match credentials
 router.post('/vans', getUser, async (req,res)=>{
-  console.log('here')
+  /* console.log(req.body._id)
+  console.log(res.user) */
+  const user = req.user
+  console.log("here", user)
   try{
     const vans = await Van.find({hostId:req.body._id})
-    console.log(vans)
     res.status(200).json(vans)
   }catch(err){
     res.status(500).json({message: err.message})
@@ -29,16 +36,24 @@ router.post('/vans', getUser, async (req,res)=>{
  
 })
 
-//middlewear to get specific user
+//middlewear to get specific user and its _id assigned by mongodb
+//also use jwt to verify the token
 async function getUser(req,res,next){
-  let user;
+  const token = req.cookies.token;
+  console.log("token")
+  console.log(token)//this is undefined in server output
   try {
-    user = await User.findById(req.body._id)
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = user;
+    //user = await User.findById(req.body._id)
+    next()
   }catch(err){
-    return res.status(500).json({message:err.message})
+    res.clearCookie('token')
+    //return res.status(500).json({message:err.message})
+    return res.redirect("/login")
   }
-  res.user= user
-  next()
+  //res.user= user
+  
 }
 
 export default router

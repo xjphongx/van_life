@@ -1,6 +1,7 @@
 import express from "express"
 import User from "../model/user.mjs"
 import { comparePassword } from "../auth.mjs"
+import jwt from "jsonwebtoken"
 
 const router = express.Router()
 
@@ -33,21 +34,30 @@ router.post("/", async (req, res)=>{
     //check the password if it matches
     const match = await comparePassword(password, foundUser.password)
     if(match){
-      //assign a JWT
-      res.json('passwords match')
-    } else {
-      res.json({
+      //assign a JWT .sign({info},secret, {empty object} , callback f(x))
+      const token = jwt.sign({
+        email:foundUser.email, 
+        id: foundUser._id,
+        firstName: foundUser.firstName
+      }, process.env.JWT_SECRET, //must provide secret
+      {} //expiresIn property
+      )
+      //return cookie
+      console.log(token)
+      res.cookie("token", token, {
+        httpOnly:true
+      }).json(foundUser)
+
+
+    } else { //return an error
+      res.status(400).json({
         error: 'Passwords do not match'
       })
     }
-
-    return res
-
   }catch(err){
     res.status(400).json({message:err.message})
   }
-  
-  
-} )
+  } 
+)
 
 export default router

@@ -58,10 +58,6 @@ Content-Type: application/json
 GET http://localhost:5050/host/vans
 
 
-{
-  "_id":"64d713ebb8e2c2a3e9dddbf8"
-}
-
 ###
 
 POST http://localhost:5050/host/vans
