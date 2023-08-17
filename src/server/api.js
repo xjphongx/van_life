@@ -28,7 +28,7 @@ export async function getHostVans(hostId){
         "Content-Type" : "application/json"
       }, 
       credentials: "same-origin",
-      body: JSON.stringify({}) //change this <---- issue right here
+      body: JSON.stringify({hostId}) //change this <---- issue right here
     }
   )
   console.log(res)
@@ -68,6 +68,7 @@ export async function loginUser(creds) {
     credentials: "include", //this allows cookies to be sent over
     body: JSON.stringify(creds) }
   )
+  
   const data = await res.json()
   return data
 }

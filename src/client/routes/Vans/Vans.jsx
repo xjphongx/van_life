@@ -27,7 +27,7 @@ export default function Vans(){
       : vans 
 
     const vansElement = filterVansList.map(van=>{
-      console.log(van)
+      //console.log(van)
       return (
         <div key={van._id} className="van-tile">
           {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}

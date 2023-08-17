@@ -4,7 +4,6 @@ import "./loadEnvironment.mjs"
 import db from "./db/conn.mjs";
 import cookieParser from "cookie-parser"
 
-import authRoutes from "./routes/authRoutes.mjs"
 import users from "./routes/users.mjs";
 import vans from "./routes/vans.mjs"
 import signUp from "./routes/signUp.mjs"

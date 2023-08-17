@@ -8,6 +8,7 @@ import {  Route,
 
 import { Toaster } from 'react-hot-toast';
 
+
 import Home from './routes/Home';
 import Layout from './components/Layout';
 
@@ -59,7 +60,8 @@ function App() {
       <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
       <Route path='signup' element={<SignUp/>} loader={signUpLoader} action={signUpAction}/>
 
-
+      
+      
       {/* Below is the parent layout route with child routes and protected routes
           CONCEPT: protect routes are using parallel loading */}
       <Route path='host' element={<HostLayout/>}> {/* /host */}
@@ -102,14 +104,24 @@ function App() {
         </Route>
 
       </Route> 
+      
       {/* Catch all route */}
+      
       <Route path='*' element={<NotFoundPage/>}/>        
     </Route>
   ))
   
   return (
-    //RouterProvider will allow me to use Data APIs
-    <RouterProvider router={router}/>
+    <>
+    {/* Allow the user state to check itsself in the host routes */}
+      
+        {/* //RouterProvider will allow me to use Data APIs */}
+        <RouterProvider router={router}/>
+     
+    </>
+      
+
+    
   )
 }
 

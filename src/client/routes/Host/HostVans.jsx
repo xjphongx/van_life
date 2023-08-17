@@ -6,6 +6,7 @@ import { requireAuth } from "../../utils";
 //first export a loader for the route prop loader={}
 export async function loader({request}){
   console.log(request)
+  
   await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
   return defer({hostVans:getHostVans()}) //This will get saved into the useLoaderData Hook
 }
