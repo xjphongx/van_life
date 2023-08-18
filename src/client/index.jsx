@@ -8,12 +8,11 @@ import {  Route,
 
 import { Toaster } from 'react-hot-toast';
 
-
 import Home from './routes/Home';
 import Layout from './components/Layout';
 
 import HostLayout from './components/HostLayout';
-import Dashboard from './routes/Host/Dashboard';
+import Dashboard,{loader as dashboardLoader} from './routes/Host/Dashboard';
 import Income from './routes/Host/Income';
 import HostVans, {loader as hostVanPageLoader} from './routes/Host/HostVans';
 import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/HostVansDetail';
@@ -62,13 +61,16 @@ function App() {
 
       
       
+
+
+      
       {/* Below is the parent layout route with child routes and protected routes
           CONCEPT: protect routes are using parallel loading */}
       <Route path='host' element={<HostLayout/>}> {/* /host */}
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
           element={<Dashboard/>} 
-          loader={async ({request})=> await requireAuth(request)}/> 
+          loader={dashboardLoader}/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 
@@ -103,8 +105,8 @@ function App() {
             loader={async ({request})=> await requireAuth(request)}/>
         </Route>
 
-      </Route> 
-      
+      </Route> {/* End of HostLayout Route */}
+     
       {/* Catch all route */}
       
       <Route path='*' element={<NotFoundPage/>}/>        

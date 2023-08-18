@@ -20,7 +20,11 @@ export async function getVans(id){
 
 //Fix this when ready
 export async function getHostVans(hostId){
-  
+  //first fetch the profile 
+
+
+
+  //use the hostId to then make another request to host vans
   const url = "http://localhost:5050/host/vans"
   const res = await fetch(url, { 
       method: "POST",
@@ -31,7 +35,7 @@ export async function getHostVans(hostId){
       body: JSON.stringify({hostId}) //change this <---- issue right here
     }
   )
-  console.log(res)
+  //console.log(res)
   if (!res.ok) {
       throw {
           message: "Failed to fetch vans",
@@ -40,7 +44,7 @@ export async function getHostVans(hostId){
       }
   }
   const dataPromise = await res.json()
-  console.log(dataPromise)
+  //console.log(dataPromise)
   return dataPromise.vans
 }
 
