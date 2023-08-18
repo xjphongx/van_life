@@ -1,13 +1,19 @@
 import {useContext} from "react";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/userContext"; 
+import { requireAuth } from "../../utils";
+
+export async function loader({request}){
+  const user = await requireAuth(request)
+  console.log(user)
+}
 
 export default function Dashboard(){
-  const {user} = useContext(UserContext)// get the user from context
-  console.log(user)
+  /* const contextData = useContext()
+  console.log(contextData) */
   return (
     <>
       <h1>dashboard</h1>
-      {!!user && <h2> Hi {user.firstName}</h2>}
+
     </>
   )
 }

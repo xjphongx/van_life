@@ -1,14 +1,12 @@
 import React from "react";
 import {NavLink,Outlet} from "react-router-dom"
-import UserContextProvider from "../context/userContext"
-
+import { UserContext } from "../context/userContext";
 
 export default function HostLayout(){
+  const {user} = React.useContext(UserContext) //This is recieved from HostContext
   return(
-    <UserContextProvider>
     <div className='layout-section'>
       <nav className='host-nav-bar-container'>
-      
         <NavLink to='.' end //"end" will stop the url matching and prevent the /host route to not be active when going through the nesting routes
           className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
         >Dashboard</NavLink>
@@ -24,11 +22,9 @@ export default function HostLayout(){
         <NavLink to='review' 
           className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
         >Reviews</NavLink>
-        
       </nav>
-
-       <Outlet/>
+       <Outlet />
     </div>
-    </UserContextProvider>
+    
   )
 }

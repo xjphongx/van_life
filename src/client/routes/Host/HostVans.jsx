@@ -1,19 +1,23 @@
 import React from "react";
+import { UserContext } from "../../context/userContext";
 import {NavLink, useLoaderData, defer, Await} from "react-router-dom"
 import { getHostVans } from "../../../server/api";
 import { requireAuth } from "../../utils";
 
 //first export a loader for the route prop loader={}
 export async function loader({request}){
-  console.log(request)
-  
-  await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
+ 
+  const data = await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
+  console.log(data) 
   return defer({hostVans:getHostVans()}) //This will get saved into the useLoaderData Hook
 }
 
 export default function HostVans(){
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
+
+ /*   const {user} = React.useContext(UserContext)
+  console.log(user) */
 
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
