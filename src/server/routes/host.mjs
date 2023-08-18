@@ -3,7 +3,6 @@ import Van from "../model/van.mjs"
 import User from "../model/user.mjs"
 
 import jwt from "jsonwebtoken"
-import user from "../model/user.mjs"
 
 const router = express.Router()
 
@@ -11,18 +10,16 @@ const router = express.Router()
 //host dashboard
 router.get('/profile', (req,res)=>{
   try{
-    console.log("profile endpoint")
     const {token} = req.cookies
-    console.log("token", token)
     if(token){
       jwt.verify(token, process.env.JWT_SECRET,{}, (err, user)=>{
         if(err) throw err;
-        res.json(user)
+        console.log(user)
+        return res.status(200).json(user)
       })
     }else{
       return res.status(500).json(null)
     }
-    
   } catch (err){
     res.status(500).json({
       message:err.message

@@ -1,7 +1,9 @@
 import { createContext, useEffect, useState } from "react";
+import { BiSolidData } from "react-icons/Bi";
 
 export const UserContext = createContext({})
 
+//provides the passing of user State to pass down from top to bottom
 export default function UserContextProvider({children}){
   const [user, setUser] = useState(null)
   useEffect(()=>{
@@ -12,9 +14,11 @@ export default function UserContextProvider({children}){
           "Content-Type" : "application/json"
         }, 
         credentials: "include"
-      }).then(({data})=>{
-      console.log(data)  
-      setUser(data)
+      }).then((res)=>{ 
+        console.log(res)
+        return res.json()
+      }).then((data)=>{
+        setUser(data)
       })
     }
   },[])
