@@ -4,7 +4,6 @@
     min-height: 100vh;
     position: relative;
     margin-right: 45px;
-    margin-left: 45px;
 }
 .host-nav-bar-container{
   display:flex;
@@ -12,6 +11,7 @@
   align-items: center;
   gap: 25px;
   margin-bottom: 35px;
+  margin-left: 45px;
 }
 .pending-host-link-route{
   color:rgb(83,83,83);

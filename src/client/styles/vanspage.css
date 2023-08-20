@@ -143,6 +143,7 @@
 /* Below is for the HOST Vans and Vans detail page */
 .layout-section > h1 {
   width: 500px;
+  margin-left: 45px;
 }
 /* DEFAULT size is flex column  */
 .host-vans-list-container{
@@ -151,6 +152,8 @@
   margin-top: 20px;
   /* background-color: lightblue; */
   gap:20px;
+  margin-left: 45px;
+  padding-bottom: 50px;
   
 }
 .host-vans-container{
