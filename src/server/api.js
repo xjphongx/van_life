@@ -18,21 +18,36 @@ export async function getVans(id){
   return dataPromise
 }
 
-//Fix this when ready
-export async function getHostVans(hostId){
-  console.log(hostId)
+export async function getListHostVans(){
   //use the hostId to then make another request to host vans
+  //console.log(hostId)
   const url = "http://localhost:5050/host/vans"
   const res = await fetch(url, { 
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
       }, 
-      credentials: "include",
-      body: JSON.stringify({hostId}) //change this <---- issue right here
+      credentials: "include"
+      //body: JSON.stringify({hostId})
     }
   )
-  //console.log(res)
+  
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch vans",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const dataPromise = await res.json()
+  //console.log(dataPromise)
+  return dataPromise
+}
+
+export async function getHostVan(id){
+  const url = `http://localhost:5050/host/vans/${id}`
+  const res = await fetch(url)
+  
   if (!res.ok) {
       throw {
           message: "Failed to fetch vans",

@@ -43,11 +43,9 @@ router.post("/", async (req, res)=>{
       {} //expiresIn property
       )
       //return cookie
-      console.log(token)
       res.cookie("token", token, {
         httpOnly:true
       }).json(foundUser)
-
 
     } else { //return an error
       res.status(400).json({

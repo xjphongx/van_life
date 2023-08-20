@@ -1,12 +1,12 @@
 import React from "react";
 import {NavLink, useLoaderData, defer, Await} from "react-router-dom"
-import { getHostVans } from "../../../server/api";
+import { getListHostVans } from "../../../server/api";
 import { requireAuth } from "../../utils";
 
 //first export a loader for the route prop loader={}
 export async function loader({request}){
   const user = await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
-  return defer({hostVans:getHostVans(user.id)}) //This will get saved into the useLoaderData Hook
+  return defer({hostVans:getListHostVans()}) //This will get saved into the useLoaderData Hook
 }
 
 export default function HostVans(){
@@ -18,7 +18,7 @@ export default function HostVans(){
     //Each element will have these html attributes
     //console.log(hostVans)
     const vansElement = hostVans.map((van)=>{
-      console.log(van)
+      //console.log(van)
       return(
           <NavLink key={van._id} className="host-van-link" to={van._id}>
             <div  className="host-vans-container">

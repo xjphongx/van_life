@@ -1,12 +1,12 @@
 import React from "react";
 import {Link, NavLink, Outlet, useParams,useLoaderData,defer, Await } from "react-router-dom";
-import { getHostVans } from "../../../server/api";
+import { getHostVan } from "../../../server/api";
 import { requireAuth } from "../../utils";
 
 //get host van data with loader
 export async function loader({params, request}){
-  await requireAuth(request)
-  return defer({hostVan:getHostVans(params.id)})
+  const user = await requireAuth(request)
+  return defer({hostVan:getHostVan(params.id)})
 }
 
 export default function HostVansDetail(){
@@ -16,7 +16,7 @@ export default function HostVansDetail(){
 
   //helper render function for Suspense, await, and defer
   function renderHostVanDetail(hostVan){
-    console.log(hostVan)
+    //console.log(hostVan)
     return(
       <>
         {/* This it the back to all vans button until line 40  */}

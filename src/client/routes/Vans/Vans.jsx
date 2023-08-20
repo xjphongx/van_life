@@ -8,7 +8,6 @@ export function loader(){
   return defer({vans:getVans()}) //defer takes an object
 }
 
-
 export default function Vans(){
   //load the vans data and set it to a variable
   const dataPromise =  useLoaderData() //CONCEPT: add defer to allow the data to load another time
