@@ -1,5 +1,4 @@
 import React from "react";
-import { UserContext } from "../../context/userContext";
 import {NavLink, useLoaderData, defer, Await} from "react-router-dom"
 import { getHostVans } from "../../../server/api";
 import { requireAuth } from "../../utils";
@@ -14,9 +13,6 @@ export default function HostVans(){
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
 
- /*   const {user} = React.useContext(UserContext)
-  console.log(user) */
-
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
     //Each element will have these html attributes
@@ -24,7 +20,6 @@ export default function HostVans(){
     const vansElement = hostVans.map((van)=>{
       console.log(van)
       return(
-        <>
           <NavLink key={van._id} className="host-van-link" to={van._id}>
             <div  className="host-vans-container">
               <img className="host-van-image-icon" src={van.imageUrl}/>
@@ -34,9 +29,6 @@ export default function HostVans(){
               </div>
             </div>
           </NavLink>
-          
-        </>
-        
       )
     })
     //return the vans element in a fragment
@@ -45,10 +37,7 @@ export default function HostVans(){
           {vansElement}
         </div>
     )
-
-
   }
-
 
   //return statement of the whole HostVans Componenet
   return(
