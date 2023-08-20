@@ -6,10 +6,8 @@ import { requireAuth } from "../../utils";
 
 //first export a loader for the route prop loader={}
 export async function loader({request}){
- 
-  const data = await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
-  console.log(data) 
-  return defer({hostVans:getHostVans()}) //This will get saved into the useLoaderData Hook
+  const user = await requireAuth(request) //ensures that the function runs completely before it gets a list of host vans
+  return defer({hostVans:getHostVans(user.id)}) //This will get saved into the useLoaderData Hook
 }
 
 export default function HostVans(){
@@ -22,6 +20,7 @@ export default function HostVans(){
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
     //Each element will have these html attributes
+    //console.log(hostVans)
     const vansElement = hostVans.map((van)=>{
       console.log(van)
       return(

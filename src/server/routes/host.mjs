@@ -1,7 +1,5 @@
 import express from "express"
 import Van from "../model/van.mjs"
-import User from "../model/user.mjs"
-
 import jwt from "jsonwebtoken"
 
 const router = express.Router()
@@ -14,7 +12,7 @@ router.get('/profile', (req,res)=>{
     if(token){
       jwt.verify(token, process.env.JWT_SECRET,{}, (err, user)=>{
         if(err) throw err;
-        console.log(user)
+        //console.log(user)
         return res.status(200).json(user)
       })
     }else{
@@ -48,7 +46,7 @@ router.post('/vans', getUser, async (req,res)=>{
   const user = req.user
   console.log("here", user)
   try{
-    const vans = await Van.find({hostId:req.body._id})
+    const vans = await Van.find({hostId:user.id})
     res.status(200).json(vans)
   }catch(err){
     res.status(500).json({message: err.message})

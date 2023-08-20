@@ -3,15 +3,14 @@
     flex: 1 1 auto;
     min-height: 100vh;
     position: relative;
-    
     margin-right: 45px;
+    margin-left: 45px;
 }
 .host-nav-bar-container{
   display:flex;
   flex-direction: row;
   align-items: center;
   gap: 25px;
-  margin-left: 45px;
   margin-bottom: 35px;
 }
 .pending-host-link-route{

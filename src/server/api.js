@@ -20,10 +20,7 @@ export async function getVans(id){
 
 //Fix this when ready
 export async function getHostVans(hostId){
-  //first fetch the profile 
-
-
-
+  console.log(hostId)
   //use the hostId to then make another request to host vans
   const url = "http://localhost:5050/host/vans"
   const res = await fetch(url, { 
@@ -31,7 +28,7 @@ export async function getHostVans(hostId){
       headers:{
         "Content-Type" : "application/json"
       }, 
-      credentials: "same-origin",
+      credentials: "include",
       body: JSON.stringify({hostId}) //change this <---- issue right here
     }
   )
@@ -45,7 +42,7 @@ export async function getHostVans(hostId){
   }
   const dataPromise = await res.json()
   //console.log(dataPromise)
-  return dataPromise.vans
+  return dataPromise
 }
 
 export async function signUpUser(newUser){

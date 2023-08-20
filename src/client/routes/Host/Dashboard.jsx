@@ -1,5 +1,4 @@
-import {useContext} from "react";
-import { UserContext } from "../../context/userContext"; 
+
 import { requireAuth } from "../../utils";
 
 export async function loader({request}){
