@@ -20,6 +20,7 @@ import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
 import Review from './routes/Host/Review';
+import HostVanUpload from './routes/Host/HostVanUpload';
 
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
@@ -32,6 +33,7 @@ import Error from './components/Error';
 //import "../server"
 
 import { requireAuth } from './utils';
+import HostVanLayout from './components/HostVanLayout';
 localStorage.removeItem("loggedin")
 
 
@@ -60,10 +62,6 @@ function App() {
       <Route path='signup' element={<SignUp/>} loader={signUpLoader} action={signUpAction}/>
 
       
-      
-
-
-      
       {/* Below is the parent layout route with child routes and protected routes
           CONCEPT: protect routes are using parallel loading */}
       <Route path='host' element={<HostLayout/>}> {/* /host */}
@@ -80,12 +78,22 @@ function App() {
           path='review' 
           element={<Review/>} 
           loader={async ({request})=> await requireAuth(request)}/>
-        <Route 
-          path='vans' 
-          element={<HostVans/>} 
-          loader={hostVanPageLoader}
-          errorElement={<Error/>}
+        <Route path='vans' element={<HostVanLayout/>}>
+          <Route index
+            element={<HostVans/>} 
+            loader={hostVanPageLoader}
+            errorElement={<Error/>}/>
+
+          <Route
+            path='upload'
+            element={<HostVanUpload/>}
+            errorElement={<Error/>}
           />
+
+        </Route>
+        
+        
+        
         <Route 
           path='vans/:id' 
           element={<HostVansDetail/>} 

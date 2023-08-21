@@ -2,14 +2,11 @@ import React from "react";
 import { useParams, Link, useLocation, useLoaderData, defer,Await } from "react-router-dom";
 import { getVans } from "../../../server/api";
 
-
-
 //this loader function will load van data that matches the params.id
 export function loader({params}){
   //console.log(params)
   return defer({van: getVans(params.id)}) //{vans: get a promise for vans data}
 }
-
 
 export default function VansDetail(){
   //get loaderdata() which will receive a promise of the data
@@ -20,10 +17,8 @@ export default function VansDetail(){
 
   //helper function to render the van elements when defering data
   function renderVanDetail(van){ //resolve={dataPromise} will return a van object
-    console.log(van)
-    
     const location = useLocation() 
-    //console.log(location) //will return a object with pathname, search, and Link state that was pass from previous page
+    console.log(location) //will return a object with pathname, search, and Link state that was pass from previous page
 
     //Link State History Concept
     const search = location.state? location.state.search : "" //this will go to the Link below as a to prop
@@ -31,9 +26,7 @@ export default function VansDetail(){
     //use a ternary operator to find the type of van based on link state
     const type = location.state.type ? location.state.type : "all" 
 
-
     return(
-      
         <>
           <div className='detail-back-container'>
             <p className='arrow'> &larr; </p>
@@ -50,13 +43,8 @@ export default function VansDetail(){
             </div>
           </div>
         </>
-          
-        
-      
     )
-    
   }
-
   return(
     <div className='detail-page-container'>
       <React.Suspense fallback={<h1>Loading Van Detail...</h1>}>

@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink, useLoaderData, defer, Await} from "react-router-dom"
+import {NavLink,Link,Outlet, useLoaderData, defer, Await, useSearchParams} from "react-router-dom"
 import { getListHostVans } from "../../../server/api";
 import { requireAuth } from "../../utils";
 
@@ -12,7 +12,8 @@ export async function loader({request}){
 export default function HostVans(){
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
-
+  const [searchParams, setSearchParams] = useSearchParams()
+  
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
     //Each element will have these html attributes
@@ -20,7 +21,7 @@ export default function HostVans(){
     const vansElement = hostVans.map((van)=>{
       //console.log(van)
       return(
-          <NavLink key={van._id} className="host-van-link" to={van._id}>
+          <NavLink key={van._id} className="host-van-link" to={van._id} state={{search: `?${searchParams.toString()}` }}>
             <div  className="host-vans-container">
               <img className="host-van-image-icon" src={van.imageUrl}/>
               <div className="host-van-info-container">
@@ -42,7 +43,10 @@ export default function HostVans(){
   //return statement of the whole HostVans Componenet
   return(
     <>
-      <h1>Your listed vans</h1>
+      <div className="host-van-button-container">
+        <h1>Your listed vans</h1>
+        <NavLink to="upload" className="host-van-add-button">Add Van</NavLink>
+      </div>
       <React.Suspense fallback={<h1>Loading Host vans...</h1>}>
         <Await resolve={dataPromise.hostVans}>
           {renderHostVansElements}
