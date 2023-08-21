@@ -1,0 +1,34 @@
+.host-van-form-container{
+  margin-left: 45px;
+  
+}
+.host-van-upload-form{
+  display:grid;
+  grid-template-columns: 150px 2fr;
+  gap:15px;
+  
+  
+}
+.host-label{
+  text-align: right;
+}
+
+.host-van-type-radio-group{
+  display: flex;
+  gap:15px;
+  align-items: center;
+}
+.host-van-type-radio-group >div {
+  display: flex;
+  align-items: center;
+}
+.host-van-upload-button-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.host-van-upload-button{
+  width: 200px;
+  
+  
+}
