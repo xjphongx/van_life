@@ -8,23 +8,28 @@ export async function action(){
 export default function HostVanUpload(){
   const [images, setImages] = React.useState({files:[]}) //FileList
   const [imagePreview, setImagePreview] = React.useState()
+  const [imagePreviewArray, setImagePreviewArray] = React.useState([])
   const location = useLocation()
   //console.log(location)
   const search = location.state? location.state.search : ""
 
-  console.log(images)
+  console.log(imagePreviewArray)
 
   React.useEffect(()=>{
     if(images.files.length!==0){//if files array is populated meaning there is a file
       const file = images.files[0]
       const reader = new FileReader();
       reader.onload = () =>{
-        console.log(reader.result)
+        //console.log(reader.result)
         setImagePreview(reader.result)//returns as a base64 string 
+        const tempArray = [...imagePreviewArray]
+        tempArray.push(reader.result)
+        setImagePreviewArray(tempArray)
       }
       reader.readAsDataURL(file)//This runs first, then goes to the onload function
     } else{
       setImagePreview(null)
+      setImagePreviewArray([])
     }
   }, [images.files]) //make sure to add object prop as dependency
 
@@ -34,9 +39,9 @@ export default function HostVanUpload(){
 
   const addImage = (e) => {
     e.preventDefault()
-    console.log(e)
+    //console.log(e)
     const fileList = e.target.files
-    console.log(fileList)
+   // console.log(fileList)
   
     //save the file into the file array
     setImages((prevState)=>{
@@ -47,6 +52,13 @@ export default function HostVanUpload(){
     })
   }
 
+  const renderImagePreviewElements = imagePreviewArray.map((image)=>{
+      console.log(image)
+      return(
+        <img className="array-upload-preview" src={image}/>
+      )
+    })
+  
 
   return(
     <div className="host-van-form-container">
@@ -56,12 +68,19 @@ export default function HostVanUpload(){
       </div>
       <div className="host-van-upload-content-container">
         <div className="host-van-upload-image-preview-container">
-          {imagePreview ? <img className="upload-preview" src={imagePreview}/>
-          :<div className="host-van-upload-image-preview">Image Preview goes here.</div>
-          }  
+          <div className="host-van-upload-preview-container">
+            {imagePreview ? <img className="upload-preview" src={imagePreview}/>
+            :<div className="host-van-upload-image-preview">Image Preview goes here.</div>
+            } 
+          </div>
+          <div className="host-van-upload-image-scroller">
+            {renderImagePreviewElements}
+          </div>
+           
           
         
         </div>
+
         <Form method="post" className="host-van-upload-form">
         <label htmlFor="vanName" className="host-label" >Van Name: </label>
         <input id="vanName" name="name" type="name" placeholder = "Example: The Red" required/>
