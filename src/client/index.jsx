@@ -20,7 +20,7 @@ import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
 import Review from './routes/Host/Review';
-import HostVanUpload from './routes/Host/HostVanUpload';
+import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
 
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
@@ -87,6 +87,7 @@ function App() {
           <Route
             path='upload'
             element={<HostVanUpload/>}
+            action={hostVanUploadAction}
             errorElement={<Error/>}
           />
 

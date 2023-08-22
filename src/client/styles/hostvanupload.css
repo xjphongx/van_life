@@ -1,3 +1,22 @@
+.host-van-upload-content-container{
+  display:flex;
+  gap:30px;
+}
+.host-van-upload-image-preview-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 300px; 
+  background-color: lightgray;
+}
+.host-van-upload-image-preview{
+  text-align: center;
+}
+.upload-preview{
+  height: 300px;
+  width: 300px; 
+}
 .host-van-form-container{
   margin-left: 45px;
   
