@@ -22,7 +22,7 @@ export default function HostVanUpload(){
         console.log(reader.result)
         setImagePreview(reader.result)//returns as a base64 string 
       }
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file)//This runs first, then goes to the onload function
     } else{
       setImagePreview(null)
     }
