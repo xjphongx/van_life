@@ -55,7 +55,7 @@ export default function HostVanUpload(){
   const renderImagePreviewElements = imagePreviewArray.map((image)=>{
       console.log(image)
       return(
-        <img className="array-upload-preview" src={image}/>
+        <img className="array-upload-preview-element" src={image}/>
       )
     })
   
@@ -73,7 +73,7 @@ export default function HostVanUpload(){
             :<div className="host-van-upload-image-preview">Image Preview goes here.</div>
             } 
           </div>
-          <div className="host-van-upload-image-scroller">
+          <div className="host-van-upload-image-scroller snaps-inline">
             {renderImagePreviewElements}
           </div>
            
