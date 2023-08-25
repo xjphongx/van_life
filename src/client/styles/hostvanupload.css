@@ -1,3 +1,8 @@
+.upload-header{
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
 .host-van-upload-content-container{
   display:flex;
   gap:30px;
@@ -31,9 +36,9 @@
 }
 
 .host-van-upload-image-scroller{
-  /* background-color: lightblue; */
+  margin-top: 5px;
   width: 100%;
-  height: 120px;
+  height: 130px;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   display:grid;
@@ -77,9 +82,41 @@
   display:grid;
   grid-template-columns: 150px 2fr;
   gap:15px;
-  
+}
+.host-van-upload-form > .upload-input, .host-van-upload-form > textarea {
+  border: 1px solid rgba(209, 213, 219);
+  height: 40px;
+  text-indent: 7px;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  font-weight: 400;
+  border-radius: 6px;
+}
+.host-van-upload-form > textarea {
+  height: 100px;
+  padding-top: 10px;
+  resize: none;
+}
+
+.host-van-upload-form > .upload-input:focus, .host-van-upload-form > textarea:focus {
+  outline: none;
+}
+
+.host-van-upload-file{
   
 }
+.host-van-upload-file-button{
+  background-color: #FF8C38;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  cursor: pointer; 
+  padding: 5px 10px;
+}.host-van-upload-file-button:hover{
+  transform: translate(1px, 1px)
+}
+
 .host-label{
   text-align: right;
 }
@@ -87,10 +124,11 @@
 .host-van-type-radio-group{
   display: flex;
   gap:15px;
-  align-items: center;
+  align-items: start;
 }
 .host-van-type-radio-group >div {
   display: flex;
+  gap:3px;
   align-items: center;
 }
 .host-van-upload-button-container{
@@ -100,6 +138,14 @@
 }
 .host-van-upload-button{
   width: 200px;
-  
-  
+  background-color: #FF8C38;
+  border: none;
+  border-radius: 6px;
+  height: 55px;
+  margin-top: 8px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  cursor: pointer; 
+}.host-van-upload-button:hover{
+  transform: translate(1px, 1px)
 }
