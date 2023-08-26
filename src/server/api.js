@@ -93,11 +93,14 @@ export async function loginUser(creds) {
 export async function uploadHostVan(formData){
   console.log(formData)
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
+  //console.log(JSON.parse(result.imageUrl))
+  console.log(JSON.stringify(result))
+
   const res = await fetch("http://localhost:5050/host/vans/upload", {
     method: "POST",
     headers:{
-      "Content-Type": "application/json"
-    }, 
+      'Content-Type': 'application/json'
+    },
     credentials: "include", //this allows cookies to be sent over
     body: JSON.stringify(result)
   })

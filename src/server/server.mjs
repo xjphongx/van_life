@@ -20,7 +20,7 @@ db.once('open', ()=>{console.log('Connected to Mongodb')})
 
 //middleware
 app.use(cors({credentials:true, origin:URL})); //cors arguments for cookies 
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 app.use(cookieParser())//used for JWT
 app.use(express.urlencoded({extended:false}))//used for JWT
 

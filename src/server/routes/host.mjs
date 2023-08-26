@@ -52,10 +52,15 @@ router.post('/vans', getUser, async (req,res)=>{
   }
 })
 
+
+
+
+//const uploads = multer()uploads.array("files"),
+
 //post request to server with a van to post to database
 router.post('/vans/upload', getUser, async(req,res)=>{
   console.log("posting new van to database")
-  
+
   try{
     const user = req.user
     const {name,description,type,licensePlate,price,imageUrl} = req.body
@@ -64,12 +69,13 @@ router.post('/vans/upload', getUser, async(req,res)=>{
       name:name,
       price:price,
       description:description,
-      imageUrl:JSON.parse(imageUrl),
       type:type,
       hostId:user.id,
       licensePlate:licensePlate,
-      visiblity:"Public"
+      visiblity:"Public",
+      imageUrl:JSON.parse(imageUrl)
     })
+ 
     const newHostVan = await van.save()
     return res.status(201).json(newHostVan)
   } catch(err){
