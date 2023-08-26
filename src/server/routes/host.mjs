@@ -38,17 +38,7 @@ router.get("/vans", async (req,res)=>{
   }
 })
 
-//get a specific van given the param id
-router.get("/vans/:id", async (req,res)=>{
-  console.log("getting specific host van")
-  try{
-    const van = await Van.findById(req.params.id)
-    res.status(200).json(van)
-  }catch(err){
-    res.status(500).json({message: err.message})
-  }
-  }
-)
+
 
 //post request to server endpoint and match credentials
 router.post('/vans', getUser, async (req,res)=>{
@@ -62,10 +52,39 @@ router.post('/vans', getUser, async (req,res)=>{
   }
 })
 
+//post request to server with a van to post to database
+router.post('/vans/upload', getUser, async(req,res)=>{
+  console.log("posting new van to database")
+  const user = req.user
+  console.log(user)
+  console.log(req.body)
+  try{
+    const {name,description,type,licensePlate,price,imageUrl} = req.body
+    console.log(name)
+    return res.status(201).json({message:"uploaded"})
+  } catch(err){
+    return res.status(400).json({message:err.message})
+  }
+
+})
+
+//get a specific van given the param id
+router.get("/vans/:id", async (req,res)=>{
+  console.log("getting specific host van")
+  try{
+    const van = await Van.findById(req.params.id)
+    res.status(200).json(van)
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+  }
+)
+
 //middlewear to get specific user and its _id assigned by mongodb
 //also use jwt to verify the token
 async function getUser(req,res,next){
   const token = req.cookies.token;
+  console.log("token", token)
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;

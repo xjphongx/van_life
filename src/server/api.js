@@ -82,9 +82,26 @@ export async function loginUser(creds) {
       "Content-Type" : "application/json"
     }, 
     credentials: "include", //this allows cookies to be sent over
-    body: JSON.stringify(creds) }
+    body: JSON.stringify(creds) 
+    }
   )
   
   const data = await res.json()
+  return data
+}
+
+export async function uploadHostVan(formData){
+  console.log(formData)
+  const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
+
+  const res = await fetch("http://localhost:5050/host/vans/upload", {
+    method: "POST",
+    headers:{
+      "Content-Type": "application/json"
+    }, 
+    credentials: "include", //this allows cookies to be sent over
+    body: JSON.stringify(result)
+  })
+  const data = await res.json() //get the promised data
   return data
 }

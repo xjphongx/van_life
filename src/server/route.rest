@@ -70,3 +70,14 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5050/host/profile
+
+
+###
+
+
+POST http://localhost:5050/host/vans/upload
+Content-Type: application/json
+
+{
+  "_id":"64d713ebb8e2c2a3e9dddbf8"
+}
