@@ -1,6 +1,7 @@
 import React from "react";
 import * as uuid from  "uuid"
 import { Link, useLocation,Form} from "react-router-dom";
+import { uploadHostVan } from "../../../server/api";
 
 export async function action({request}){
   console.log(request)
@@ -94,7 +95,7 @@ export default function HostVanUpload(){
   }
   
   //Submit Form
-  function submitForm(e){
+  async function submitForm(e){
     e.preventDefault()
     console.log(e)
     console.log(imagePreviewArray)
@@ -120,6 +121,18 @@ export default function HostVanUpload(){
     formData.append("price",vanPrice)
     formData.append("imageUrl",imagePreviewArray)
     
+    /* // Display the key/value pairs
+    for (let pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    } */
+
+    try{
+      const data = await uploadHostVan(formData)
+      console.log(data)
+    }catch(err){
+      console.log(err)
+    }
+   
   }
 
   //renders the preview element array on the page
@@ -158,12 +171,12 @@ export default function HostVanUpload(){
           <input className="upload-input" id="vanName" name="name" type="name" placeholder = "Example: The Red" required/>
         
           <label htmlFor="vanDescription" className="host-label">Van Description: </label>
-          <textarea id="vanDescription" name="description" rows="6" cols="50" placeholder="Your Van Description"/>
+          <textarea id="vanDescription" name="description" rows="6" cols="50" placeholder="Your Van Description" required/>
     
           <label className="host-label">Type of Van: </label>
           <div className="host-van-type-radio-group">
             <div>
-              <input name="vanType" id="vanChoice1" type="radio" value="Simple"/>
+              <input name="vanType" id="vanChoice1" type="radio" value="Simple" required/>
               <label htmlFor="vanChoice1">Simple</label>
             </div>
             <div>
@@ -184,7 +197,7 @@ export default function HostVanUpload(){
 
           <label htmlFor="vanImage" className="host-label">Van Image: </label>
           <div>
-            <input className="host-van-upload-file" id="vanImage" name="imageUrl" type="file" multiple accept="image/*" onChange={(e)=>{addImage(e)}}/>
+            <input className="host-van-upload-file" id="vanImage" name="imageUrl" type="file" multiple accept="image/*" onChange={(e)=>{addImage(e)}} required/>
             {image && <button className="host-van-upload-file-button" type="button" onClick={(e)=>{uploadImage(e)}}>Upload Image</button>}
           </div>
           

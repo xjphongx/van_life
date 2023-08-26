@@ -55,13 +55,24 @@ router.post('/vans', getUser, async (req,res)=>{
 //post request to server with a van to post to database
 router.post('/vans/upload', getUser, async(req,res)=>{
   console.log("posting new van to database")
-  const user = req.user
-  console.log(user)
-  console.log(req.body)
+  
   try{
+    const user = req.user
     const {name,description,type,licensePlate,price,imageUrl} = req.body
-    console.log(name)
-    return res.status(201).json({message:"uploaded"})
+
+    //Create a new van and upload to mongodb
+    const van = new Van({
+      name:name,
+      price:price,
+      description:description,
+      imageUrl:imageUrl,
+      type:type,
+      hostId:user.id,
+      licensePlate:licensePlate,
+      visiblity:"Public"
+    })
+    const newHostVan = await van.save()
+    return res.status(201).json(newHostVan)
   } catch(err){
     return res.status(400).json({message:err.message})
   }
