@@ -5,7 +5,7 @@ const vanSchema = new mongoose.Schema({
   name: String,
   price: Number,
   description:String,
-  imageUrl: String,
+  imageUrl: Array,
   type: String,
   hostId: String,
   visiblity: String,

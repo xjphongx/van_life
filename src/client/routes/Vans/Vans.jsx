@@ -27,13 +27,14 @@ export default function Vans(){
 
     const vansElement = filterVansList.map(van=>{
       //console.log(van)
+      
       return (
         <div key={van._id} className="van-tile">
           {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}
           <Link className="van-link" onClick={()=>console.log(`clicking ${van._id}`)} to={van._id} 
             state={{search: `?${searchParams.toString()}`, type: typeFilter}} //this is used to give to vanDetail page, useLocation will location this
           > 
-            <img className="van-image" src={van.imageUrl}/>
+            <img className="van-image" src={van.imageUrl[0]}/>
             <div className="van-info">
               <h3>{van.name}</h3>
               <p>${van.price} <span>/day</span></p>

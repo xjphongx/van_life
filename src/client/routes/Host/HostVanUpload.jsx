@@ -27,6 +27,8 @@ export default function HostVanUpload(){
   const location = useLocation()
   const search = location.state? location.state.search : ""
 
+  console.log(imagePreviewArray)
+
   //Run this useEffect when the user uploads new files from device
   React.useEffect(()=>{
     //when the image from the input changes, update the imagepreview
@@ -99,6 +101,8 @@ export default function HostVanUpload(){
     e.preventDefault()
     console.log(e)
     console.log(imagePreviewArray)
+    console.log(typeof(imagePreviewArray))
+  
     //Getting host van's input data
     const vanName = document.getElementById("vanName").value
     const vanDescription = document.getElementById("vanDescription").value
@@ -119,10 +123,10 @@ export default function HostVanUpload(){
     formData.append("type",vanType)
     formData.append("licensePlate",vanPlate)
     formData.append("price",vanPrice)
-    formData.append("imageUrl",imagePreviewArray)
+    formData.append("imageUrl",JSON.stringify(imagePreviewArray))
     
-    /* // Display the key/value pairs
-    for (let pair of formData.entries()) {
+    // Display the key/value pairs
+    /* for (let pair of formData.entries()) {
       console.log(pair[0]+ ', ' + pair[1]); 
     } */
 

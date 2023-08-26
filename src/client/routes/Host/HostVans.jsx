@@ -13,7 +13,7 @@ export default function HostVans(){
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
   const [searchParams, setSearchParams] = useSearchParams()
-  
+
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
     //Each element will have these html attributes
@@ -23,7 +23,7 @@ export default function HostVans(){
       return(
           <NavLink key={van._id} className="host-van-link" to={van._id} state={{search: `?${searchParams.toString()}` }}>
             <div  className="host-vans-container">
-              <img className="host-van-image-icon" src={van.imageUrl}/>
+              <img className="host-van-image-icon" src={van.imageUrl[0]}/>
               <div className="host-van-info-container">
                 <h2 className="host-van-name">{van.name}</h2>
                 <p className="host-van-price">${van.price}<span>/day</span></p>

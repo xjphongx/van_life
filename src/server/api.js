@@ -93,7 +93,6 @@ export async function loginUser(creds) {
 export async function uploadHostVan(formData){
   console.log(formData)
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
-
   const res = await fetch("http://localhost:5050/host/vans/upload", {
     method: "POST",
     headers:{
