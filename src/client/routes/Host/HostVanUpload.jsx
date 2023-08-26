@@ -1,9 +1,9 @@
 import React from "react";
 import * as uuid from  "uuid"
-import { Link, useLocation,Form,useActionData } from "react-router-dom";
+import { Link, useLocation,Form} from "react-router-dom";
 
-export async function action({request}, props){
-  console.log(props)
+export async function action({request}){
+  console.log(request)
   console.log("action upload")
   const formData = await request.formData()
   const newVanObject = {
@@ -11,8 +11,8 @@ export async function action({request}, props){
     description:formData.get("description"),
     type:formData.get("type"),
     licensePlate:formData.get("licensePlate"),
-    price:formData.get("price")
-    /* imageUrl:formData.get() */
+    price:formData.get("price"),
+    imageUrl:formData.get("imageUrl")
   }
   console.log(newVanObject)
   
@@ -65,6 +65,7 @@ export default function HostVanUpload(){
 
   //when Choosing files, add them to the fileList
   const addImage = (e) => {
+    console.log(e)
     //console.log(e.target.files)
     e.preventDefault()
     const fileList = e.target.files
@@ -90,6 +91,35 @@ export default function HostVanUpload(){
   //updates the image preview with the event's target
   function updateImagePreview(e){
     setImagePreview(e.target.src)
+  }
+  
+  //Submit Form
+  function submitForm(e){
+    e.preventDefault()
+    console.log(e)
+    console.log(imagePreviewArray)
+    //Getting host van's input data
+    const vanName = document.getElementById("vanName").value
+    const vanDescription = document.getElementById("vanDescription").value
+    const vanTypeArray = document.getElementsByName("vanType")
+    let vanType;
+    for(let i = 0; i < vanTypeArray.length; i++){
+      if(vanTypeArray[i].checked){
+        vanType = vanTypeArray[i].value
+      }
+    }
+    const vanPlate = document.getElementById("vanPlate").value
+    const vanPrice = document.getElementById("vanPrice").value
+
+    //appending to host van's input data into formdata
+    const formData = new FormData()
+    formData.append("name",vanName)
+    formData.append("description",vanDescription)
+    formData.append("type",vanType)
+    formData.append("licensePlate",vanPlate)
+    formData.append("price",vanPrice)
+    formData.append("imageUrl",imagePreviewArray)
+    
   }
 
   //renders the preview element array on the page
@@ -123,50 +153,50 @@ export default function HostVanUpload(){
           </div>
         </div>
 
-        <Form encType='multipart/form-data'  method="post" className="host-van-upload-form">
-        <label htmlFor="vanName" className="host-label" >Van Name: </label>
-        <input className="upload-input" id="vanName" name="name" type="name" placeholder = "Example: The Red" required/>
-      
-        <label htmlFor="vanDescription" className="host-label">Van Description: </label>
-        <textarea id="vanDescription" name="description" rows="6" cols="50" placeholder="Your Van Description"/>
-   
-        <label className="host-label">Type of Van: </label>
-        <div className="host-van-type-radio-group">
+        <form onSubmit={(e)=>{submitForm(e)}} encType='multipart/form-data' className="host-van-upload-form">
+          <label htmlFor="vanName" className="host-label" >Van Name: </label>
+          <input className="upload-input" id="vanName" name="name" type="name" placeholder = "Example: The Red" required/>
+        
+          <label htmlFor="vanDescription" className="host-label">Van Description: </label>
+          <textarea id="vanDescription" name="description" rows="6" cols="50" placeholder="Your Van Description"/>
+    
+          <label className="host-label">Type of Van: </label>
+          <div className="host-van-type-radio-group">
+            <div>
+              <input name="vanType" id="vanChoice1" type="radio" value="Simple"/>
+              <label htmlFor="vanChoice1">Simple</label>
+            </div>
+            <div>
+              <input name="vanType" id="vanChoice2" type="radio" value="Luxury"/>
+              <label htmlFor="vanChoice2">Luxury</label>
+            </div>
+            <div>
+              <input name="vanType" id="vanChoice3" type="radio" value="Rugged"/>
+              <label htmlFor="vanChoice3">Rugged</label>
+            </div>
+          </div>{/* End of radio group */}
+            
+          <label htmlFor="vanPlate" className="host-label">License Plate: </label>
+          <input className="upload-input" id="vanPlate" name="licensePlate" type="plate" placeholder = "Example: 6ABC243 " required/>
+
+          <label htmlFor="vanPrice" className="host-label">Price per day ($USD): </label>
+          <input className="upload-input" id="vanPrice" name="price" type="price" placeholder = "Example: $100" required/>
+
+          <label htmlFor="vanImage" className="host-label">Van Image: </label>
           <div>
-            <input name="type" id="vanChoice1" type="radio" value="Simple" required/>
-            <label htmlFor="vanChoice1">Simple</label>
+            <input className="host-van-upload-file" id="vanImage" name="imageUrl" type="file" multiple accept="image/*" onChange={(e)=>{addImage(e)}}/>
+            {image && <button className="host-van-upload-file-button" type="button" onClick={(e)=>{uploadImage(e)}}>Upload Image</button>}
           </div>
-          <div>
-            <input name="type" id="vanChoice2" type="radio" value="Luxury"/>
-            <label htmlFor="vanChoice2">Luxury</label>
-          </div>
-          <div>
-            <input name="type" id="vanChoice3" type="radio" value="Rugged"/>
-            <label htmlFor="vanChoice3">Rugged</label>
-          </div>
-        </div>{/* End of radio group */}
           
-        <label htmlFor="vanPlate" className="host-label">License Plate: </label>
-        <input className="upload-input" id="vanPlate" name="licensePlate" type="plate" placeholder = "Example: 6ABC243 " required/>
 
-        <label htmlFor="vanPrice" className="host-label">Price per day ($USD): </label>
-        <input className="upload-input" id="vanPrice" name="price" type="price" placeholder = "Example: $100" required/>
-
-        <label htmlFor="vanImage" className="host-label">Van Image: </label>
-        <div>
-          <input className="host-van-upload-file" id="vanImage" name="imageUrl" type="file" multiple accept="image/*" onChange={(e)=>{addImage(e)}}/>
-          {image && <button className="host-van-upload-file-button" type="button" onClick={(e)=>{uploadImage(e)}}>Upload Image</button>}
-        </div>
-        
-
-        <br></br>{/* skips a slot */}
-        <div className='host-van-upload-button-container'>
-          <button type="submit" className="host-van-upload-button" disabled={navigation.state === "submitting"} >
-            {navigation.state=== "submitting" ? "Uploading to Database..." : "Upload Van"}
-          </button>
-        </div>
-        
-      </Form>
+          <br></br>{/* skips a slot */}
+          <div className='host-van-upload-button-container'>
+            <button state={{hello:"hello"}} type="submit" className="host-van-upload-button" disabled={navigation.state === "submitting"} >
+              {navigation.state=== "submitting" ? "Uploading to Database..." : "Upload Van"}
+            </button>
+          </div>
+          
+        </form>
       </div>
     </div>
   )

@@ -87,7 +87,7 @@ function App() {
           <Route
             path='upload'
             element={<HostVanUpload/>}
-            action={hostVanUploadAction}
+            //action={hostVanUploadAction}
             errorElement={<Error/>}
           />
 
