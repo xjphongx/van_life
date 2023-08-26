@@ -3,7 +3,8 @@
     flex: 1 1 auto;
     min-height: 100vh;
     position: relative;
-    margin-right: 45px;
+    margin-right: 5px;
+   /*  padding-right: 20px; */
 }
 .host-nav-bar-container{
   display:flex;
