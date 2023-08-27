@@ -19,7 +19,7 @@ import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/H
 import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
-import Review from './routes/Host/Review';
+import Review, {loader as hostReviewPageLoader} from './routes/Host/Review';
 import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
 
 import About from './routes/About';
@@ -77,7 +77,7 @@ function App() {
         <Route 
           path='review' 
           element={<Review/>} 
-          loader={async ({request})=> await requireAuth(request)}/>
+          loader={hostReviewPageLoader}/>
         <Route path='vans' element={<HostVanLayout/>}>
           <Route index
             element={<HostVans/>} 

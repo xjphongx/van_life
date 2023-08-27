@@ -81,3 +81,11 @@ Content-Type: application/json
 {
   "_id":"64d713ebb8e2c2a3e9dddbf8"
 }
+
+###
+POST http://localhost:5050/host/review
+Content-Type: application/json
+
+{
+  "_id":"64d713ebb8e2c2a3e9dddbf8"
+}

@@ -1,0 +1,53 @@
+.host-review-container{
+  margin-left: 45px;
+
+}
+/* the total stats */
+.host-review-stats-container{
+
+}
+
+.host-review-progess-bar-container{
+  display:flex;
+  flex-direction: row;
+  gap:25px;
+}
+.host-review-progess-bar-container > h4{
+  color:lightgrey;
+  width: 25px;
+}
+
+
+/* the total review objects listed out */
+.host-review-list-container{
+  width: 500px;
+}
+.host-review-tile-container{
+  margin-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: rgb(204, 204, 204);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.host-review-star-container{
+  display: flex;
+  gap: 2px;
+}
+.host-review-gold-star{
+  color: goldenrod;
+}
+.host-review-empty-star{
+  color: goldenrod;
+}
+
+.host-review-poster > span{
+  color:rgb(117, 117, 117);
+  font-size: 12px;
+  margin-left: 10px;
+}
+.host-review-description{
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-spacing: 2px;
+}

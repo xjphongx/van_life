@@ -107,3 +107,26 @@ export async function uploadHostVan(formData){
   const data = await res.json() //get the promised data
   return data
 }
+
+export async function getHostReviews(){
+  const url = "http://localhost:5050/host/review"
+  const res = await fetch(url, { 
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      credentials: "include"
+    }
+  )
+  
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch reviews",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const dataPromise = await res.json()
+  console.log(dataPromise)
+  return dataPromise
+}

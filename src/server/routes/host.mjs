@@ -96,6 +96,25 @@ router.get("/vans/:id", async (req,res)=>{
   }
 )
 
+//get host vans review
+router.post("/review", getUser, async (req,res)=>{
+  console.log("getting host van's reviews")
+  //get the reviews in the database
+
+  try{
+    const user = req.user
+    const vans = await Van.find({
+      hostId:user.id,
+      reviews: {$exists: true}
+    })
+    console.log(vans)
+    res.status(200).json(vans)
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+})
+
+
 //middlewear to get specific user and its _id assigned by mongodb
 //also use jwt to verify the token
 async function getUser(req,res,next){
