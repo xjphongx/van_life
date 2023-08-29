@@ -7,7 +7,7 @@ export default function ProgressBar(props){
 
   return(
     <div className="host-review-progess-bar-container">
-      <h4>{props.starType}</h4>
+      <h4>{props.starType} Stars</h4>
       <div className="back-progess-bar" style={{
         height:"12px",
         width:"100%",

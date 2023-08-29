@@ -14,13 +14,13 @@
 }
 .host-review-progess-bar-container > h4{
   color:lightgrey;
-  width: 25px;
+  width: 80px;
 }
 
 
 /* the total review objects listed out */
 .host-review-list-container{
-  width: 500px;
+  width: 600px;
 }
 .host-review-tile-container{
   margin-top: 25px;
