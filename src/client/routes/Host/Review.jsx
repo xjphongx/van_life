@@ -6,6 +6,7 @@ import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 import * as uuid from "uuid"
 import ProgressBar from "../../components/ProgessBar";
 
+
 export async function loader({request}){
   const user = await requireAuth(request)
   return defer({hostVansWithReviews:getHostReviews()})
@@ -92,12 +93,16 @@ export default function Review(){
       }
     })
 
+    let totalStars = fiveStars*5+fourStars*4+threeStars*3+twoStars*2+oneStars
+    let totalPossibleStars = hostReviewArray.length
+    let starAverage = Math.round((totalStars/totalPossibleStars) * 10) / 10
+    console.log(starAverage)
 
     return(
         <div className="host-review-list-container">
           <div  className="host-review-stats-container">
             <h1>Your reviews</h1>
-            <h1>5.0 <span><AiFillStar size={25} className="host-review-gold-star"/>overall rating</span></h1>
+            <h1>{starAverage}<span><AiFillStar size={25} className="host-review-gold-star"/>overall rating</span></h1>
             <div className="host-review-stats-bar-container">
                 <ProgressBar starType={5} totalReviews={hostReviewArray.length} totalStars={fiveStars} />
                 <ProgressBar starType={4} totalReviews={hostReviewArray.length} totalStars={fourStars} />
