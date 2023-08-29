@@ -1,5 +1,6 @@
 import express from "express"
 import Van from "../model/van.mjs"
+import User from "../model/user.mjs"
 import jwt from "jsonwebtoken"
 
 const router = express.Router()
@@ -23,8 +24,9 @@ router.get('/profile', (req,res)=>{
       message:err.message
     })
   }
-
 })
+
+
 
 //get a list of all the records of host vans
 router.get("/vans", async (req,res)=>{

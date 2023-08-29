@@ -28,7 +28,6 @@ export async function getListHostVans(){
         "Content-Type" : "application/json"
       }, 
       credentials: "include"
-      //body: JSON.stringify({hostId})
     }
   )
   
@@ -69,8 +68,9 @@ export async function signUpUser(newUser){
       "Content-Type" : "application/json"
     },
     credentials: "same-origin",
-    body: JSON.stringify(newUser)}
-  )
+    body: JSON.stringify(newUser)
+  })
+  
   const data = await res.json() //get the promised data
   return data
 }
@@ -85,16 +85,44 @@ export async function loginUser(creds) {
     body: JSON.stringify(creds) 
     }
   )
+  if (!res.ok) {
+    throw {
+        message: "Failed to fetch hostInfo",
+        statusText: res.statusText,
+        status: res.status
+    }
+  }
   
   const data = await res.json()
   return data
 }
 
+export async function getHostInfo(hostId){
+  console.log(hostId)
+  const url = `http://localhost:5050/users/${hostId}`
+  const res = await fetch(url, { 
+      method: "GET",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      credentials: "include",
+      /* body: JSON.stringify(hostId) */
+    }
+  )
+  if (!res.ok) {
+    throw {
+        message: "Failed to fetch hostInfo",
+        statusText: res.statusText,
+        status: res.status
+    }
+  }
+
+  const dataPromise = await res.json()
+  return dataPromise
+}
+
 export async function uploadHostVan(formData){
-  console.log(formData)
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
-  //console.log(JSON.parse(result.imageUrl))
-  console.log(JSON.stringify(result))
 
   const res = await fetch("http://localhost:5050/host/vans/upload", {
     method: "POST",
@@ -104,6 +132,15 @@ export async function uploadHostVan(formData){
     credentials: "include", //this allows cookies to be sent over
     body: JSON.stringify(result)
   })
+
+  if (!res.ok) {
+    throw {
+        message: "Failed to upload the van",
+        statusText: res.statusText,
+        status: res.status
+    }
+}
+
   const data = await res.json() //get the promised data
   return data
 }

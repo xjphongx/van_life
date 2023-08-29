@@ -1,0 +1,63 @@
+.host-dashboard-container{
+
+}
+/* income */
+.host-dashboard-income-container{
+  background-color: rgb(255,234,208) ;
+  padding: 30px 45px ;
+  height: 200px;
+  width: 100%;
+}
+.host-dashboard-income-detail-container, 
+.host-dashboard-review-detail-container,
+.host-dashboard-request-detail-container,
+.host-dashboard-listed-van-detail-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 25px 0px ;
+}
+.host-dashboard-income-detail-container > h4{
+  color: #4D4D4D;
+}
+
+.host-dashboard-detail-link{
+  color: #4D4D4D;
+}
+
+/* Review */
+.host-dashboard-review-container{
+  background-color: #FFDDB2;
+  padding: 15px 45px ;
+}
+.host-dashboard-review-inner-detail-container{
+  display: flex;
+  align-items: center;
+}
+.host-dashboard-review-inner-detail-container > h3{
+  margin-right: 10px;
+}
+
+/* Requests */
+.host-dashboard-request-container{
+  padding: 15px 45px ;
+  /* background-color: rgb(255,234,208) ; */
+  height: 300px;
+}
+.host-dashboard-request-list-container{
+  display:flex;
+  flex-direction: column;
+}
+
+
+
+/* Listed Vans */
+.host-dashboard-listed-vans-container{
+  padding: 15px 45px ;
+  height: 500px;
+}
+.host-dashboard-van-list-container{
+  
+}
+
+
