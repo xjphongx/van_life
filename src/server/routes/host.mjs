@@ -54,7 +54,17 @@ router.post('/vans', getUser, async (req,res)=>{
   }
 })
 
-
+//get a specific van given the param id
+router.get("/vans/:id", async (req,res)=>{
+  console.log("getting specific host van")
+  try{
+    const van = await Van.findById(req.params.id)
+    res.status(200).json(van)
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+  }
+)
 
 
 //const uploads = multer()uploads.array("files"),
@@ -86,17 +96,7 @@ router.post('/vans/upload', getUser, async(req,res)=>{
 
 })
 
-//get a specific van given the param id
-router.get("/vans/:id", async (req,res)=>{
-  console.log("getting specific host van")
-  try{
-    const van = await Van.findById(req.params.id)
-    res.status(200).json(van)
-  }catch(err){
-    res.status(500).json({message: err.message})
-  }
-  }
-)
+
 
 //get host vans review
 router.post("/review", getUser, async (req,res)=>{

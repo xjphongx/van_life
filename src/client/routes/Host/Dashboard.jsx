@@ -2,12 +2,12 @@ import React from "react"
 import {NavLink,Await,defer,useLoaderData} from "react-router-dom"
 import { requireAuth } from "../../utils";
 import {AiFillStar} from "react-icons/ai"
-import { getHostInfo } from "../../../server/api";
+import { getHostDashboardInfo, getListHostVans } from "../../../server/api";
 
 export async function loader({request}){
   const user = await requireAuth(request)
   console.log(user)
-  return defer({hostInfo:getHostInfo(user.id)})
+  return defer({hostInfo:getHostDashboardInfo(user.id)})
 }
 
 export default function Dashboard(){
@@ -20,6 +20,21 @@ export default function Dashboard(){
   /* rendering listed vans */
   function renderHostDashboard(hostInfo){
     console.log(hostInfo)
+  
+
+    const renderDashboardHostVansElements = hostInfo.hostUserVans.map(van=>{
+      return(
+        <div key={van._id} className="host-dashboard-host-van-tile">
+          <img/>
+          <div>
+            <h3>{van.name}</h3>
+            <h4>{van.price}/day</h4>
+          </div>
+        </div>
+      )
+    })
+
+
     return(
       <>
         {/* Income */}
@@ -62,7 +77,7 @@ export default function Dashboard(){
             <NavLink className="host-dashboard-detail-link"> details</NavLink>
           </div>
           <div className="host-dashboard-van-list-container">
-
+            {renderDashboardHostVansElements}
           </div>
 
         </div>

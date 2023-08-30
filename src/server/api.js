@@ -21,7 +21,7 @@ export async function getVans(id){
 export async function getListHostVans(){
   //use the hostId to then make another request to host vans
   //console.log(hostId)
-  const url = "http://localhost:5050/host/vans"
+  const url = `http://localhost:5050/host/vans`
   const res = await fetch(url, { 
       method: "POST",
       headers:{
@@ -39,11 +39,13 @@ export async function getListHostVans(){
       }
   }
   const dataPromise = await res.json()
-  //console.log(dataPromise)
+  console.log(dataPromise)
   return dataPromise
 }
 
+/* Used in the host van detail page */
 export async function getHostVan(id){
+  console.log(id)
   const url = `http://localhost:5050/host/vans/${id}`
   const res = await fetch(url)
   
@@ -55,7 +57,7 @@ export async function getHostVan(id){
       }
   }
   const dataPromise = await res.json()
-  //console.log(dataPromise)
+  console.log(dataPromise)
   return dataPromise
 }
 
@@ -97,10 +99,10 @@ export async function loginUser(creds) {
   return data
 }
 
-export async function getHostInfo(hostId){
+export async function getHostDashboardInfo(hostId){
   console.log(hostId)
-  const url = `http://localhost:5050/users/${hostId}`
-  const res = await fetch(url, { 
+  const url1 = `http://localhost:5050/users/${hostId}`
+  const res1 = await fetch(url1, { 
       method: "GET",
       headers:{
         "Content-Type" : "application/json"
@@ -109,17 +111,44 @@ export async function getHostInfo(hostId){
       /* body: JSON.stringify(hostId) */
     }
   )
-  if (!res.ok) {
+  if (!res1.ok) {
     throw {
         message: "Failed to fetch hostInfo",
-        statusText: res.statusText,
-        status: res.status
+        statusText: res1.statusText,
+        status: res1.status
     }
   }
 
-  const dataPromise = await res.json()
-  return dataPromise
+  const hostUser = await res1.json()
+  console.log(hostUser)
+
+  const url2 = `http://localhost:5050/host/vans`
+  const res2 = await fetch(url2, { 
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      credentials: "include",
+      /* body: JSON.stringify(hostId) */
+    }
+  )
+  if (!res2.ok) {
+    throw {
+        message: "Failed to fetch hostInfo",
+        statusText: res2.statusText,
+        status: res2.status
+    }
+  }
+  const hostUserVans = await res2.json()
+
+  const combinedDataPromise = {hostUser,hostUserVans}
+  console.log(combinedDataPromise)
+
+  return combinedDataPromise
 }
+
+/* export async function getAllHostVan */
+
 
 export async function uploadHostVan(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
