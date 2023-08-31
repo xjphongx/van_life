@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useSearchParams, useLoaderData, defer,Await} from "react-router-dom"
+import { useLoaderData, defer,Await} from "react-router-dom"
 import { getReviewScore, requireAuth } from "../../utils";
 import { getHostReviews } from "../../../server/api";
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
@@ -92,7 +92,7 @@ export default function Review(){
 
     return(
         <div className="host-review-list-container">
-           <h1>Your reviews</h1>
+           
           <div  className="host-review-stats-container">
             <h1>{starAverage}<span><AiFillStar size={25} className="host-review-gold-star"/>overall rating</span></h1>
             <div className="host-review-stats-bar-container">
@@ -118,6 +118,7 @@ export default function Review(){
   return (
     <>
       <div className="host-review-container">
+        <h1>Your reviews</h1>
         <React.Suspense fallback={<h1>Loading Reviews...</h1>}>
           <Await resolve={dataPromise.hostVansWithReviews}>
               {renderReviewElements}{/* render the review element containers */}
