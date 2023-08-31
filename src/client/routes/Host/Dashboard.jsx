@@ -2,7 +2,7 @@ import React from "react"
 import {NavLink,Await,defer,useLoaderData} from "react-router-dom"
 import { requireAuth } from "../../utils";
 import {AiFillStar} from "react-icons/ai"
-import { getHostDashboardInfo, getListHostVans } from "../../../server/api";
+import { getHostDashboardInfo} from "../../../server/api";
 import { getReviewScore } from "../../utils";
 
 export async function loader({request}){
@@ -12,16 +12,13 @@ export async function loader({request}){
 }
 
 export default function Dashboard(){
-  /* const contextData = useContext()
-  console.log(contextData) */
   const dataPromise = useLoaderData()//getting deferred data from the loader 
   
-
-
   /* rendering listed vans */
   function renderHostDashboard(hostInfo){
     const hostUserVans = hostInfo.hostUserVans
 
+    /* code needed to calculate reviews */
     const hostVansWithReviews = hostUserVans.filter((van)=>{
       if(van.hasOwnProperty('reviews')){
         return van
@@ -29,9 +26,35 @@ export default function Dashboard(){
       
     })
 
-
     let dashboardReviewScore = getReviewScore(hostVansWithReviews)
 
+    /* code needed to get request */
+    const hostUserRequest = hostInfo.hostUser.requests
+    console.log(hostUserRequest)
+
+    const renderDashboardHostRequestElements = hostUserRequest.map(request=>{
+      let requestedVan = hostUserVans.filter((van)=>{
+        if(van._id===request.requestedVanId){
+          return van
+        }
+      })
+      console.log(requestedVan)
+      return(
+       
+        <div key={request._id} className="host-dashboard-request-tile">
+          <h2>A user has sent a request for {requestedVan[0].name}</h2>
+          <NavLink to='request' 
+          className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
+          state={request}
+          >Details</NavLink>
+        </div>
+        
+      )
+    })
+
+
+
+    /* This allows only 3 listed vans to be displayed to the dashboard */
     let vanCounter= 0;
     const renderDashboardHostVansElements = hostUserVans.map(van=>{
       if(vanCounter<3){//limits to 3 vans 
@@ -54,7 +77,7 @@ export default function Dashboard(){
       
     })
 
-
+    
     return(
       <>
         {/* Income */}
@@ -66,6 +89,7 @@ export default function Dashboard(){
           </div>
           <h2>$2280</h2>
         </div>
+
         {/* Review */}
         <div className="host-dashboard-review-container">
           <div className="host-dashboard-review-detail-container">
@@ -77,15 +101,15 @@ export default function Dashboard(){
             <NavLink to='review' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}>See All Reviews</NavLink>
           </div>
         </div>
+
         {/* Request */}
         <div className='host-dashboard-request-container'>
           <div className="host-dashboard-request-detail-container">
-            <h2>Your Requests (5)</h2>
+            <h2>Your Requests ({hostUserRequest.length})</h2>
             <NavLink to='request' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}> See All Request</NavLink>
           </div>
           <div className="host-dashboard-request-list-container">
-            <h1>request 1</h1>
-            <h1>request 2</h1>
+            {renderDashboardHostRequestElements}
           </div>
             
         </div>
@@ -99,11 +123,7 @@ export default function Dashboard(){
           <div className="host-dashboard-van-list-element-container">
             {renderDashboardHostVansElements}
           </div>
-
         </div>
-        
-        
-        
         
       </>
     )
@@ -119,7 +139,6 @@ export default function Dashboard(){
             </Await>
           </React.Suspense> 
       </div>
-
     </>
   )
 }
