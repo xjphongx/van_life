@@ -11,6 +11,8 @@
   display:flex;
   flex-direction: row;
   gap:25px;
+  justify-content: center;
+  align-items: center;
 }
 .host-review-progess-bar-container > h4{
   color:lightgrey;
