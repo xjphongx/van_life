@@ -57,7 +57,7 @@ export default function Review(){
       
       console.log(review)
       return(
-          <div key={review.id} className="host-review-tile">
+          <div key={review._id} className="host-review-tile">
               <RenderStars star={review.star}/>
               <h4 className="host-review-poster">{review.name}   <span>December 1, 2022</span></h4>
               <p className="host-review-description">

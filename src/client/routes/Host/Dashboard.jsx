@@ -30,7 +30,7 @@ export default function Dashboard(){
 
     /* code needed to get request */
     const hostUserRequest = hostInfo.hostUser.requests
-    console.log(hostUserRequest)
+    /* console.log(hostUserRequest) */
 
     const renderDashboardHostRequestElements = hostUserRequest.map(request=>{
       let requestedVan = hostUserVans.filter((van)=>{
@@ -38,7 +38,7 @@ export default function Dashboard(){
           return van
         }
       })
-      console.log(requestedVan)
+      /* console.log(requestedVan) */
       return(
        
         <div key={request._id} className="host-dashboard-request-tile">

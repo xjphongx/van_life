@@ -100,7 +100,7 @@ export async function loginUser(creds) {
 }
 
 export async function getHostDashboardInfo(hostId){
-  console.log(hostId)
+  /* console.log(hostId) */
   const url1 = `http://localhost:5050/users/${hostId}`
   const res1 = await fetch(url1, { 
       method: "GET",
@@ -142,7 +142,7 @@ export async function getHostDashboardInfo(hostId){
   const hostUserVans = await res2.json()
 
   const combinedDataPromise = {hostUser,hostUserVans}
-  console.log(combinedDataPromise)
+  /* console.log(combinedDataPromise) */
 
   return combinedDataPromise
 }
