@@ -3,9 +3,10 @@
 
 }
 /* the total stats */
-/* .host-review-stats-container{
-
-} */
+.host-review-stats-container{
+padding: 20px 0px;
+margin-bottom: 30px;
+}
 
 .host-review-progess-bar-container{
   display:flex;
@@ -25,6 +26,13 @@
   width: 600px;
 }
 .host-review-tile-container{
+  margin-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: rgb(204, 204, 204);
+  border-bottom-width: 1px;
+  /* border-bottom-style: solid; */
+}
+.host-review-tile{
   margin-top: 25px;
   padding-bottom: 25px;
   border-bottom: rgb(204, 204, 204);

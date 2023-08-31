@@ -1,10 +1,7 @@
 import {useState}from "react"
 
 export default function ProgressBar(props){
-  console.log(props)
-  let percent = (props.totalStars / props.totalReviews )*100
-  console.log(percent)
-
+  let percent = Math.round((props.totalStars / props.totalReviews )*100)
   return(
     <div className="host-review-progess-bar-container">
       <h4>{props.starType} Stars</h4>

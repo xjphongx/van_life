@@ -27,8 +27,40 @@ export  async function requireAuth(request) {
     throw err
   }
 
+}
 
+export function getReviewScore(hostVansWithReviews){
+  
+  let hostReviewArray = []
+  hostVansWithReviews.map((van)=>{
+    hostReviewArray = hostReviewArray.concat(van.reviews)
+  })
 
-
-
+  //Calculate the Star distribution here because I cant update state when rendering
+  let fiveStars=0
+  let fourStars=0
+  let threeStars=0
+  let twoStars=0
+  let oneStars=0
+  
+  hostReviewArray.map(review=>{
+    if(review.star===5){
+      fiveStars += 1
+    } else if (review.star === 4){
+      fourStars+=1
+    } else if (review.star === 3){
+      threeStars+=1
+    } else if (review.star === 2){
+      twoStars+=1
+    } else  {
+      oneStars+=1
+    }
+  })
+  let totalStars = fiveStars*5+fourStars*4+threeStars*3+twoStars*2+oneStars
+  let totalPossibleStars = hostReviewArray.length
+  let starAverage = Math.round((totalStars/totalPossibleStars) * 10) / 10
+  
+  
+  
+  return starAverage
 }

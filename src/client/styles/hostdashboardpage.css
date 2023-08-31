@@ -7,6 +7,8 @@
   padding: 30px 45px ;
   height: 200px;
   width: 100%;
+}.host-dashboard-income-container > h1{
+  font-size: 50px;
 }
 .host-dashboard-income-detail-container, 
 .host-dashboard-review-detail-container,
@@ -23,6 +25,7 @@
 
 .host-dashboard-detail-link{
   color: #4D4D4D;
+  
 }
 
 /* Review */
@@ -54,14 +57,44 @@
 /* Listed Vans */
 .host-dashboard-listed-vans-container{
   padding: 15px 45px ;
-  height: 500px;
+  margin-bottom: 40px;
+}.host-dashboard-listed-van-detail-container > h3{
+
 }
-.host-dashboard-van-list-container{
-  
+.host-dashboard-van-list-element-container{
+  display: flex;
+  flex-direction: column;
+  gap:15px;
 }
 .host-dashboard-host-van-tile{
   background-color: white;
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px 20px;
+  border-radius: 5px;
+}
+
+.host-dashboard-inner-element-container{
+  display: flex;
+  gap:30px;
+  justify-content: center;
+  align-items: center;
+}.host-dashboard-inner-element-container > div {
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+}.host-dashboard-inner-element-container > div >h3{
+  font-size: 25px;
+}.host-dashboard-inner-element-container > div >h4{
+  color: #4D4D4D;
+  font-weight: 600;
+}
+.host-dashboard-van-element-image{
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
 }
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, useSearchParams, useLoaderData, defer,Await} from "react-router-dom"
-import { requireAuth } from "../../utils";
+import { getReviewScore, requireAuth } from "../../utils";
 import { getHostReviews } from "../../../server/api";
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 import * as uuid from "uuid"
@@ -17,7 +17,10 @@ export default function Review(){
   const dataPromise = useLoaderData()
  
   const renderReviewElements = (hostVansWithReviews) => {
-    const hostReviewArray = hostVansWithReviews[0].reviews
+    let hostReviewArray = [] //an array to contain all of Host's Reviews
+    hostVansWithReviews.map((van)=>{
+      hostReviewArray = hostReviewArray.concat(van.reviews)
+    })
 
     //render the review elements by mapping through the host's review array, if there are 3 reviews then render 3 review elements
     const reviewsElements = hostReviewArray.map((review)=>{
@@ -52,26 +55,19 @@ export default function Review(){
         )
       }//end of RenderStars Component
       
-     
-      
-
-      
-
+      console.log(review)
       return(
           <div key={review.id} className="host-review-tile">
               <RenderStars star={review.star}/>
-              <h4 className="host-review-poster">Elliot   <span>December 1, 2022</span></h4>
+              <h4 className="host-review-poster">{review.name}   <span>December 1, 2022</span></h4>
               <p className="host-review-description">
-              The beach bum is such as awesome van! Such as comfortable trip. 
-              We had it for 2 weeks and there was not a single issue. Super clean 
-              when we picked it up and the host is very comfortable and understanding.
-              Highly recommend! 
+              {review.description}
               </p>
           </div>
       )
     })//end of reviewsElements 
 
-
+    
     //Calculate the Star distribution here because I cant update state when rendering
     let fiveStars=0
     let fourStars=0
@@ -92,16 +88,12 @@ export default function Review(){
         oneStars+=1
       }
     })
-
-    let totalStars = fiveStars*5+fourStars*4+threeStars*3+twoStars*2+oneStars
-    let totalPossibleStars = hostReviewArray.length
-    let starAverage = Math.round((totalStars/totalPossibleStars) * 10) / 10
-    console.log(starAverage)
+    let starAverage = getReviewScore(hostVansWithReviews)
 
     return(
         <div className="host-review-list-container">
+           <h1>Your reviews</h1>
           <div  className="host-review-stats-container">
-            <h1>Your reviews</h1>
             <h1>{starAverage}<span><AiFillStar size={25} className="host-review-gold-star"/>overall rating</span></h1>
             <div className="host-review-stats-bar-container">
                 <ProgressBar starType={5} totalReviews={hostReviewArray.length} totalStars={fiveStars} />
