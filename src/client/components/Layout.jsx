@@ -5,11 +5,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout(){
+  let [loggedin, setLoggedin] = React.useState(false)
   return(
     <>
-      <Header/>
+      <Header props={{loggedin}}/>
       <main className="main-section">
-        <Outlet/> {/* Used to render the desire child path */}
+        <Outlet context={[loggedin, setLoggedin]}/> {/* Used to render the desire child path */}
       </main>
       <Footer/>
     </>

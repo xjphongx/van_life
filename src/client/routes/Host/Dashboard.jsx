@@ -1,5 +1,5 @@
 import React from "react"
-import {NavLink,Await,defer,useLoaderData} from "react-router-dom"
+import {useLocation,NavLink,Await,defer,useLoaderData} from "react-router-dom"
 import { requireAuth } from "../../utils";
 import {AiFillStar} from "react-icons/ai"
 import { getHostDashboardInfo} from "../../../server/api";
@@ -12,8 +12,13 @@ export async function loader({request}){
 }
 
 export default function Dashboard(){
-  const dataPromise = useLoaderData()//getting deferred data from the loader 
+  const location = useLocation()
+  console.log(location)
   
+  
+  
+  const dataPromise = useLoaderData()//getting deferred data from the loader 
+  console.log(localStorage.getItem("loggedin"))
   /* rendering listed vans */
   function renderHostDashboard(hostInfo){
     const hostUserVans = hostInfo.hostUserVans

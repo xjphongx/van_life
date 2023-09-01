@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData, Link } from "react-router-dom";
+import { useOutletContext,useLocation,useNavigate,useNavigation,useLoaderData,Form, redirect, useActionData, Link } from "react-router-dom";
 import {toast, Toaster } from "react-hot-toast";
 import { loginUser } from "../../server/api";
 
@@ -40,8 +40,16 @@ export async function action({request}){
 
 
 export default function Login(){
+  const [loggedin, setLoggedin] = useOutletContext()
+  console.log(loggedin)
+  
+
   //use loaderData to get the return message of loader function
   const message = useLoaderData()
+
+  //useLocation to get loggedin state
+  const location = useLocation()
+  console.log(location)
 
   //useNavigate is the same as <Navigate/>
   //const navigate = useNavigate()
@@ -59,7 +67,7 @@ export default function Login(){
       {message && <h2>asd{message}</h2>}
       {errorMessage && <h2>{errorMessage}</h2>}
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
-      <Form method="POST" className="login-form" replace={true}>
+      <Form state={{loggedin:loggedin,setLoggedin:setLoggedin}}  method="POST" className="login-form" replace={true}>
         <input
           name="email"
           type="email"

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from 'react-router-dom';
 import {BiUserCircle} from 'react-icons/Bi';
 
-export default function Navbar(){
+export default function Navbar({loggedin}){
   
   function fakeLogOut() {
     console.log("clearing localStorage loggedin")
@@ -33,7 +33,7 @@ export default function Navbar(){
         </NavLink>
 
         
-        <button onClick={fakeLogOut}>X</button>
+        {loggedin&&<button className="log-out-button" onClick={fakeLogOut}>Log Out</button>}
         
 
       </div>
