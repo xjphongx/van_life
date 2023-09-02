@@ -135,10 +135,13 @@ function App() {
   return (
     <>
     {/* Allow the user state to check itsself in the host routes */}
-      <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
-        {/* //RouterProvider will allow me to use Data APIs */}
-        <RouterProvider router={router}/>
-      </LoginContext.Provider>
+      <React.StrictMode>
+        <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
+          {/* //RouterProvider will allow me to use Data APIs */}
+          <RouterProvider router={router}/>
+        </LoginContext.Provider>
+      </React.StrictMode>
+      
         
      
     </>

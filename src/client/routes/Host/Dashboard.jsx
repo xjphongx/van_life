@@ -15,18 +15,16 @@ export async function loader({request}){
 export default function Dashboard(){
   //when the user successfully routes to /host set LoggedIn to true
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
-  setLoggedIn(true)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+  },[])
   
   
   const dataPromise = useLoaderData()//getting deferred data from the loader 
   
-  
-
-
-
 
   /* rendering listed vans */
-  function renderHostDashboard(hostInfo){
+  const renderHostDashboard = (hostInfo)=>{
     const hostUserVans = hostInfo.hostUserVans
 
     /* code needed to calculate reviews */
@@ -49,9 +47,7 @@ export default function Dashboard(){
           return van
         }
       })
-      /* console.log(requestedVan) */
       return(
-       
         <div key={request._id} className="host-dashboard-request-tile">
           <h2>A user has sent a request for {requestedVan[0].name}</h2>
           <NavLink to='request' 
@@ -85,7 +81,6 @@ export default function Dashboard(){
       }else{
         return
       }
-      
     })
 
     
