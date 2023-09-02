@@ -121,7 +121,7 @@ router.post("/review", getUser, async (req,res)=>{
 //also use jwt to verify the token
 async function getUser(req,res,next){
   const token = req.cookies.token;
-  console.log("token", token)
+  //console.log("token", token)
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;

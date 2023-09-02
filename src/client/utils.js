@@ -6,7 +6,7 @@ import { redirect } from "react-router-dom"
 export  async function requireAuth(request) { 
   const url = new URL(request.url)
   const pathname = url.pathname //when logged out, and clicks a protected route, it will save the pathname and get the user to relog in
-  const isLoggedIn = localStorage.getItem("loggedin")
+  const isLoggedIn = localStorage.getItem("loggedIn")
 
   if(!isLoggedIn){
     throw redirect(

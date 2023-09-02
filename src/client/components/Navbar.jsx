@@ -1,13 +1,20 @@
 import React from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink,useNavigate } from 'react-router-dom';
 import {BiUserCircle} from 'react-icons/Bi';
+import { LoginContext } from "..";
+import { logOut } from "../../server/api";
 
-export default function Navbar({loggedin}){
-  
-  function fakeLogOut() {
+export default function Navbar(){
+  const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
+  const navigate = useNavigate()
+
+  function handleLogOut() {
     console.log("clearing localStorage loggedin")
-    localStorage.removeItem("loggedin")
-    console.log(localStorage.getItem("loggedin"))
+    setLoggedIn(false)
+    localStorage.removeItem("loggedIn")
+    const response = logOut()
+    navigate("/login")
+    
 }
   
   return(
@@ -33,8 +40,7 @@ export default function Navbar({loggedin}){
         </NavLink>
 
         
-        {loggedin&&<button className="log-out-button" onClick={fakeLogOut}>Log Out</button>}
-        
+        {loggedIn&&<button className="log-out-button" onClick={handleLogOut}>Log Out</button>}
 
       </div>
     </nav>

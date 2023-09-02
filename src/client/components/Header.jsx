@@ -2,12 +2,13 @@ import React from "react";
 import Navbar from "./Navbar";
 
 
-export default function Header({props}){
-  console.log(props)
+
+export default function Header(){
   
+
   return(<>
     <header className="header-section">
-      <Navbar props={props} />
+      <Navbar />
     </header>
   </>)
 }

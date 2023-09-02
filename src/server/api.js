@@ -89,13 +89,35 @@ export async function loginUser(creds) {
   )
   if (!res.ok) {
     throw {
-        message: "Failed to fetch hostInfo",
+        message: "Failed to fetch user credentials",
         statusText: res.statusText,
         status: res.status
     }
   }
   
   const data = await res.json()
+  console.log(data)
+  return data
+}
+
+export async function logOut(){
+  const res = await fetch("http://localhost:5050/logout", { 
+    method: "GET",
+    headers:{
+      "Content-Type" : "application/json"
+    }, 
+    credentials: "include" //this allows cookies to be sent over
+  
+    } )
+  if (!res.ok) {
+    throw {
+        message: "Failed log out of server",
+        statusText: res.statusText,
+        status: res.status
+    }
+  }
+  const data = await res.json()
+  console.log(data)
   return data
 }
 

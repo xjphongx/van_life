@@ -4,6 +4,7 @@ import { requireAuth } from "../../utils";
 import {AiFillStar} from "react-icons/ai"
 import { getHostDashboardInfo} from "../../../server/api";
 import { getReviewScore } from "../../utils";
+import { LoginContext } from "../..";
 
 export async function loader({request}){
   const user = await requireAuth(request)
@@ -12,13 +13,18 @@ export async function loader({request}){
 }
 
 export default function Dashboard(){
-  const location = useLocation()
-  console.log(location)
-  
+  //when the user successfully routes to /host set LoggedIn to true
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  setLoggedIn(true)
   
   
   const dataPromise = useLoaderData()//getting deferred data from the loader 
-  console.log(localStorage.getItem("loggedin"))
+  
+  
+
+
+
+
   /* rendering listed vans */
   function renderHostDashboard(hostInfo){
     const hostUserVans = hostInfo.hostUserVans

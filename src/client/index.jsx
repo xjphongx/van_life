@@ -35,10 +35,15 @@ import Error from './components/Error';
 
 import { requireAuth } from './utils';
 import HostVanLayout from './components/HostVanLayout';
-localStorage.removeItem("loggedin")
+//localStorage.removeItem("loggedIn")
+
+
+export const LoginContext = React.createContext()
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false)
+  
   //New way to use BrowserRouter
   const router = createBrowserRouter(createRoutesFromElements( //createRoutesFromElements will turn Routes into Route Objects for the next method
     <Route path='/' element={<Layout/>} errorElement={<Error/>}> {/* This is for layout route: This Route is the parent  */}
@@ -130,9 +135,11 @@ function App() {
   return (
     <>
     {/* Allow the user state to check itsself in the host routes */}
-      
+      <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
         {/* //RouterProvider will allow me to use Data APIs */}
         <RouterProvider router={router}/>
+      </LoginContext.Provider>
+        
      
     </>
       
