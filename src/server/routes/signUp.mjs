@@ -21,7 +21,7 @@ router.get("/", async (req, res)=>{
 router.post("/", async (req, res)=>{
   console.log("Sending POST request to sign up a new user")
   try{
-    const {firstName,lastName, email, confirmEmail, password, confirmPassword,dateOfBirth,phone} = req.body
+    const {type,firstName,lastName, email, confirmEmail, password, confirmPassword,dateOfBirth,phone} = req.body
   
     /* Form validation in the server */
     //check if email and confirmEmail matches
@@ -99,6 +99,7 @@ router.post("/", async (req, res)=>{
     //save the User object with a hashed password
     console.log("saving user")
     const user = new User({ //create a new User object
+      type: type,
       firstName: firstName,
       lastName: lastName,
       email:email,

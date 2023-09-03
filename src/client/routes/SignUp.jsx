@@ -11,7 +11,21 @@ export function loader(){
 //once the form is submitted as a POST request
 export async function action({request}){
   const formData = await request.formData()
+
+  const accountTypeArray = document.getElementsByName("accountType")
+  let accountType;
+  for(let i = 0; i < accountTypeArray.length; i++){
+    if(accountTypeArray[i].checked){
+      accountType = accountTypeArray[i].value
+    }
+  }
+
+
+  console.log(accountType)
+  
+
   const newUserObject = {
+    type:accountType,
     firstName:formData.get("firstName"),
     lastName:formData.get("lastName"),
     email: formData.get("email"),
@@ -51,6 +65,23 @@ export default function SignUp(){
       {errorMessage && <h2>{errorMessage}</h2>}
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="post" className="signup-form" >
+        <div className = "type-container">
+          <div className="type-label">
+            Select account type:
+          </div>
+          <div className="type-radio-group">
+            <div>
+              <input name="accountType" id="accountChoice1" type="radio" value="Host" required/>
+              <label htmlFor="accountChoice1">Host</label>
+            </div>
+            <div>
+              <input name="accountType" id="accountChoice2" type="radio" value="User" />
+              <label htmlFor="accountChoice2">User</label>
+            </div>
+          </div>
+        </div>
+        
+        
         <div className="name-container">
           <input name="firstName" type="name" placeholder="First Name" required/>
           <input name="lastName" type="name" placeholder="Last Name" required/>

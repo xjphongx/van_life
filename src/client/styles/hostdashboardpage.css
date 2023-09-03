@@ -1,6 +1,6 @@
-.host-dashboard-container{
+/* .host-dashboard-container{
 
-}
+} */
 /* income */
 .host-dashboard-income-container{
   background-color: rgb(255,234,208) ;
@@ -69,9 +69,9 @@
 .host-dashboard-listed-vans-container{
   padding: 15px 45px ;
   margin-bottom: 40px;
-}.host-dashboard-listed-van-detail-container > h3{
+}/* .host-dashboard-listed-van-detail-container > h3{
 
-}
+} */
 .host-dashboard-van-list-element-container{
   display: flex;
   flex-direction: column;
