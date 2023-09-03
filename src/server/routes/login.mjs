@@ -21,10 +21,11 @@ router.get("/", async (req,res)=>{
 router.post("/", async (req, res)=>{
   console.log("fetch POST request to users")
   try{
-    const {email, password} = req.body
+    const {type,email, password} = req.body
     //console.log(email,password)
     //check if the user already exist
-    const foundUser = await User.findOne({email:email})
+    const foundUser = await User.findOne({email:email, type:type})
+    
     if(!foundUser){//if there are no users, return an error
       return res.status(400).json({
         error: 'No user found.'

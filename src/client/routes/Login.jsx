@@ -17,13 +17,20 @@ export function loader({request}){
 //This is needed for the Form component
 export async function action({request}){
   const formData = await request.formData()
+  const loginAccountTypeArray = document.getElementsByName("loginAccountType")
+  let type;
+  for(let i = 0; i < loginAccountTypeArray.length; i++){
+    if(loginAccountTypeArray[i].checked){
+      type = loginAccountTypeArray[i].value
+    }
+  }
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
   //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
   const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host" //get the search params in url
   console.log("sending action requets")
   try{ //Error handling
-    const data = await loginUser({email,password})// user logs in here
+    const data = await loginUser({type,email,password})// user logs in here
 
     if(data.error){
       toast.error(data.error)
@@ -52,8 +59,8 @@ export default function Login(){
   const message = useLoaderData()
 
   //use actionData and useContext to get the loggedIn results based from action function
-  const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
-  console.log("login: ",loggedIn)
+/* const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
+console.log("login: ",loggedIn) */
   const pathname = useActionData()
 
   //useNavigate is the same as <Navigate/>

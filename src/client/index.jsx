@@ -124,8 +124,13 @@ function App() {
             loader={async ({request})=> await requireAuth(request)}/>
         </Route>
 
+      
       </Route> {/* End of HostLayout Route */}
-     
+    
+      {/* Below is the parent layout for Users */}
+      <Route path='user'>
+
+      </Route>
       {/* Catch all route */}
       
       <Route path='*' element={<NotFoundPage/>}/>        

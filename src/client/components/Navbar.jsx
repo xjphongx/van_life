@@ -22,9 +22,9 @@ export default function Navbar(){
       <Link to="/" className="vanlife-header">#VANLIFE</Link>
       <div className="route-container">
       {/* NavLink has a active and pending state, which is passed through the className prop,  */}
-        <NavLink to='host' //to='.' "take me to the current path"
+        {/* <NavLink to='host' //to='.' "take me to the current path"
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
-        >Host</NavLink>
+        >Account</NavLink> */}
 
         <NavLink to="about" 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
@@ -34,7 +34,7 @@ export default function Navbar(){
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >Vans</NavLink>
 
-        <NavLink to="login"
+        <NavLink to={loggedIn? "host" :"login"}
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         ><BiUserCircle size={25}/>
         </NavLink>
