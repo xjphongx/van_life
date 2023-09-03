@@ -214,7 +214,8 @@ export async function getHostReviews(){
           status: res.status
       }
   }
+  
   const dataPromise = await res.json()
-  console.log(dataPromise)
+  
   return dataPromise
 }
