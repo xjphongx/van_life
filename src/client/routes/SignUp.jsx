@@ -19,11 +19,6 @@ export async function action({request}){
       accountType = accountTypeArray[i].value
     }
   }
-
-
-  console.log(accountType)
-  
-
   const newUserObject = {
     type:accountType,
     firstName:formData.get("firstName"),
@@ -55,11 +50,13 @@ export async function action({request}){
 }
 
 export default function SignUp(){
+  const [accountType, setAccountType]= React.useState(null)
   const errorMessage = useActionData()
+
   return(
     <div className="signup-container">
       <div className="signup-header">
-        <h1>Sign up for a free account ... </h1>
+        <h1>Sign up for a free {accountType && accountType } account ... </h1>
         <FaShuttleVan className="signup-van" size={30}/>
       </div>
       {errorMessage && <h2>{errorMessage}</h2>}
@@ -71,11 +68,11 @@ export default function SignUp(){
           </div>
           <div className="type-radio-group">
             <div>
-              <input name="accountType" id="accountChoice1" type="radio" value="Host" required/>
+              <input name="accountType" id="accountChoice1" onChange={()=>{setAccountType("Host")}} type="radio" value="Host" required/>
               <label htmlFor="accountChoice1">Host</label>
             </div>
             <div>
-              <input name="accountType" id="accountChoice2" type="radio" value="User" />
+              <input name="accountType" id="accountChoice2" onChange={()=>{setAccountType("User")}} type="radio" value="User" />
               <label htmlFor="accountChoice2">User</label>
             </div>
           </div>
