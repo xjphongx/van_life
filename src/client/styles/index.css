@@ -12,9 +12,10 @@ html, body {
 
 }
 .body{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
+    
 }
 body::-webkit-scrollbar{
     display:none
@@ -29,11 +30,18 @@ h1, h2, h3, h4, button ,p, a,Link, label, input, textarea{
 nav > a {
     text-decoration: none;
 }
-.page-container{
+/* .page-container{
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
+} */
+.app-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+
 }
 .header-section{
     flex:0 1 auto;

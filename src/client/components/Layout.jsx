@@ -5,15 +5,14 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout(){
-  let [loggedin, setLoggedin] = React.useState(false)
   return(
-    <>
-      <Header props={{loggedin}}/>
+    <div className="app-container">
+      <Header/>
       <main className="main-section">
-        <Outlet context={[loggedin, setLoggedin]}/> {/* Used to render the desire child path */}
+        <Outlet/> {/* Used to render the desire child path */}
       </main>
       <Footer/>
-    </>
+    </div>
   )
 }
 /* This is a neater way to organize my components where I want

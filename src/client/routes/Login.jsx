@@ -47,7 +47,6 @@ export async function action({request}){
 
 }
 
-
 export default function Login(){
   //use loaderData to get the return message of loader function
   const message = useLoaderData()
@@ -56,11 +55,7 @@ export default function Login(){
   const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
   console.log("login: ",loggedIn)
   const pathname = useActionData()
-  /* console.log(localStorage.getItem("loggedIn"))
-  console.log(pathname) */
 
-   //error handling
-  //const {errorMessage} = useActionData()
   //useNavigate is the same as <Navigate/>
   const navigate = useNavigate()
 
@@ -71,22 +66,11 @@ export default function Login(){
     }
   },[pathname])
  
-
   //useLocation to get loggedin state
   const location = useLocation()
-  //console.log(location)
-
-  
 
   //useNavigation state for idle loading submitting
   const navigation = useNavigation()
-  //console.log(navigation)
-
- 
-  
-
-
-
 
   return(
     <div className="login-container">
@@ -95,6 +79,21 @@ export default function Login(){
       {/* {errorMessage && <h2>{errorMessage}</h2>} */}
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="POST" className="login-form" replace={true}>
+        <div className = "login-type-container">
+          <div className="login-type-label">
+            Are you a Host or User?
+          </div>
+          <div className="login-type-radio-group">
+            <div>
+              <input name="loginAccountType" id="loginAccountChoice1" type="radio" value="Host" required/>
+              <label htmlFor="accountChoice1">Host</label>
+            </div>
+            <div>
+              <input name="loginAccountType" id="loginAccountChoice2" type="radio" value="User" />
+              <label htmlFor="accountChoice2">User</label>
+            </div>
+          </div>
+        </div>
         <input
           name="email"
           type="email"
