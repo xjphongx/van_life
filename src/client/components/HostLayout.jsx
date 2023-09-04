@@ -3,7 +3,7 @@ import {NavLink,Outlet} from "react-router-dom"
 import { UserContext } from "../context/userContext";
 
 export default function HostLayout(){
-  const {user} = React.useContext(UserContext) //This is recieved from HostContext
+  //const {user} = React.useContext(UserContext) //This is recieved from HostContext
   return(
     <div className='layout-section'>
       <nav className='host-nav-bar-container'>

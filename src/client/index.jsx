@@ -12,7 +12,7 @@ import Home from './routes/Home';
 import Layout from './components/Layout';
 
 import HostLayout from './components/HostLayout';
-import HostDashboard,{loader as dashboardLoader} from './routes/Host/HostDashboard';
+import HostDashboard,{loader as hostDashboardLoader} from './routes/Host/HostDashboard';
 import HostIncome from './routes/Host/HostIncome';
 import HostVans, {loader as hostVanPageLoader} from './routes/Host/HostVans';
 import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/HostVansDetail';
@@ -22,6 +22,10 @@ import HostVanPhotos from './routes/Host/HostVanPhotos';
 import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
 import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRequest';
 import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
+
+import UserLayout from './components/UserLayout'
+import UserDashboard, {loader as UserDashboardLoader} from './routes/User/UserDashboard';
+import UserRequest, {loader as UserRequestLoader} from './routes/User/UserRequest';
 
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
@@ -74,7 +78,7 @@ function App() {
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
           element={<HostDashboard/>} 
-          loader={dashboardLoader}/> 
+          loader={hostDashboardLoader}/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 
@@ -100,17 +104,13 @@ function App() {
             //action={hostVanUploadAction}
             errorElement={<Error/>}
           />
-
         </Route>
-        
-        
         
         <Route 
           path='vans/:id' 
           element={<HostVansDetail/>} 
           loader={hostVanDetailPageLoader}
           errorElement={<Error/>}>
-           
           <Route index 
             element={<HostVanInfo/>} 
             loader={async ({request})=> await requireAuth(request)}/>
@@ -124,12 +124,18 @@ function App() {
             loader={async ({request})=> await requireAuth(request)}/>
         </Route>
 
-      
       </Route> {/* End of HostLayout Route */}
     
       {/* Below is the parent layout for Users */}
-      <Route path='user'>
-
+      <Route path='user' element={<UserLayout/>}>
+        <Route index 
+            element={<UserDashboard/>} 
+            loader={UserDashboardLoader}/> 
+        <Route 
+          path='request' 
+          element={<UserRequest/>} 
+          loader={UserRequestLoader}/> 
+        
       </Route>
       {/* Catch all route */}
       

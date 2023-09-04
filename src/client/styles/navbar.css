@@ -6,7 +6,7 @@
     margin-right: 5px;
    /*  padding-right: 20px; */
 }
-.host-nav-bar-container{
+.host-nav-bar-container, .user-nav-bar-container{
   display:flex;
   flex-direction: row;
   align-items: center;
@@ -14,22 +14,22 @@
   margin-bottom: 35px;
   margin-left: 45px;
 }
-.pending-host-link-route{
+.pending-host-link-route, .pending-user-link-route{
   color:rgb(83,83,83);
   font-weight: 600;
   
 }
-.active-host-link-route{
+.active-host-link-route,.active-user-link-route{
   font-weight: bold;
   text-decoration: underline;
   color: #161616;
 }
-.pending-host-link-route:visited{/* prevents the link from changing color once visited */
+.pending-host-link-route:visited, .pending-user-link-route:visited{/* prevents the link from changing color once visited */
   color:rgb(83,83,83);
 }
-.pending-host-link-route:hover{
+.pending-host-link-route:hover, .pending-user-link-route:hover{
   text-decoration: underline;
 }
-.pending-host-link-route:focus{
+.pending-host-link-route:focus, .pending-user-link-route:focus{
   text-decoration: underline;
 }

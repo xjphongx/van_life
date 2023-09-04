@@ -143,7 +143,7 @@ export async function getHostDashboardInfo(hostId){
   }
 
   const hostUser = await res1.json()
-  console.log(hostUser)
+  //console.log(hostUser)
 
   const url2 = `http://localhost:5050/host/vans`
   const res2 = await fetch(url2, { 

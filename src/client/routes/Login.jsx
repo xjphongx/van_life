@@ -26,8 +26,10 @@ export async function action({request}){
   }
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
+  
+  
   //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
-  const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host" //get the search params in url
+  const pathname = new URL(request.url).searchParams.get("redirectTo") || `/${type.toLowerCase()}` //get the search params in url
   console.log("sending action requets")
   try{ //Error handling
     const data = await loginUser({type,email,password})// user logs in here
@@ -82,7 +84,7 @@ console.log("login: ",loggedIn) */
   return(
     <div className="login-container">
       <h1>Sign in to your account</h1>
-      {message && <h2>asd{message}</h2>}
+      {message && <h2>{message}</h2>}
       {/* {errorMessage && <h2>{errorMessage}</h2>} */}
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="POST" className="login-form" replace={true}>
