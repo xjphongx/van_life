@@ -13,7 +13,7 @@ export async function loader({request}){
 }
 
 
-export default function Review(){
+export default function HostReview(){
   const dataPromise = useLoaderData()
  
   const renderReviewElements = (hostVansWithReviews) => {

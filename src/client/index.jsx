@@ -12,15 +12,15 @@ import Home from './routes/Home';
 import Layout from './components/Layout';
 
 import HostLayout from './components/HostLayout';
-import Dashboard,{loader as dashboardLoader} from './routes/Host/Dashboard';
-import Income from './routes/Host/Income';
+import HostDashboard,{loader as dashboardLoader} from './routes/Host/HostDashboard';
+import HostIncome from './routes/Host/HostIncome';
 import HostVans, {loader as hostVanPageLoader} from './routes/Host/HostVans';
 import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/HostVansDetail';
 import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
-import Review, {loader as hostReviewPageLoader} from './routes/Host/Review';
-import Request, {loader as hostRequestPageLoader} from './routes/Host/Request';
+import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
+import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRequest';
 import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
 
 import About from './routes/About';
@@ -73,20 +73,20 @@ function App() {
       <Route path='host' element={<HostLayout/>}> {/* /host */}
         {/* INDEX ROUTE will fix the /host/host conumdrum: Its the default child path */}
         <Route index 
-          element={<Dashboard/>} 
+          element={<HostDashboard/>} 
           loader={dashboardLoader}/> 
         {/* /host/income This takes from parent's relative path*/}
         <Route 
           path='income' 
-          element={<Income/>} 
+          element={<HostIncome/>} 
           loader={async ({request})=> await requireAuth(request)}/> 
         <Route 
           path='review' 
-          element={<Review/>} 
+          element={<HostReview/>} 
           loader={hostReviewPageLoader}/>
         <Route 
           path='request' 
-          element={<Request/>} 
+          element={<HostRequest/>} 
           loader={hostRequestPageLoader}/>
         <Route path='vans' element={<HostVanLayout/>}>
           <Route index

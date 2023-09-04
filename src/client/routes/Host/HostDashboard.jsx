@@ -12,7 +12,7 @@ export async function loader({request}){
   return defer({hostInfo:getHostDashboardInfo(user.id)})
 }
 
-export default function Dashboard(){
+export default function HostDashboard(){
   //when the user successfully routes to /host set LoggedIn to true
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{

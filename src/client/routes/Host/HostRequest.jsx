@@ -8,7 +8,7 @@ export async function loader({request}){
 }
 
 
-export default function Request(){
+export default function HostRequest(){
   const dataPromise = useLoaderData()
 
   const renderRequestElements = () =>{
