@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink,Link,Outlet, useLoaderData, defer, Await, useSearchParams} from "react-router-dom"
 import { getListHostVans } from "../../../server/api";
 import { requireAuth } from "../../utils";
+import { LoginContext } from "../..";
 
 //first export a loader for the route prop loader={}
 export async function loader({request}){
@@ -10,6 +11,10 @@ export async function loader({request}){
 }
 
 export default function HostVans(){
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+  },[])
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
   const [searchParams, setSearchParams] = useSearchParams()

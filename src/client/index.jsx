@@ -25,6 +25,7 @@ import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVa
 
 import UserLayout from './components/UserLayout'
 import UserDashboard, {loader as UserDashboardLoader} from './routes/User/UserDashboard';
+import UserVans, {loader as UserVansLoader} from './routes/User/UserVans';
 import UserRequest, {loader as UserRequestLoader} from './routes/User/UserRequest';
 
 import About from './routes/About';
@@ -129,12 +130,18 @@ function App() {
       {/* Below is the parent layout for Users */}
       <Route path='user' element={<UserLayout/>}>
         <Route index 
-            element={<UserDashboard/>} 
-            loader={UserDashboardLoader}/> 
+          element={<UserDashboard/>} 
+          loader={UserDashboardLoader}/> 
+        <Route 
+          path='vans' 
+          element={<UserVans/>} 
+          loader={UserVansLoader}/>
+          
         <Route 
           path='request' 
           element={<UserRequest/>} 
           loader={UserRequestLoader}/> 
+        
         
       </Route>
       {/* Catch all route */}

@@ -8,6 +8,11 @@ export async function loader({request}){
 }
 
 export default function UserRequest(){
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+  },[])
+  
   return(
     <>
       <h1>Request</h1>

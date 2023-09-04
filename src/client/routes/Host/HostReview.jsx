@@ -5,6 +5,7 @@ import { getHostReviews } from "../../../server/api";
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 import * as uuid from "uuid"
 import ProgressBar from "../../components/ProgessBar";
+import { LoginContext } from "../..";
 
 
 export async function loader({request}){
@@ -14,6 +15,10 @@ export async function loader({request}){
 
 
 export default function HostReview(){
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+  },[])
   const dataPromise = useLoaderData()
  
   const renderReviewElements = (hostVansWithReviews) => {

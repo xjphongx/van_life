@@ -57,12 +57,16 @@ export async function action({request}){
 }
 
 export default function Login(){
+  
   //use loaderData to get the return message of loader function
   const message = useLoaderData()
 
   //use actionData and useContext to get the loggedIn results based from action function
-/* const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
-console.log("login: ",loggedIn) */
+  const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(false) //fixes the component and bad state error
+  },[])
+
   const pathname = useActionData()
 
   //useNavigate is the same as <Navigate/>

@@ -1,6 +1,7 @@
 import React from "react"
 import {useLoaderData,defer, Await,NavLink} from "react-router-dom"
 import { requireAuth } from "../../utils"
+import { LoginContext } from "../..";
 
 export async function loader({request}){
   const user = await requireAuth(request)
@@ -9,6 +10,10 @@ export async function loader({request}){
 
 
 export default function HostRequest(){
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+  },[])
   const dataPromise = useLoaderData()
 
   const renderRequestElements = () =>{
