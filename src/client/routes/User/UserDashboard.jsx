@@ -10,7 +10,7 @@ export async function loader({request}){
 export default function UserDashboard(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
-    setLoggedIn(true) //fixes the component and bad state error
+    setLoggedIn("User") //fixes the component and bad state error
   },[])
   return(
     <div className="host-dashboard-container">
