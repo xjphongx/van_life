@@ -54,8 +54,7 @@ export default function Review(){
           </div>
         )
       }//end of RenderStars Component
-      
-      console.log(review)
+      //console.log(review)
       return(
           <div key={review._id} className="host-review-tile">
               <RenderStars star={review.star}/>

@@ -4,7 +4,7 @@ import { requireAuth } from "../../utils"
 
 export async function loader({request}){
   const user = await requireAuth(request)
-  return defer({})
+  //return defer({})
 }
 
 

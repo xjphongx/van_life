@@ -8,7 +8,7 @@ import { LoginContext } from "../..";
 
 export async function loader({request}){
   const user = await requireAuth(request)
-  console.log(user)
+  //console.log(user)
   return defer({hostInfo:getHostDashboardInfo(user.id)})
 }
 

@@ -140,22 +140,19 @@ function App() {
   return (
     <>
     {/* Allow the user state to check itsself in the host routes */}
-      <React.StrictMode>
         <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
           {/* //RouterProvider will allow me to use Data APIs */}
           <RouterProvider router={router}/>
         </LoginContext.Provider>
-      </React.StrictMode>
-      
-        
-     
     </>
-      
-
-    
   )
 }
 
 ReactDOM
   .createRoot(document.getElementById('root'))
-  .render(<App/>);
+  .render(
+    <React.StrictMode>
+       <App/>
+    </React.StrictMode>
+ 
+  );
