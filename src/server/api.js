@@ -62,6 +62,25 @@ export async function getHostVan(id){
   return dataPromise
 }
 
+/* Used in the user van detail page */
+export async function getUserVan(id){
+  console.log(id)
+  const url = `http://localhost:5050/user/vans/${id}`
+  const res = await fetch(url)
+  
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch vans",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const dataPromise = await res.json()
+  console.log(dataPromise)
+  return dataPromise
+}
+
+
 export async function signUpUser(newUser){
   //This part is important, line by line 
   //This sends a request from the client side to server side endpoint, then it is recieved in signUp.mjs file

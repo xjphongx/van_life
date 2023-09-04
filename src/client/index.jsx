@@ -24,9 +24,16 @@ import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRe
 import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
 
 import UserLayout from './components/UserLayout'
-import UserDashboard, {loader as UserDashboardLoader} from './routes/User/UserDashboard';
-import UserVans, {loader as UserVansLoader} from './routes/User/UserVans';
-import UserRequest, {loader as UserRequestLoader} from './routes/User/UserRequest';
+import UserDashboard, {loader as userDashboardLoader} from './routes/User/UserDashboard';
+import UserVans, {loader as userVansLoader} from './routes/User/UserVans';
+import UserVansDetail, {loader as userVansDetailLoader} from './routes/User/UserVansDetail';
+import UserVanInfo from './routes/User/UserVanInfo';
+import UserVanPricing from './routes/User/UserVanPricing';
+import UserVanPhotos from './routes/User/UserVanPhotos';
+
+import UserRequest, {loader as userRequestLoader} from './routes/User/UserRequest';
+
+
 
 import About from './routes/About';
 import Vans, {loader as vanPageLoader } from './routes/Vans/Vans'; //importing loader from Vans.jsx
@@ -131,16 +138,35 @@ function App() {
       <Route path='user' element={<UserLayout/>}>
         <Route index 
           element={<UserDashboard/>} 
-          loader={UserDashboardLoader}/> 
+          loader={userDashboardLoader}/> 
         <Route 
           path='vans' 
           element={<UserVans/>} 
-          loader={UserVansLoader}/>
-          
+          loader={userVansLoader}/>
+        
+        <Route 
+          path='vans/:id' 
+          element={<UserVansDetail/>} 
+          loader={userVansDetailLoader}
+          errorElement={<Error/>}>
+          <Route index 
+            element={<UserVanInfo/>} 
+            loader={async ({request})=> await requireAuth(request)}/>
+          <Route 
+            path='pricing' 
+            element={<UserVanPricing/>} 
+            loader={async ({request})=> await requireAuth(request)}/>
+          <Route 
+            path='photos' 
+            element= {<UserVanPhotos/>} 
+            loader={async ({request})=> await requireAuth(request)}/>
+        </Route>
+
+        
         <Route 
           path='request' 
           element={<UserRequest/>} 
-          loader={UserRequestLoader}/> 
+          loader={userRequestLoader}/> 
         
         
       </Route>

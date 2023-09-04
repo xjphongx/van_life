@@ -25,6 +25,28 @@ export default function UserVans(){
     const filterVansList =typeFilter
       ? vans.filter(van=> van.type ===typeFilter) 
       : vans 
+
+      const vansElement = filterVansList.map(van=>{
+        //console.log(van)
+        
+        return (
+          <div key={van._id} className="van-tile">
+            {/* Link State concept: pass a Link prop called state which contains an object with the current searchParams as a property */}
+            <Link className="van-link" onClick={()=>console.log(`clicking ${van._id}`)} to={van._id} 
+              state={{search: `?${searchParams.toString()}`, type: typeFilter}} //this is used to give to vanDetail page, useLocation will location this
+            > 
+              <img className="van-image" src={van.imageUrl[0]}/>
+              <div className="van-info">
+                <h3>{van.name}</h3>
+                <p>${van.price} <span>/day</span></p>
+              </div>
+              <p className={`van-type ${van.type}` } >{van.type}</p>
+            </Link>
+          </div>
+        )
+      })
+
+
     return(
       <>
         <div className='filter-van-container'>
@@ -40,6 +62,9 @@ export default function UserVans(){
             >Rugged</button>
           {typeFilter&&<button onClick={()=>setSearchParams({})} className='clear-filter-button'>Clear filters</button>}
         </div>
+        <div className='van-list'>
+          {vansElement}
+        </div>
       </>
     )
   }
@@ -47,7 +72,7 @@ export default function UserVans(){
 
   return(
     <div className='option-container'>
-      <h1>Explore our van options</h1>
+      <h1>Browse our van options</h1>
       <React.Suspense fallback={<h1>Loading Vans...</h1>}>
         <Await resolve={dataPromise.vans}>
           {renderVanElements}

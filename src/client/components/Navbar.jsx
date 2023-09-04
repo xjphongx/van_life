@@ -35,7 +35,7 @@ export default function Navbar(){
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         >Vans</NavLink>
 
-        <NavLink to={loggedIn? `${loggedIn}` :"login"}
+        <NavLink to={loggedIn? `${loggedIn.toLowerCase()}` :"login"}
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
         ><BiUserCircle size={25}/>
         </NavLink>
