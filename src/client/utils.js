@@ -6,15 +6,19 @@ import { redirect } from "react-router-dom"
 export  async function requireAuth(request) { 
   console.log(request)
   const url = new URL(request.url)
-  console.log(url)
   const pathname = url.pathname //when logged out, and clicks a protected route, it will save the pathname and get the user to relog in
   const isLoggedIn = localStorage.getItem("loggedIn")
   const loginType = localStorage.getItem("loginType")
-  //console.log(loginType)
+  console.log(pathname)
+  const pathNameArray = pathname.split("/")
+  console.log(pathNameArray)
   if(!isLoggedIn){
+    //UI feature where the user may go back to their last tab
     throw redirect(
-      `/login?message=you must log in first.&redirectTo=${pathname}`
+      `/login`
     )
+    //`/login?message=you must log in first.&redirectTo=${pathname}`
+    
   }
   
   try{

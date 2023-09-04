@@ -12,7 +12,7 @@ export default function Navbar(){
     console.log("clearing localStorage loggedin")
     setLoggedIn(false)
     localStorage.removeItem("loggedIn")
-    localStorage.removeItem("loginType")
+    //localStorage.removeItem("loginType")
     const response = logOut()
     navigate("/login")
     
