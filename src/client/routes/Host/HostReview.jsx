@@ -18,6 +18,7 @@ export default function HostReview(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn(true) //fixes the component and bad state error
+    localStorage.setItem("loginType", "user")
   },[])
   const dataPromise = useLoaderData()
  

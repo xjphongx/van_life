@@ -14,6 +14,7 @@ export default function HostVans(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn(true) //fixes the component and bad state error
+    localStorage.setItem("loginType", "user")
   },[])
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route

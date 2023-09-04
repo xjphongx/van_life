@@ -10,6 +10,7 @@ import signUp from "./routes/signUp.mjs"
 import login from "./routes/login.mjs"
 import logout from "./routes/logout.mjs"
 import host from "./routes/host.mjs"
+import user from "./routes/activeUser.mjs"
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -33,6 +34,7 @@ app.use('/signup', signUp)
 app.use("/login", login)
 app.use("/logout", logout) 
 app.use("/host", host)
+app.use("/user", user)
 
 // start the Express server
 app.listen(PORT, () => {

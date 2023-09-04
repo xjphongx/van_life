@@ -42,7 +42,7 @@ export async function action({request}){
       
       //REMOVE THIS WHEN IMPLEMENTING LOG OUT
       localStorage.setItem("loggedIn", true)//sets the loggedin state to true
-      //return redirect(pathname)
+      localStorage.setItem("loginType", type.toLowerCase())
       return pathname
     }
     //return results of the login

@@ -5,6 +5,7 @@ export default function HostIncome(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn(true) //fixes the component and bad state error
+    localStorage.setItem("loginType", "user")
   },[])
   return (
     <>

@@ -11,6 +11,7 @@ export default function UserDashboard(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn("User") //fixes the component and bad state error
+    localStorage.setItem("loginType", "user")
   },[])
   return(
     <div className="host-dashboard-container">

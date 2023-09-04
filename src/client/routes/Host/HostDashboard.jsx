@@ -17,6 +17,7 @@ export default function HostDashboard(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn(true) //fixes the component and bad state error
+    localStorage.setItem("loginType", "host")
   },[])
   
   
