@@ -1,0 +1,38 @@
+/* host van detail component */
+.host-van-info-container,
+.user-van-info-container{
+  display:flex;
+  flex-direction: column;
+}
+.host-van-info-container > h4,
+.user-van-info-container >h4 {
+  margin-bottom: 15px;
+}
+.host-van-info-container > h4 > span,
+.user-van-info-container > h4 > span  {
+  font-weight: 500;
+}
+
+/* host van pricing component */
+.host-van-pricing, .user-van-pricing{
+  font-size: 30px;
+}
+.host-van-pricing > span , .user-van-pricing > span  {
+  font-size: 15px;
+  font-weight: bold;
+  color: gray;
+}
+
+.user-van-photo-container, .user-van-photo-container{
+  display:flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.host-single-photo, .user-single-photo{
+  width: 90px;
+ 
+/*   object-fit:cover; */
+}
+
+

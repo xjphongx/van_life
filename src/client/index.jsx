@@ -177,13 +177,13 @@ function App() {
   ))
   
   return (
-    <>
+    <div>
     {/* Allow the user state to check itsself in the host routes */}
         <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
           {/* //RouterProvider will allow me to use Data APIs */}
           <RouterProvider router={router}/>
         </LoginContext.Provider>
-    </>
+    </div>
   )
 }
 
