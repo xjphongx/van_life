@@ -1,11 +1,31 @@
 import React from "react"
-import {useLoaderData,Await, defer,Link} from "react-router-dom"
+import {useLoaderData,Await, defer,Link,Form} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { getUserVan } from "../../../server/api"
 
 export async function loader({params,request}){
   const user = await requireAuth(request)
   return defer({userVan:getUserVan(params.id)})
+}
+
+export async function action({request}){
+  const formData = await request.formData()
+  const newRequestObject = {
+
+  }
+  try{
+    const data = await sendUserRequest(newRequestObject)
+    console.log(data)
+    if(data.error){
+      toast.error(data.error)
+    }else {
+      toast.success('Signup successful!')
+      
+    }
+  }catch(err){
+    console.log(err)
+    return err.message
+  }
 }
 
 export default function UserVanRent(){
@@ -38,9 +58,24 @@ export default function UserVanRent(){
 
         </section>
 
-        <section className="user-van-rent-form-container">
+        <Form method="post" className="user-van-rent-form">
+          <h2>Please select rent dates</h2>
+          <div className="user-van-date-container">
+            <div>
+              <label htmlFor="startDate">Start Date: </label>
+              <input name="startDate" id="startDate" type="date" required/>
+            </div>
+            <div>
+              <label htmlFor="endDate">End Date: </label>
+              <input name="endDate" id="endDate" type="date" required/>
+            </div>
+          </div>
 
-        </section>
+
+          <h3>Add any additional information for the Host (optional)</h3>
+          <textarea/>
+          <button>Send Request</button>
+        </Form>
 
 
       </>

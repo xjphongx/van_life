@@ -239,3 +239,8 @@ export async function getHostReviews(){
   
   return dataPromise
 }
+
+export async function sendUserRequest(){
+  
+}
+

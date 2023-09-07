@@ -3,21 +3,7 @@ import * as uuid from  "uuid"
 import { Link, useLocation,Form} from "react-router-dom";
 import { uploadHostVan } from "../../../server/api";
 
-export async function action({request}){
-  console.log(request)
-  console.log("action upload")
-  const formData = await request.formData()
-  const newVanObject = {
-    name:formData.get("name"),
-    description:formData.get("description"),
-    type:formData.get("type"),
-    licensePlate:formData.get("licensePlate"),
-    price:formData.get("price"),
-    imageUrl:formData.get("imageUrl")
-  }
-  console.log(newVanObject)
-  
-}
+
 
 export default function HostVanUpload(){
   const [images, setImages] = React.useState({files:[]}) //FileList
@@ -153,7 +139,7 @@ export default function HostVanUpload(){
       console.log(err)
     }
    
-  }
+  }//end of submit
 
   //renders the preview element array on the page
   const renderImagePreviewElements = imagePreviewArray.map((image)=>{

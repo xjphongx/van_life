@@ -6,6 +6,7 @@ import {  Route,
   RouterProvider}
   from 'react-router-dom';
 
+//thirdparty componenets
 import { Toaster } from 'react-hot-toast';
 
 import Home from './routes/Home';
@@ -21,7 +22,7 @@ import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
 import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
 import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRequest';
-import HostVanUpload, {action as hostVanUploadAction} from './routes/Host/HostVanUpload';
+import HostVanUpload from './routes/Host/HostVanUpload';
 
 import UserLayout from './components/UserLayout'
 import UserDashboard, {loader as userDashboardLoader} from './routes/User/UserDashboard';
@@ -110,7 +111,6 @@ function App() {
           <Route
             path='upload'
             element={<HostVanUpload/>}
-            //action={hostVanUploadAction}
             errorElement={<Error/>}
           />
         </Route>
@@ -186,8 +186,11 @@ function App() {
     <div>
     {/* Allow the user state to check itsself in the host routes */}
         <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
-          {/* //RouterProvider will allow me to use Data APIs */}
-          <RouterProvider router={router}/>
+         
+            {/* //RouterProvider will allow me to use Data APIs */}
+            <RouterProvider router={router}/>
+       
+          
         </LoginContext.Provider>
     </div>
   )
