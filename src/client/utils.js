@@ -11,7 +11,7 @@ export  async function requireAuth(request) {
   const loginType = localStorage.getItem("loginType")
   console.log(pathname)
   const pathNameArray = pathname.split("/")
-  console.log(pathNameArray)
+  //console.log(pathNameArray)
   if(!isLoggedIn){
     //UI feature where the user may go back to their last tab
     throw redirect(

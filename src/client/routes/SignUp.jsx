@@ -28,7 +28,8 @@ export async function action({request}){
     password: formData.get("password"),
     confirmPassword: formData.get("confirmPassword"),
     dateOfBirth: formData.get("dateOfBirth"),
-    phone: formData.get("phoneNumber")
+    phone: formData.get("phoneNumber"),
+    avaliable:true //default set to true
   }
 
   //make the call to the POST method

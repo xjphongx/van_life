@@ -30,6 +30,7 @@ import UserVansDetail, {loader as userVansDetailLoader} from './routes/User/User
 import UserVanInfo from './routes/User/UserVanInfo';
 import UserVanPricing from './routes/User/UserVanPricing';
 import UserVanPhotos from './routes/User/UserVanPhotos';
+import UserVanRent, {loader as userVanRentLoader} from './routes/User/UserVanRent';
 
 import UserRequest, {loader as userRequestLoader} from './routes/User/UserRequest';
 
@@ -162,6 +163,11 @@ function App() {
             loader={async ({request})=> await requireAuth(request)}/>
         </Route>
 
+        <Route
+            path='vans/rent/:id'
+            element={<UserVanRent/>}
+            loader={userVanRentLoader}
+          />
         
         <Route 
           path='request' 

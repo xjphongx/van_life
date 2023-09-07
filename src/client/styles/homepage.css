@@ -28,6 +28,8 @@
   padding: 2px 10px;
   border-radius: 5px;
   cursor: pointer;
+  min-width: 80px;
+  white-space: nowrap;
   
 }.log-out-button:hover{
   opacity: .5;

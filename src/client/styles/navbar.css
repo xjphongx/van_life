@@ -3,7 +3,7 @@
     flex: 1 1 auto;
     min-height: 100vh;
     position: relative;
-    margin-right: 5px;
+    /* margin-right: 90px; */
    /*  padding-right: 20px; */
 }
 .host-nav-bar-container, .user-nav-bar-container{
@@ -17,12 +17,13 @@
 .pending-host-link-route, .pending-user-link-route{
   color:rgb(83,83,83);
   font-weight: 600;
-  
+  white-space: nowrap;
 }
 .active-host-link-route,.active-user-link-route{
   font-weight: bold;
   text-decoration: underline;
   color: #161616;
+  white-space: nowrap;
 }
 .pending-host-link-route:visited, .pending-user-link-route:visited{/* prevents the link from changing color once visited */
   color:rgb(83,83,83);

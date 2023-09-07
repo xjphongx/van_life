@@ -11,6 +11,7 @@
   min-height: 750px;
   width: 100%;
   margin-left: 45px ;
+  padding-right: 90px;
 }
 
 .detail-back-container{
@@ -49,7 +50,7 @@ border-radius: 10px;
   
 }
 .detail-info-price{
-  margin-bottom: 20px;
+ /*  margin-bottom: 20px; */
   font-size: 23px;
   font-weight: 700;
 }
@@ -63,6 +64,7 @@ border-radius: 10px;
   min-width: 400px;
   max-width: 700px;
   line-height: 23px;
+  margin-bottom: 45px;
 }
 .rent-button {
   background-color: rgb(255, 127, 22);
@@ -70,7 +72,6 @@ border-radius: 10px;
   border-style: none;
   border-radius: 5px;
   width: 300px;
-  margin-top: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
   cursor:pointer;
@@ -99,6 +100,7 @@ border-radius: 10px;
 .host-van-detail-container, .user-van-detail-container{
   background-color: white;
   padding:20px;
+  /* margin-right: 90px; */
 }
 .host-detail-back-container, .user-detail-back-container{
   background-color: transparent;
@@ -118,27 +120,40 @@ border-radius: 10px;
   gap:20px;
   min-width: 700px;
 }
+.user-van-detail-label-container{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-van-detail-label-container > div {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+
 .host-van-detail-image-icon, .user-van-detail-image-icon{
-  width: 140px;
-  height: 140px;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
 }
 .vertical-container{
   display:flex;
   flex-direction: column;
-  justify-content: center;
-  gap:5px
+  justify-content:start;
+  gap:15px
 }
 .host-type-tag-Simple, .host-type-tag-Rugged, .host-type-tag-Luxury,
 .user-type-tag-Simple, .user-type-tag-Rugged, .user-type-tag-Luxury {
   color: white;
   font-weight: 300;
-  width: 80px;
-  height: 30px;
+  width: 130px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 20px;
   font-family: Inter, 'Times New Roman', Times, serif;
 }
 .host-type-tag-Simple, .user-type-tag-Simple{

@@ -75,7 +75,7 @@ router.post('/vans/upload', getUser, async(req,res)=>{
 
   try{
     const user = req.user
-    const {name,description,type,licensePlate,price,imageUrl} = req.body
+    const {name,description,type,licensePlate,price,imageUrl,avaliable} = req.body
     //Create a new van and upload to mongodb
     const van = new Van({
       name:name,
@@ -85,7 +85,8 @@ router.post('/vans/upload', getUser, async(req,res)=>{
       hostId:user.id,
       licensePlate:licensePlate,
       visiblity:"Public",
-      imageUrl:JSON.parse(imageUrl)
+      imageUrl:JSON.parse(imageUrl),
+      avaliable:avaliable
     })
  
     const newHostVan = await van.save()

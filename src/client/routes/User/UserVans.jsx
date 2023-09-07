@@ -5,7 +5,7 @@ import { LoginContext } from "../..";
 import { getVans } from "../../../server/api";
 
 
-export function loader({request}){
+export async function loader({request}){
   const user = requireAuth(request)
   return defer({vans:getVans()})
 }
@@ -40,7 +40,11 @@ export default function UserVans(){
                 <h3>{van.name}</h3>
                 <p>${van.price} <span>/day</span></p>
               </div>
-              <p className={`van-type ${van.type}` } >{van.type}</p>
+              <div className="van-type-and-avalibility-container">
+                <p className={`van-type ${van.type}` } >{van.type}</p>
+                {van.avaliable? <p>Avaliable</p>: <p>Not Avaliable</p>}
+              </div>
+              
             </Link>
           </div>
         )

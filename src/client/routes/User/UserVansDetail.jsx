@@ -31,13 +31,26 @@ export default function UserVansDetail(){
         <section className="user-van-detail-container">
           {/* This is the container for the van images and labels  */}
           <div className="user-van-detail-label-container">
-            <img className="user-van-detail-image-icon" src={userVan.imageUrl[0]}/>
-            <div className="vertical-container">
-              <div className={`user-type-tag-${userVan.type}`}>{userVan.type}</div>
-              <h1>{userVan.name}</h1>
-              <p className= 'detail-info-price'>${userVan.price} <span>/day</span></p>
+            <div>
+              <img className="user-van-detail-image-icon" src={userVan.imageUrl[0]}/>
+              <div className="vertical-container">
+                <div className={`user-type-tag-${userVan.type}`}>{userVan.type}</div>
+                <h1>{userVan.name}</h1>
+                <p className= 'detail-info-price'>${userVan.price} <span>/day</span></p>
+              </div>
             </div>
+            {userVan.avaliable?
+            <Link 
+              to={`../vans/rent/${userVan._id}`} 
+              className='navlink-rent-button'>Rent this van
+            </Link>
+            : <p>{userVan.name} is not avaliable to rent</p>
+            }
+            
           </div>
+
+          
+
           {/* Everything below to other comment line... Is a van detail layout */}
           <nav className="user-subnavbar-container">
               <NavLink

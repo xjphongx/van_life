@@ -9,6 +9,7 @@ const vanSchema = new mongoose.Schema({
   type: String,
   hostId: String,
   visiblity: String,
+  avaliable: Boolean
 })
 
 export default mongoose.model('Van', vanSchema)
