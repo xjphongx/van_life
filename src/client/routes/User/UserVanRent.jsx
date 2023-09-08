@@ -101,8 +101,8 @@ export default function UserVanRent(){
 
           <div className="user-van-textarea-container">
             <h2>Additional information for the Host (optional)</h2>
-            <textarea className="user-van-textarea" />
-            <button onSubmit={handleSubmit}>Send Request</button>
+            <textarea className="user-van-textarea" placeholder="Please provide any information that may be helpful for the Host to determine your request." />
+            <button className="rent-button" onSubmit={handleSubmit}>Send Request</button>
           </div>
 
         
