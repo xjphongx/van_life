@@ -111,6 +111,7 @@ function App() {
           <Route
             path='upload'
             element={<HostVanUpload/>}
+            loader={async ({request})=> await requireAuth(request)}
             errorElement={<Error/>}
           />
         </Route>
