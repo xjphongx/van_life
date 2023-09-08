@@ -2,10 +2,15 @@ import React from "react";
 import * as uuid from  "uuid"
 import { Link, useLocation,Form} from "react-router-dom";
 import { uploadHostVan } from "../../../server/api";
-
+import { LoginContext } from "../..";
 
 
 export default function HostVanUpload(){
+  const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
+  React.useEffect(()=>{
+    setLoggedIn(true) //fixes the component and bad state error
+    localStorage.setItem("loginType", "host")
+  },[])
   const [images, setImages] = React.useState({files:[]}) //FileList
   const [imageFileList, setImageFileList] = React.useState()
   const [image, setImage] = React.useState(null)
