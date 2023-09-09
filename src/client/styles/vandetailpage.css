@@ -100,8 +100,10 @@ border-radius: 10px;
 .host-van-detail-container, .user-van-detail-container{
   background-color: white;
   padding:20px;
- 
-  /* margin-right: 90px; */
+  border-radius: 5px ;
+  display:flex;
+  flex-direction: column;
+  gap:15px
 }
 .host-detail-back-container, .user-detail-back-container{
   background-color: transparent;

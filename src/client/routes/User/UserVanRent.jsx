@@ -3,11 +3,13 @@ import {useLoaderData,Await, defer,Link,Form} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
 import { getUserVan } from "../../../server/api"
+import { uploadUserRequest } from "../../../server/api";
 
 import {DateRange} from  'react-date-range'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from 'date-fns'
+import moment from "moment"
 
 export async function loader({params,request}){
   const user = await requireAuth(request)
@@ -45,17 +47,44 @@ export default function UserVanRent(){
     endDate: new Date(),
     key: 'selection'
   })
+  //useed to get deferred data
   const dataPromise = useLoaderData()
-  console.log(date)
 
+  //handle any changes made to the range picker
   const handleChange = (ranges)=>{
     setDate(ranges.selection)
     
   }
 
-  const handleSubmit = (e)=>{
+  //submit the request form
+  const submitForm = async (e)=>{
     e.preventDefault()
     console.log(e)
+
+    console.log(date)
+    const requestDescription = document.getElementById("requestDesciption").value
+    const formData = new FormData()
+    formData.append('description', requestDescription)
+    //get the selected dates and turn into an array of Date objects might not need this format(MM-DD-YYYY)
+    //const formatedStartDate = moment(date.startDate).format("MM-DD-YYYY")
+    //const formatedEndDate = moment(date.endDate).format("MM-DD-YYYY")
+    //console.log(new Date( moment(date.startDate).format("MM-DD-YYYY")))
+    const start = date.startDate
+    const end = date.endDate
+    const requestedDateArray = []
+    for(let date= start; date <= end ; date.setDate((date.getDate()+1))){
+      requestedDateArray.push(moment(date).format("MM-DD-YYYY"))
+    }
+    console.log(requestedDateArray)
+    formData.append('requestedDateArray', JSON.stringify(requestedDateArray))
+    
+    
+    try{
+      //make a request to server endpoint through the api file
+      const data = await uploadUserRequest(formData)
+    }catch(err){
+      console.log(err)
+    }
   }
 
 
@@ -81,35 +110,35 @@ export default function UserVanRent(){
                 <p className= 'detail-info-price'>${userVan.price} <span>/day</span></p>
               </div>
             </div>
-
           </div>
+          <form onSubmit={(e)=>{submitForm(e)}} encType='multipart/form-data' className="user-van-rent-form">
+          
+            <div className="user-van-date-container">
+            <h2>Please select rent dates</h2>
+              <DateRange
+                ranges={[date]}
+                onChange={handleChange}
+                minDate={new Date()}
+                moveRangeOnFirstSelection={false}
+                editableDateInputs={true}
+                
+              />
+            </div>
+
+            <div className="user-van-textarea-container">
+              <h2>Additional information for the Host (optional)</h2>
+              <textarea id="requestDesciption" className="user-van-textarea" placeholder="Please provide any information that may be helpful for the Host to determine your request." />
+              <button  type="submit" className="rent-button" disabled={navigation.state === "submitting"} >
+                {navigation.state=== "submitting" ? "Sending Request..." : "Send Request"}
+            </button>
+            
+            </div>
+
+        </form>
 
         </section>
 
-        <form method="post" className="user-van-rent-form">
-          
-          <div className="user-van-date-container">
-          <h2>Please select rent dates</h2>
-            <DateRange
-              ranges={[date]}
-              onChange={handleChange}
-              minDate={new Date()}
-              moveRangeOnFirstSelection={false}
-              editableDateInputs={true}
-            />
-          </div>
-
-          <div className="user-van-textarea-container">
-            <h2>Additional information for the Host (optional)</h2>
-            <textarea className="user-van-textarea" placeholder="Please provide any information that may be helpful for the Host to determine your request." />
-            <button className="rent-button" onSubmit={handleSubmit}>Send Request</button>
-          </div>
-
         
-          
-    
-
-        </form>
         
 
         

@@ -66,9 +66,6 @@ router.get("/vans/:id", async (req,res)=>{
   }
 )
 
-
-//const uploads = multer()uploads.array("files"),
-
 //post request to server with a van to post to database
 router.post('/vans/upload', getUser, async(req,res)=>{
   console.log("posting new van to database")

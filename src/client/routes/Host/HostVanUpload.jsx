@@ -139,7 +139,6 @@ export default function HostVanUpload(){
 
     try{
       const data = await uploadHostVan(formData)
-      console.log(data)
     }catch(err){
       console.log(err)
     }
@@ -215,7 +214,7 @@ export default function HostVanUpload(){
 
           <br></br>{/* skips a slot */}
           <div className='host-van-upload-button-container'>
-            <button state={{hello:"hello"}} type="submit" className="host-van-upload-button" disabled={navigation.state === "submitting"} >
+            <button type="submit" className="host-van-upload-button" disabled={navigation.state === "submitting"} >
               {navigation.state=== "submitting" ? "Uploading to Database..." : "Upload Van"}
             </button>
           </div>

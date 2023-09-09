@@ -49,7 +49,24 @@ router.get("/vans/:id", async (req,res)=>{
   }
 )
 
+//upload a request to host user from user
+router.post("/vans/rent", getUser, async (req,res)=>{
+  console.log("posting user request to host")
+  try{
+    console.log(req.body)
+    const user = req.user
+    console.log(user)
+    const {description, requestedDateArray} = req.body
+    console.log(JSON.parse(requestedDateArray))
+    
+    
+    
+  }catch(err){
 
+  }
+
+
+}) 
 
 
 

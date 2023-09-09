@@ -64,7 +64,7 @@ export async function getHostVan(id){
 
 /* Used in the user van detail page */
 export async function getUserVan(id){
-  console.log(id)
+  //console.log(id)
   const url = `http://localhost:5050/user/vans/${id}`
   const res = await fetch(url)
   
@@ -76,7 +76,7 @@ export async function getUserVan(id){
       }
   }
   const dataPromise = await res.json()
-  console.log(dataPromise)
+  //console.log(dataPromise)
   return dataPromise
 }
 
@@ -189,9 +189,6 @@ export async function getHostDashboardInfo(hostId){
   return combinedDataPromise
 }
 
-/* export async function getAllHostVan */
-
-
 export async function uploadHostVan(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
 
@@ -226,7 +223,6 @@ export async function getHostReviews(){
       credentials: "include"
     }
   )
-  
   if (!res.ok) {
       throw {
           message: "Failed to fetch reviews",
@@ -234,13 +230,31 @@ export async function getHostReviews(){
           status: res.status
       }
   }
-  
   const dataPromise = await res.json()
-  
   return dataPromise
 }
 
-export async function sendUserRequest(){
-  
+export async function uploadUserRequest(formData){
+  const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
+  console.log(result)
+  const res = await fetch("http://localhost:5050/user/vans/rent", {
+    method: "POST",
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    credentials: "include", //this allows cookies to be sent over
+    body: JSON.stringify(result)
+  })
+
+  if (!res.ok) {
+    throw {
+        message: "Failed to upload the van",
+        statusText: res.statusText,
+        status: res.status
+    }
+}
+
+  const data = await res.json() //get the promised data
+  return data
 }
 

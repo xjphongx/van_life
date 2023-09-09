@@ -2,11 +2,10 @@
   background-color: #FFFFFF;
   /* margin-top: 30px; */
   width: 100%;
-  
   display: flex;
   flex-direction: row;
-  
   gap:45px;
+  border-radius: 0px 0px 5px 5px ;
 }
 .user-van-date-container{
   display:flex;
@@ -14,7 +13,7 @@
   gap:15px;
   margin-left: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 .user-van-textarea-container{
   display:flex;
@@ -22,7 +21,7 @@
   gap:15px;
   margin-left: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
  
   margin-right: 20px;
