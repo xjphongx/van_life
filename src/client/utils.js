@@ -36,7 +36,6 @@ export  async function requireAuth(request) {
 }
 
 export function getReviewScore(hostVansWithReviews){
-  
   let hostReviewArray = []
   hostVansWithReviews.map((van)=>{
     hostReviewArray = hostReviewArray.concat(van.reviews)
@@ -65,8 +64,6 @@ export function getReviewScore(hostVansWithReviews){
   let totalStars = fiveStars*5+fourStars*4+threeStars*3+twoStars*2+oneStars
   let totalPossibleStars = hostReviewArray.length
   let starAverage = Math.round((totalStars/totalPossibleStars) * 10) / 10
-  
-  
   
   return starAverage
 }

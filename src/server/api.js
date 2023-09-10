@@ -159,10 +159,7 @@ export async function getHostDashboardInfo(hostId){
         status: res1.status
     }
   }
-
   const hostUser = await res1.json()
-  //console.log(hostUser)
-
   const url2 = `http://localhost:5050/host/vans`
   const res2 = await fetch(url2, { 
       method: "POST",
@@ -181,16 +178,13 @@ export async function getHostDashboardInfo(hostId){
     }
   }
   const hostUserVans = await res2.json()
-
   const combinedDataPromise = {hostUser,hostUserVans}
   /* console.log(combinedDataPromise) */
-
   return combinedDataPromise
 }
 
 export async function uploadHostVan(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
-
   const res = await fetch("http://localhost:5050/host/vans/upload", {
     method: "POST",
     headers:{
@@ -207,9 +201,29 @@ export async function uploadHostVan(formData){
         status: res.status
     }
 }
-
   const data = await res.json() //get the promised data
   return data
+}
+
+export async function getHostRequests(){
+  const url = "http://localhost:5050/host/review"
+  const res = await fetch(url, { 
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      credentials: "include"
+    }
+  )
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch reviews",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const dataPromise = await res.json()
+  return dataPromise
 }
 
 export async function getHostReviews(){

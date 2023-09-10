@@ -49,26 +49,5 @@ router.get("/vans/:id", async (req,res)=>{
   }
 )
 
-//upload a request to host user from user
-router.post("/vans/rent", getUser, async (req,res)=>{
-  
-
-}) 
-
-
-
-
-async function getUser(req,res,next){
-  const token = req.cookies.token;
-  //console.log("token", token)
-  try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;
-    next()
-  }catch(err){
-    res.clearCookie('token')
-    return res.status(500).json({message:err.message}).redirect("/login")
-  }
-}
 
 export default router;

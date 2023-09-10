@@ -15,12 +15,8 @@ router.get("/", async (req, res)=>{
 })
 
 //get a specific user
-router.get("/:id", getUser, async (req,res)=>{
+router.get("/:id", async (req,res)=>{
   console.log('getting specific user') 
-  return res.status(200).json(res.user)
-})
-//middle ware function
-async function getUser(req,res,next) {
   let user;
   try{
     console.log(req.params.id)
@@ -31,18 +27,16 @@ async function getUser(req,res,next) {
   } catch (err){
     return res.status(500).json({message: err.message})
   }
+  return res.status(200).json(user)
+})
 
-  res.user = user
-  next()//move onto the next section of the code
-}
+
 
 //get the host user with POST because its safer
 router.post("/", getHostUser, async (req,res)=>{
   console.log("getting specific host user")
   return res.status(200).json(res.user)
 })
-
-
 
 //middlewear
 async function getHostUser(req,res,next){
@@ -62,9 +56,5 @@ async function getHostUser(req,res,next){
   res.user = hostUser
   next()
 }
-
-
-
-
 
 export default router;

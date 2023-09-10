@@ -135,12 +135,9 @@ router.post('/request', getUser, async(req,res)=>{
       { $push: { requests: request} }
     )
     return res.status(201).json(results)
-    
-    
   }catch(err){
     res.status(500).json({message: err.message})
   }
-
 })
 
 
