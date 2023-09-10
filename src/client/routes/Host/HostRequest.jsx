@@ -15,6 +15,9 @@ export default function HostRequest(){
     setLoggedIn(true) //fixes the component and bad state error
     localStorage.setItem("loginType", "host")
   },[])
+  React.useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  });
   const dataPromise = useLoaderData()
 
   const renderRequestElements = () =>{

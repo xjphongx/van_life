@@ -16,6 +16,9 @@ export default function HostVans(){
     setLoggedIn(true) //fixes the component and bad state error
     localStorage.setItem("loginType", "host")
   },[])
+  React.useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  });
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
   const [searchParams, setSearchParams] = useSearchParams()
