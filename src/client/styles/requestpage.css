@@ -17,7 +17,6 @@
   width: 1em;
   background: rgb(255, 127, 22);
   border-radius: 100vw;
-  margin-left:14px;
 }
 .host-request-list-scroller::-webkit-scrollbar-thumb{
   width: 2em;
