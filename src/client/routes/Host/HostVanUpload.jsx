@@ -3,7 +3,7 @@ import * as uuid from  "uuid"
 import { Link, useLocation,Form} from "react-router-dom";
 import { uploadHostVan } from "../../../server/api";
 import { LoginContext } from "../..";
-
+import toast from "react-hot-toast";
 
 export default function HostVanUpload(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
@@ -19,8 +19,6 @@ export default function HostVanUpload(){
   const [imagePreviewArray, setImagePreviewArray] = React.useState([])//upload this to object
   const location = useLocation()
   const search = location.state? location.state.search : ""
-
-  //console.log(imageFileList)
 
   //Run this useEffect when the user uploads new files from device
   React.useEffect(()=>{
@@ -41,16 +39,12 @@ export default function HostVanUpload(){
   React.useEffect(()=>{
     if(images.files.length!==0){//if files array is populated meaning there is a file
       const fileArray = images.files
-      console.log(fileArray)
-      console.log(imagePreviewArray)
       const tempArray = []
-      console.log(tempArray)
       fileArray.map((file)=>{
         let reader = new FileReader();
         reader.onload = () => {//run this when reader.readasdataurl is loading
           //console.log(reader.result)
           tempArray.push(reader.result)
-          console.log(tempArray)
           setImagePreviewArray(tempArray)
         }
         reader.readAsDataURL(file)
@@ -65,7 +59,6 @@ export default function HostVanUpload(){
 
   //when Choosing files, add them to the fileList
   const addFile = (e) => {
-    console.log(e)
     //console.log(e.target.files)
     e.preventDefault()
     const fileList = e.target.files
@@ -77,7 +70,6 @@ export default function HostVanUpload(){
     //save the file into the file array
     setImages((prevState)=>{
       const newFileObj = {files:[...prevState.files]}
-      console.log(newFileObj)
       //Turn the image file list into and image file array 
       const imageFileArray = Array.prototype.slice.call(image)
       if(imageFileArray.length > 1){//is an array
@@ -90,7 +82,7 @@ export default function HostVanUpload(){
       //console.log(Array.prototype.slice.call(newFileObj.files[0]))
 
       //tempFileArray = Array.prototype.slice.call(newFileObj.files[0])
-      setImageFileList(newFileObj)
+      //setImageFileList(newFileObj)
       //setImagePreviewArray(newFileObj.files)
       return newFileObj
     })
@@ -107,8 +99,6 @@ export default function HostVanUpload(){
   //Submit Form
   async function submitForm(e){
     e.preventDefault()
-    console.log(e)
-  
     //Getting host van's input data
     const vanName = document.getElementById("vanName").value
     const vanDescription = document.getElementById("vanDescription").value
@@ -123,7 +113,6 @@ export default function HostVanUpload(){
     const vanPrice = document.getElementById("vanPrice").value
 
     //appending to host van's input data into formdata
-    console.log(imageFileList.files)
     const formData = new FormData()
     formData.append("name",vanName)
     formData.append("description",vanDescription)
@@ -133,14 +122,20 @@ export default function HostVanUpload(){
     formData.append("imageUrl",JSON.stringify(imagePreviewArray))
     
     // Display the key/value pairs
-    for (let pair of formData.entries()) {
+   /*  for (let pair of formData.entries()) {
       console.log(pair[0]+ ', ' + pair[1]); 
-    }
+    } */
 
     try{
       const data = await uploadHostVan(formData)
+      if(data.error){
+        toast.error(data.error)
+      } else {
+        toast.success("Van has been uploaded")
+      }
     }catch(err){
       console.log(err)
+      toast.error(err.message)
     }
    
   }//end of submit
