@@ -13,7 +13,6 @@ router.get('/profile',async (req,res)=>{
     if(token){
       jwt.verify(token, process.env.JWT_SECRET,{}, (err, user)=>{
         if(err) throw err;
-        //console.log(user)
         return res.status(200).json(user)
       })
     }else{
@@ -107,7 +106,6 @@ router.post("/review", getUser, async (req,res)=>{
       hostId:user.id,
       reviews: {$exists: true}
     })
-    console.log(vans)
     res.status(200).json(vans)
   }catch(err){
     res.status(500).json({message: err.message})
@@ -131,7 +129,6 @@ router.post('/request', getUser, async(req,res)=>{
       requestedVanId:requestedVanId,
       requestedDatesArray: JSON.parse(requestedDateArray)
     }
-    console.log(request)
 
     const results = await User.updateOne(
       { _id:vanHostId },

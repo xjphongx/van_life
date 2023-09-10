@@ -46,7 +46,6 @@ export async function getListHostVans(){
 
 /* Used in the host van detail page */
 export async function getHostVan(id){
-  console.log(id)
   const url = `http://localhost:5050/host/vans/${id}`
   const res = await fetch(url)
   
@@ -58,7 +57,7 @@ export async function getHostVan(id){
       }
   }
   const dataPromise = await res.json()
-  console.log(dataPromise)
+  //console.log(dataPromise)
   return dataPromise
 }
 
