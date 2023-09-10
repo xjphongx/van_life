@@ -16,7 +16,7 @@ router.get("/", async (req, res)=>{
 
 //get a specific user
 router.get("/:id", getUser, async (req,res)=>{
-  console.log('getting specific user')
+  console.log('getting specific user') 
   return res.status(200).json(res.user)
 })
 //middle ware function
@@ -41,6 +41,9 @@ router.post("/", getHostUser, async (req,res)=>{
   console.log("getting specific host user")
   return res.status(200).json(res.user)
 })
+
+
+
 //middlewear
 async function getHostUser(req,res,next){
   console.log("getting host user")

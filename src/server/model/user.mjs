@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   dateOfBirth: String,
   phone: Number,
   firstName: String,
-  lastName: String
+  lastName: String,
+  requests: Array
 })
 
 export default mongoose.model('User', userSchema)

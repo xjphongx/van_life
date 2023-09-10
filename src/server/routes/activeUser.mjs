@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 const router = express.Router()
 
 //get the user profile
-router.get('/profile', (req,res)=>{
+router.get('/profile',async (req,res)=>{
   try{
     const {token} = req.cookies
     if(token){
@@ -51,20 +51,7 @@ router.get("/vans/:id", async (req,res)=>{
 
 //upload a request to host user from user
 router.post("/vans/rent", getUser, async (req,res)=>{
-  console.log("posting user request to host")
-  try{
-    console.log(req.body)
-    const user = req.user
-    console.log(user)
-    const {description, requestedDateArray} = req.body
-    console.log(JSON.parse(requestedDateArray))
-    
-    
-    
-  }catch(err){
-
-  }
-
+  
 
 }) 
 

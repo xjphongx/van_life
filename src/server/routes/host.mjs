@@ -7,7 +7,7 @@ const router = express.Router()
 
 
 //host dashboard
-router.get('/profile', (req,res)=>{
+router.get('/profile',async (req,res)=>{
   try{
     const {token} = req.cookies
     if(token){
@@ -113,6 +113,41 @@ router.post("/review", getUser, async (req,res)=>{
     res.status(500).json({message: err.message})
   }
 })
+
+//post a new request to host's request array
+router.post('/request', getUser, async(req,res)=>{
+  console.log("updating host user's request array with new request")
+  try{
+    let user = req.user
+    const {requestObjectId, description, requestedDateArray, requestedVanId, vanHostId} = req.body
+    //create a request object
+    const request = {
+      _id:requestObjectId,
+      requestedUserId:user.id,
+      requestedUserFirstName:user.firstName,
+      requestedUserLastName:user.lastName,
+      description: description,
+      vanHostId:vanHostId,
+      requestedVanId:requestedVanId,
+      requestedDatesArray: JSON.parse(requestedDateArray)
+    }
+    console.log(request)
+
+    const results = await User.updateOne(
+      { _id:vanHostId },
+      { $push: { requests: request} }
+    )
+    console.log("uploaded request sent...")
+    
+    
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+
+})
+
+
+
 
 
 //middlewear to get specific user and its _id assigned by mongodb

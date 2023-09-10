@@ -237,7 +237,7 @@ export async function getHostReviews(){
 export async function uploadUserRequest(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
   console.log(result)
-  const res = await fetch("http://localhost:5050/user/vans/rent", {
+  const res = await fetch("http://localhost:5050/host/request", {
     method: "POST",
     headers:{
       'Content-Type': 'application/json'
@@ -248,7 +248,7 @@ export async function uploadUserRequest(formData){
 
   if (!res.ok) {
     throw {
-        message: "Failed to upload the van",
+        message: "Failed to upload the request",
         statusText: res.statusText,
         status: res.status
     }

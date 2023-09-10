@@ -8,8 +8,9 @@ import { uploadUserRequest } from "../../../server/api";
 import {DateRange} from  'react-date-range'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import {format} from 'date-fns'
 import moment from "moment"
+import * as uuid from "uuid"
+
 
 export async function loader({params,request}){
   const user = await requireAuth(request)
@@ -57,13 +58,15 @@ export default function UserVanRent(){
   }
 
   //submit the request form
-  const submitForm = async (e)=>{
+  const submitForm = async (e, requestedVan)=>{
     e.preventDefault()
-    console.log(e)
 
-    console.log(date)
+    console.log(requestedVan.hostId)
     const requestDescription = document.getElementById("requestDesciption").value
     const formData = new FormData()
+    formData.append('requestObjectId', uuid.v4())
+    formData.append('vanHostId', requestedVan.hostId)
+    formData.append('requestedVanId', requestedVan._id)
     formData.append('description', requestDescription)
     //get the selected dates and turn into an array of Date objects might not need this format(MM-DD-YYYY)
     //const formatedStartDate = moment(date.startDate).format("MM-DD-YYYY")
@@ -75,10 +78,8 @@ export default function UserVanRent(){
     for(let date= start; date <= end ; date.setDate((date.getDate()+1))){
       requestedDateArray.push(moment(date).format("MM-DD-YYYY"))
     }
-    console.log(requestedDateArray)
     formData.append('requestedDateArray', JSON.stringify(requestedDateArray))
-    
-    
+
     try{
       //make a request to server endpoint through the api file
       const data = await uploadUserRequest(formData)
@@ -111,7 +112,7 @@ export default function UserVanRent(){
               </div>
             </div>
           </div>
-          <form onSubmit={(e)=>{submitForm(e)}} encType='multipart/form-data' className="user-van-rent-form">
+          <form onSubmit={(e)=>{submitForm(e,userVan)}} encType='multipart/form-data' className="user-van-rent-form">
           
             <div className="user-van-date-container">
             <h2>Please select rent dates</h2>
