@@ -206,7 +206,7 @@ export async function uploadHostVan(formData){
 }
 
 export async function getHostRequests(){
-  const url = "http://localhost:5050/host/review"
+  const url = "http://localhost:5050/host/requestHost"
   const res = await fetch(url, { 
       method: "POST",
       headers:{

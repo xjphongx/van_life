@@ -61,18 +61,18 @@ export default function UserVanRent(){
   //submit the request form
   const submitForm = async (e, requestedVan)=>{
     e.preventDefault()
-
-    console.log(requestedVan.hostId)
     const requestDescription = document.getElementById("requestDesciption").value
     const formData = new FormData()
     formData.append('requestObjectId', uuid.v4())
+    formData.append('requestSubmissionDate', moment().format("MM-DD-YYYY"))
     formData.append('vanHostId', requestedVan.hostId)
+    formData.append('requestedVanName', requestedVan.name)
     formData.append('requestedVanId', requestedVan._id)
     formData.append('description', requestDescription)
     //get the selected dates and turn into an array of Date objects might not need this format(MM-DD-YYYY)
     //const formatedStartDate = moment(date.startDate).format("MM-DD-YYYY")
     //const formatedEndDate = moment(date.endDate).format("MM-DD-YYYY")
-    //console.log(new Date( moment(date.startDate).format("MM-DD-YYYY")))
+    //console.log( moment().format("MM-DD-YYYY"))
     const start = date.startDate
     const end = date.endDate
     const requestedDateArray = []

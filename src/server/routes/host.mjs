@@ -93,6 +93,16 @@ router.post('/vans/upload', getUser, async(req,res)=>{
 
 })
 
+router.post("/requestHost", getUser, async (req,res)=>{
+  console.log("getting host's request")
+  try{
+    const user = req.user
+    const host = await User.find({_id: user.id})
+    res.status(200).json(host[0].requests)
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+})
 
 
 //get host vans review
@@ -112,20 +122,24 @@ router.post("/review", getUser, async (req,res)=>{
   }
 })
 
-//post a new request to host's request array
+
+
+//any user can post a new request to host's request array
 router.post('/request', getUser, async(req,res)=>{
   console.log("updating host user's request array with new request")
   try{
     let user = req.user
-    const {requestObjectId, description, requestedDateArray, requestedVanId, vanHostId} = req.body
+    const {requestObjectId, requestSubmissionDate,requestedVanName, description, requestedDateArray, requestedVanId, vanHostId} = req.body
     //create a request object
     const request = {
       _id:requestObjectId,
+      requestSubmissionDate:requestSubmissionDate,
       requestedUserId:user.id,
       requestedUserFirstName:user.firstName,
       requestedUserLastName:user.lastName,
       description: description,
       vanHostId:vanHostId,
+      requestedVanName:requestedVanName,
       requestedVanId:requestedVanId,
       requestedDatesArray: JSON.parse(requestedDateArray)
     }
@@ -139,10 +153,6 @@ router.post('/request', getUser, async(req,res)=>{
     res.status(500).json({message: err.message})
   }
 })
-
-
-
-
 
 //middlewear to get specific user and its _id assigned by mongodb
 //also use jwt to verify the token

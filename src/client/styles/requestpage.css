@@ -1,0 +1,47 @@
+.host-request-container > h1{
+  margin-left: 45px;
+}
+.host-request-list-scroller{
+  display:flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-right: 45px;
+  gap: 15px;
+  height: 600px;
+  padding:0;
+  margin-left: 45px;
+  overflow-y:scroll;
+  overscroll-behavior-inline: contain;
+}
+.host-request-list-scroller::-webkit-scrollbar{
+  width: 1em;
+  background: rgb(255, 127, 22);
+  border-radius: 100vw;
+  margin-left:14px;
+}
+.host-request-list-scroller::-webkit-scrollbar-thumb{
+  width: 2em;
+  background: rgb(255, 238, 224);
+  border-radius: 100vw;
+  border: .15em solid rgb(255, 127, 22);
+  
+}
+.host-request-tile{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  height: 150px;
+  padding:40px;
+}
+.host-request-submit-container{
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+}
+.host-request-label{
+  font-size: 25px;
+  font-family: Inter, 'Times New Roman', Times, serif;
+}

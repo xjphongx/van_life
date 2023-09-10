@@ -42,13 +42,16 @@ export default function HostDashboard(){
     const hostUserRequest = hostInfo.hostUser.requests
     /* console.log(hostUserRequest) */
 
+    let requestCounter=0;
     const renderDashboardHostRequestElements = hostUserRequest.map(request=>{
       let requestedVan = hostUserVans.filter((van)=>{
         if(van._id===request.requestedVanId){
           return van
         }
       })
-      return(
+      if(requestCounter<3){
+        requestCounter+=1
+        return(
         <div key={request._id} className="host-dashboard-request-tile">
           <h2>A user has sent a request for {requestedVan[0].name}</h2>
           <NavLink to='request' 
@@ -58,6 +61,10 @@ export default function HostDashboard(){
         </div>
         
       )
+      } else {
+        return
+      }
+      
     })
 
 

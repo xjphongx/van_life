@@ -32,7 +32,7 @@ export default function HostReview(){
     })
 
     //render the review elements by mapping through the host's review array, if there are 3 reviews then render 3 review elements
-    const reviewsElements = hostReviewArray.map((review)=>{
+    const reviewElements = hostReviewArray.map((review)=>{
       //Below is a RenderStars component to display the stars logically
       function RenderStars({star}){
         const starsArray = []
@@ -115,7 +115,7 @@ export default function HostReview(){
           <h3>Reviews ({hostReviewArray.length})</h3>
           
           <div className="host-review-tile-container">
-            {reviewsElements} 
+            {reviewElements} 
           </div>
           
         </div>
