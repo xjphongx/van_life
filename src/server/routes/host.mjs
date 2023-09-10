@@ -137,7 +137,7 @@ router.post('/request', getUser, async(req,res)=>{
       { _id:vanHostId },
       { $push: { requests: request} }
     )
-    console.log("uploaded request sent...")
+    return res.status(201).json(results)
     
     
   }catch(err){

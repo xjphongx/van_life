@@ -96,17 +96,32 @@ router.post("/", async (req, res)=>{
 
     //create a hashed password to save to db
     const hashedPassword = await hashPassword(password)
-    //save the User object with a hashed password
-    console.log("saving user")
-    const user = new User({ //create a new User object
-      type: type,
-      firstName: firstName,
-      lastName: lastName,
-      email:email,
-      password: hashedPassword,
-      dateOfBirth: dateOfBirth,
-      phone: phone
-    })
+    let user;
+    if(type === "Host"){
+      //create a host user
+      user = new User({ //create a new User object
+        type: type,
+        firstName: firstName,
+        lastName: lastName,
+        email:email,
+        password: hashedPassword,
+        dateOfBirth: dateOfBirth,
+        phone: phone,
+        requests:[]
+      })
+    } else{
+        user = new User({ //create a new User object
+        type: type,
+        firstName: firstName,
+        lastName: lastName,
+        email:email,
+        password: hashedPassword,
+        dateOfBirth: dateOfBirth,
+        phone: phone
+      })
+      
+    }
+    
     const newUser = await user.save()
     return res.status(201).json(newUser) //201 created a new object
   }catch(err){

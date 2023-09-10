@@ -10,6 +10,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment"
 import * as uuid from "uuid"
+import toast,{ Toaster } from "react-hot-toast";
 
 
 export async function loader({params,request}){
@@ -83,8 +84,14 @@ export default function UserVanRent(){
     try{
       //make a request to server endpoint through the api file
       const data = await uploadUserRequest(formData)
+      if(data.error){
+        toast.error(data.error)
+      } else {
+        toast.success("Request has been submitted")
+      }
     }catch(err){
       console.log(err)
+      toast.error(err.message)
     }
   }
 
@@ -112,6 +119,7 @@ export default function UserVanRent(){
               </div>
             </div>
           </div>
+          
           <form onSubmit={(e)=>{submitForm(e,userVan)}} encType='multipart/form-data' className="user-van-rent-form">
           
             <div className="user-van-date-container">
@@ -128,7 +136,7 @@ export default function UserVanRent(){
 
             <div className="user-van-textarea-container">
               <h2>Additional information for the Host (optional)</h2>
-              <textarea id="requestDesciption" className="user-van-textarea" placeholder="Please provide any information that may be helpful for the Host to determine your request." />
+              <textarea id="requestDesciption" className="user-van-textarea" placeholder="Please provide any information that may be helpful for the Host to determine your request." required />
               <button  type="submit" className="rent-button" disabled={navigation.state === "submitting"} >
                 {navigation.state=== "submitting" ? "Sending Request..." : "Send Request"}
             </button>

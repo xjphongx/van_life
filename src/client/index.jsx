@@ -186,6 +186,7 @@ function App() {
   return (
     <div>
     {/* Allow the user state to check itsself in the host routes */}
+        <Toaster position='top-center' toastOptions={{duration: 2000}}/>
         <LoginContext.Provider value={[loggedIn,setLoggedIn]}>
          
             {/* //RouterProvider will allow me to use Data APIs */}

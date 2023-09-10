@@ -27,20 +27,16 @@ export async function action({request}){
   const email = formData.get("email") // get the name of the input
   const password = formData.get("password")
   
-  
   //CONCEPT: a way to get the url when traversing thru protected routes and logging out 
   const pathname = new URL(request.url).searchParams.get("redirectTo") || `/${type.toLowerCase()}` //get the search params in url
   console.log("sending action requets")
   try{ //Error handling
     const data = await loginUser({type,email,password})// user logs in here
-
     if(data.error){
       toast.error(data.error)
       localStorage.setItem("loggedIn", false)
     } else{
       toast.success('Login successful')
-      
-      //REMOVE THIS WHEN IMPLEMENTING LOG OUT
       localStorage.setItem("loggedIn", true)//sets the loggedin state to true
       localStorage.setItem("loginType", type.toLowerCase())
       return pathname
@@ -57,10 +53,8 @@ export async function action({request}){
 }
 
 export default function Login(){
-  
   //use loaderData to get the return message of loader function
   const message = useLoaderData()
-
   //use actionData and useContext to get the loggedIn results based from action function
   const [loggedIn,setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
@@ -89,8 +83,6 @@ export default function Login(){
     <div className="login-container">
       <h1>Sign in to your account</h1>
       {message && <h2>{message}</h2>}
-      {/* {errorMessage && <h2>{errorMessage}</h2>} */}
-      <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Form method="POST" className="login-form" replace={true}>
         <div className = "login-type-container">
           <div className="login-type-label">
