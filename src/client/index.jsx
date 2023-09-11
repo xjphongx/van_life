@@ -20,8 +20,9 @@ import HostVansDetail, {loader as hostVanDetailPageLoader} from './routes/Host/H
 import HostVanInfo from './routes/Host/HostVanInfo';
 import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
-import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
 import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRequest';
+import HostRequestDetail,{loader as hostRequestDetailPageLoader} from './routes/Host/HostRequestDetail';
+import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
 import HostVanUpload from './routes/Host/HostVanUpload';
 
 import UserLayout from './components/UserLayout'
@@ -102,6 +103,11 @@ function App() {
           path='request' 
           element={<HostRequest/>} 
           loader={hostRequestPageLoader}/>
+        <Route
+          path='request/:id'
+          element={<HostRequestDetail/>}
+          loader={hostRequestDetailPageLoader}
+        />
         <Route path='vans' element={<HostVanLayout/>}>
           <Route index
             element={<HostVans/>} 

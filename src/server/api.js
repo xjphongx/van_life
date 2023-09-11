@@ -14,7 +14,7 @@ export async function getVans(id){
   }
   //turn the response into json
   const dataPromise = await res.json() //this is for defered data
-  console.log(dataPromise)
+  //console.log(dataPromise)
   return dataPromise
   
 }
@@ -115,7 +115,7 @@ export async function loginUser(creds) {
   }
   
   const data = await res.json()
-  console.log(data)
+  //console.log(data)
   return data
 }
 
@@ -136,7 +136,7 @@ export async function logOut(){
     }
   }
   const data = await res.json()
-  console.log(data)
+  //console.log(data)
   return data
 }
 
@@ -205,6 +205,7 @@ export async function uploadHostVan(formData){
   return data
 }
 
+//this returns the array of host requests, plural
 export async function getHostRequests(){
   const url = "http://localhost:5050/host/requestHost"
   const res = await fetch(url, { 
@@ -224,6 +225,47 @@ export async function getHostRequests(){
   }
   const dataPromise = await res.json()
   return dataPromise
+}
+
+//this is to get a specific request from host requests
+export async function getHostRequest(requestId){
+  const url1 = `http://localhost:5050/host/request/${requestId}`
+  const res1 = await fetch(url1)
+  if (!res1.ok) {
+      throw {
+          message: "Failed to fetch specific request",
+          statusText: res.statusText,
+          status: res.status
+      }
+  }
+  const data1 = await res1.json()
+
+  const url2 = `http://localhost:5050/vans/${data1.requestedVanId}`
+  const res2 = await fetch(url2)
+  if (!res2.ok) {
+    throw {
+        message: "Failed to fetch specific van",
+        statusText: res.statusText,
+        status: res.status
+    }
+  }
+  const data2 = await res2.json()
+
+  const dataPromise = {request:data1, requestedVan:data2}
+  return dataPromise
+}
+
+//host sends request status to user
+export async function updateRequestStatus(requestId, hostId, status){
+  console.log(hostId)
+  const url = `http://localhost:5050/host/request`
+  const res = await fetch(url,{
+    method: "PUT",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      body: JSON.stringify({requestId:requestId,hostId:hostId, status:status})
+  })
 }
 
 export async function getHostReviews(){
@@ -249,7 +291,6 @@ export async function getHostReviews(){
 
 export async function uploadUserRequest(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
-  console.log(result)
   const res = await fetch("http://localhost:5050/host/request", {
     method: "POST",
     headers:{

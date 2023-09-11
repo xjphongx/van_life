@@ -24,12 +24,14 @@
   gap:10px;
 }
 .log-out-button{
-  background-color: rgb(255, 91, 91);
-  padding: 2px 10px;
+  background-color: rgb(255, 127, 22);
+  padding: 4px 10px;
   border-radius: 5px;
   cursor: pointer;
   min-width: 80px;
   white-space: nowrap;
+  color:rgb(83, 83, 83);
+  font-weight: 600;
   
 }.log-out-button:hover{
   opacity: .5;

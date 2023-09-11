@@ -133,7 +133,8 @@ router.post('/request', getUser, async(req,res)=>{
     //create a request object
     const request = {
       _id:requestObjectId,
-      requestSubmissionDate:requestSubmissionDate,
+      status:"pending",
+      submissionDate:requestSubmissionDate,
       requestedUserId:user.id,
       requestedUserFirstName:user.firstName,
       requestedUserLastName:user.lastName,
@@ -143,12 +144,44 @@ router.post('/request', getUser, async(req,res)=>{
       requestedVanId:requestedVanId,
       requestedDatesArray: JSON.parse(requestedDateArray)
     }
-
     const results = await User.updateOne(
       { _id:vanHostId },
       { $push: { requests: request} }
     )
     return res.status(201).json(results)
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+})
+
+router.get('/request/:id', async (req,res)=>{
+  //getting specific request
+  console.log("getting specific request")
+  try{
+    const host = await User.find({"requests._id": req.params.id})
+    host[0].requests.map((request)=>{
+      if(request._id === req.params.id){
+        return res.status(200).json(request)
+      }
+      //return res.status(400).json({message:"no such request exists"})
+    })
+    
+  }catch(err){
+    res.status(500).json({message: err.message})
+  }
+})
+
+router.put('/request', async(req,res)=>{
+  console.log("updating request status")
+  const {requestId, hostId, status} = req.body
+  console.log(status)
+  try{
+    //update the host's request's status
+    const host = await User.updateOne(
+      {_id:hostId, "requests._id":requestId},
+      {$set: {"requests.$.status": status}}
+    )
+    res.status(200).json({message:"updated"})
   }catch(err){
     res.status(500).json({message: err.message})
   }

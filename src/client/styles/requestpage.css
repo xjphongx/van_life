@@ -44,3 +44,45 @@
   font-size: 25px;
   font-family: Inter, 'Times New Roman', Times, serif;
 }
+
+/* host request detail page */
+.host-request-detail-container{
+  background-color: white;
+  padding:20px;
+  border-radius: 5px ;
+  display:flex;
+  flex-direction: column;
+  gap:15px;
+  
+}
+.host-request-detail-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  min-height: 100px;
+}
+.host-request-info-container{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.host-request-info-container > p {
+  font-size: 20px;
+}
+.host-request-daterange-container>h4{
+  font-size: 18px;
+}
+
+.host-request-user-detail-container{
+  width: 500px;
+}
+.host-request-user-detail-container >pre{
+  font-size: 13px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}

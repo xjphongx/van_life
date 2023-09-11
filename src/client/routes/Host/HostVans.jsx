@@ -21,7 +21,7 @@ export default function HostVans(){
   });
   //get the promise to the getHostVans()
   const dataPromise = useLoaderData() //grab loaded data for this route
-  const [searchParams, setSearchParams] = useSearchParams()
+  //const [searchParams, setSearchParams] = useSearchParams()
 
   //helper function to render the vans element
   function renderHostVansElements(hostVans){
@@ -30,7 +30,8 @@ export default function HostVans(){
     const vansElement = hostVans.map((van)=>{
       //console.log(van)
       return(
-          <NavLink key={van._id} className="host-van-link" to={van._id} state={{search: `?${searchParams.toString()}` }}>
+        /* state={{search: `?${searchParams.toString()}` }} */
+          <NavLink key={van._id} className="host-van-link" to={van._id} >
             <div  className="host-vans-container">
               <img className="host-van-image-icon" src={van.imageUrl[0]}/>
               <div className="host-van-info-container">
