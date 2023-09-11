@@ -291,7 +291,8 @@ export async function getHostReviews(){
 
 export async function uploadUserRequest(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
-  const res = await fetch("http://localhost:5050/host/request", {
+  //create a request to the host
+  const res1 = await fetch("http://localhost:5050/host/request", {
     method: "POST",
     headers:{
       'Content-Type': 'application/json'
@@ -299,16 +300,34 @@ export async function uploadUserRequest(formData){
     credentials: "include", //this allows cookies to be sent over
     body: JSON.stringify(result)
   })
-
-  if (!res.ok) {
+  if (!res1.ok) {
     throw {
         message: "Failed to upload the request",
-        statusText: res.statusText,
-        status: res.status
+        statusText: res1.statusText,
+        status: res1.status
     }
 }
+  const host = await res1.json() //get the promised data
 
-  const data = await res.json() //get the promised data
+  //create a request for the user
+  const res2 = await fetch("http://localhost:5050/user/request", {
+    method: "POST",
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    credentials: "include", //this allows cookies to be sent over
+    body: JSON.stringify(result)
+  })
+  if (!res2.ok) {
+    throw {
+        message: "Failed to upload the request",
+        statusText: res2.statusText,
+        status: res2.status
+    }
+}
+  const user = await res2.json() //get the promised data
+
+  const data ={hostRequest:host,userRequest:user}
   return data
 }
 

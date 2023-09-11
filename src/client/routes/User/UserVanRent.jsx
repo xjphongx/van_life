@@ -1,5 +1,5 @@
 import React from "react"
-import {useLoaderData,Await, defer,Link,Form} from "react-router-dom"
+import {useLoaderData,Await, defer,Link,Form, useNavigate} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
 import { getUserVan } from "../../../server/api"
@@ -51,6 +51,7 @@ export default function UserVanRent(){
   })
   //useed to get deferred data
   const dataPromise = useLoaderData()
+  const navigate = useNavigate()
 
   //handle any changes made to the range picker
   const handleChange = (ranges)=>{
@@ -84,10 +85,12 @@ export default function UserVanRent(){
     try{
       //make a request to server endpoint through the api file
       const data = await uploadUserRequest(formData)
-      if(data.error){
-        toast.error(data.error)
+
+      if(data.hostRequest.error){
+        toast.error(data.hostRequest.error)
       } else {
         toast.success("Request has been submitted")
+        navigate(`/user/vans/${requestedVan._id}`)
       }
     }catch(err){
       console.log(err)
