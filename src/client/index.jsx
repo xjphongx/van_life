@@ -106,8 +106,21 @@ function App() {
         <Route
           path='request/:id'
           element={<HostRequestDetail/>}
-          loader={hostRequestDetailPageLoader}
-        />
+          loader={hostRequestDetailPageLoader}>
+            <Route index 
+              element={<HostVanInfo/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
+            <Route 
+              path='pricing' 
+              element={<HostVanPricing/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
+              
+            <Route 
+              path='photos' 
+              element= {<HostVanPhotos/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
+        </Route>
+
         <Route path='vans' element={<HostVanLayout/>}>
           <Route index
             element={<HostVans/>} 

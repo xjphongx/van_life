@@ -4,8 +4,9 @@
 }
 /* the total stats */
 .host-review-stats-container{
-padding: 20px 0px;
-margin-bottom: 30px;
+  padding: 20px 0px;
+  margin-bottom: 30px;
+  width: 700px;
 }
 
 .host-review-progess-bar-container{
@@ -14,23 +15,48 @@ margin-bottom: 30px;
   gap:25px;
   justify-content: center;
   align-items: center;
+  width: 500px;
 }
 .host-review-progess-bar-container > h4{
   color:lightgrey;
-  width: 80px;
+  width: 100px;
 }
 
 
 /* the total review objects listed out */
 .host-review-list-container{
-  width: 600px;
+  /* width: 600px; */
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 40px;
+}
+@media only screen and (max-width:800px){
+  .host-review-list-container{
+    flex-direction: column;
+  }
+
 }
 .host-review-tile-container{
   margin-top: 25px;
   padding-bottom: 25px;
   border-bottom: rgb(204, 204, 204);
   border-bottom-width: 1px;
+  overflow-y:auto;
+  overscroll-behavior-inline: contain;
+  height:500px;
   /* border-bottom-style: solid; */
+}
+.host-review-tile-container::-webkit-scrollbar{
+  width: 1em;
+  background: rgb(255, 127, 22);
+  border-radius: 100vw;
+}
+.host-review-tile-container::-webkit-scrollbar-thumb{
+  width: 2em;
+  background: rgb(255, 238, 224);
+  border-radius: 100vw;
+  border: .15em solid rgb(255, 127, 22);
 }
 .host-review-tile{
   margin-top: 25px;

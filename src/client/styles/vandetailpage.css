@@ -96,7 +96,7 @@ border-radius: 10px;
 }
 
 
-/* HOST VAN DETAIL CSS */
+/* HOST and USER VAN DETAIL CSS */
 .host-van-detail-container, .user-van-detail-container{
   background-color: white;
   padding:20px;
@@ -133,7 +133,20 @@ border-radius: 10px;
   flex-direction: row;
   gap: 15px;
 }
-
+.navlink-rent-button{
+  background-color: rgb(255, 127, 22);
+  color:white;
+  border-style: none;
+  border-radius: 5px;
+  padding:15px 15px;
+  cursor:pointer;
+  max-width: 800px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 40px;
+}.navlink-rent-button:hover{
+  transform: translate(1px, 1px)
+}
 
 .host-van-detail-image-icon, .user-van-detail-image-icon{
   width: 200px;

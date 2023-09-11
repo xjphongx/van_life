@@ -16,9 +16,9 @@ export default function HostVansDetail(){
     setLoggedIn(true) //fixes the component and bad state error
     localStorage.setItem("loginType", "host")
   },[])
-  React.useLayoutEffect(() => {
+  /* React.useLayoutEffect(() => {
     window.scrollTo(0, 0)
-  });
+  }); */
   //const params = useParams()
   const dataPromise = useLoaderData()
 
@@ -60,7 +60,6 @@ export default function HostVansDetail(){
                 to='photos'
                 className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
               >Photos</NavLink>
-
             </nav>
             {/* To this comment line above */}
             <Outlet context={hostVan}/> {/* passing context like a prop but uses a method to get context */}

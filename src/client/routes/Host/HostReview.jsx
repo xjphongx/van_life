@@ -112,11 +112,13 @@ export default function HostReview(){
             </div>
           </div>
 
-          <h3>Reviews ({hostReviewArray.length})</h3>
-          
-          <div className="host-review-tile-container">
-            {reviewElements} 
+          <div>
+            <h3>Reviews ({hostReviewArray.length})</h3>
+            <div className="host-review-tile-container">
+              {reviewElements} 
+            </div>
           </div>
+          
           
         </div>
 

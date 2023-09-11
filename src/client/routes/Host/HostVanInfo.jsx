@@ -2,6 +2,9 @@ import React from "react";
 import { useOutletContext } from "react-router-dom"; 
 
 export default function HostVanInfo(){
+ /*  React.useLayoutEffect(() => {
+    window.scrollTo(0, 130)
+  }); */
   const [van, setVan]= React.useState(useOutletContext())//this is not the same as props so i have to use the outlet's context
   return(
     <main className="host-van-info-container">

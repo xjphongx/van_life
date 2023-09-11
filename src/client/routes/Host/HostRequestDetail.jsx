@@ -30,11 +30,8 @@ export default function HostRequestDetail(){
   const renderHostRequestDetail = (hostRequest)=>{
     const request = hostRequest.request
     const van = hostRequest.requestedVan
-    console.log(request)
-    console.log(van)
     const startDate = moment(new Date(request.requestedDatesArray[0])).format("MMM Do, YYYY")
     const endDate = moment(new Date(request.requestedDatesArray[request.requestedDatesArray.length-1])).format("MMM Do, YYYY")
-    
     
     //handle accept submit button
     const handleSubmit = async (e,request)=>{
@@ -50,9 +47,7 @@ export default function HostRequestDetail(){
     }
     
 
-    
-    
-    
+
     return(
       <>
         <div className='host-detail-back-container'>
@@ -62,7 +57,7 @@ export default function HostRequestDetail(){
             className='detail-back-button'>Back to all requests
           </Link>
         </div> 
-        <section className='host-request-detail-container'>
+        <section className='host-request-detail-page-container'>
           <div className="host-request-detail-container">
             <div className="host-request-info-container">
               <h4>Request Id: {request._id}</h4>
@@ -87,9 +82,36 @@ export default function HostRequestDetail(){
               
             </form>
           </div>
-          <div className="host-request-van-detail-container">
-
+          
+          <div className="host-van-detail-label-container">
+            <img className="host-van-detail-image-icon" src={van.imageUrl[0]}/>
+            <div className="vertical-container">
+              <div className={`host-type-tag-${van.type}`}>{van.type}</div>
+              <h1>{van.name}</h1>
+              <p className= 'detail-info-price'>${van.price} <span>/day</span></p>
+            </div>
           </div>
+          <nav className="host-subnavbar-container">
+              <NavLink
+                to='.' end
+                className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
+      
+              >Details</NavLink>
+              <NavLink
+                to='pricing'
+                className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
+              >Pricing</NavLink>
+              <NavLink
+                to='photos'
+                className={({isActive})=>isActive? "active-host-link-route" :"pending-host-link-route"}
+              >Photos</NavLink>
+            </nav>
+           
+            <Outlet context={van}/>
+            
+            
+            
+            
         </section>
       </>
     )
