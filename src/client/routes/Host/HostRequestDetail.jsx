@@ -38,7 +38,7 @@ export default function HostRequestDetail(){
     
     //handle accept submit button
     const handleSubmit = async (e,request)=>{
-      e.preventDefault()
+      //e.preventDefault()
       console.log("accepting request")
       console.log(status)
       try{
@@ -79,9 +79,12 @@ export default function HostRequestDetail(){
               <pre>{request.description}</pre>
             </div>
             
-            <form onSubmit={(e)=>{handleSubmit(e,request)}} className="host-request-button-container">
-              <button type="submit" onClick={()=>{setStatus("accept")}}>Accept</button>
-              <button type="submit" onClick={()=>{setStatus("reject")}}>Decline</button>
+            <form onSubmit={(e)=>{handleSubmit(e,request)}} className="host-request-form-container">
+              {request.status==="accept"? <h1>Accepted</h1> : <div className="host-request-button-container">
+                <button className="request-accept-button" type="submit" onClick={()=>{setStatus("accept")}}>Accept</button>
+                <button className="request-reject-button" type="submit" onClick={()=>{setStatus("reject")}}>Decline</button>
+              </div> }
+              
             </form>
           </div>
           <div className="host-request-van-detail-container">
