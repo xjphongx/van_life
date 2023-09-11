@@ -15,7 +15,6 @@ router.get('/', async (req,res)=>{
   }
 })
 router.get('/:id', async (req,res)=>{
-  console.log(req.params.id)
   try{
     const request = await Request.find({_id:req.params.id})
     return res.status(200).json(request[0])
@@ -23,10 +22,23 @@ router.get('/:id', async (req,res)=>{
     res.status(500).json({message: err.message})
   }
 })
+router.put('/', async (req,res)=>{
+  console.log("updating request status")
+  try{
+    const {requestId,status} = req.body
+    const result = await Request.findOneAndUpdate({
+      _id:requestId
+    },{
+      $set: {status:status}
+    })
+    return res.status(204).json({message:"Status updated successfully"})
+  }catch(err){
+    return res.status(500).json({message: err.message})
+  }
+})
 
 router.get('/host/:hostId', async (req, res)=>{
   console.log("getting request with specific hostId")
-  console.log(req.params.hostId)
   try{
     //get the requests with this hostId
     const requests = await Request.find({vanHostId:req.params.hostId})

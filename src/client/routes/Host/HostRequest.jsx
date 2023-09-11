@@ -6,7 +6,6 @@ import { getHostRequests } from "../../../server/api";
 
 export async function loader({request}){
   const user = await requireAuth(request)
-  console.log(user)
   return defer({hostRequests:getHostRequests(user.id)})
 }
 
@@ -23,10 +22,7 @@ export default function HostRequest(){
   const dataPromise = useLoaderData()
 
   const renderRequestElements = (hostRequests) =>{
-    console.log(hostRequests)
-
     const requestElements = hostRequests.map((request)=>{
-      console.log(request)
       return(
         <li key={request._id} className="host-request-tile">
           <div className="host-request-submit-container">
@@ -34,6 +30,7 @@ export default function HostRequest(){
             {`${request.requestedUserFirstName} ${request.requestedUserLastName}`} sents a request for  {request.requestedVanName}
             </p>
             <p>Submission Date: {request.submissionDate}</p>
+            <p>Status: {request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."}</p>
           </div>
           
           <NavLink to={request._id} 

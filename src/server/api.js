@@ -220,7 +220,6 @@ export async function uploadHostVan(formData){
 
 //this returns the array of host requests, plural
 export async function getHostRequests(hostId){
-  console.log(hostId)
   const url = `http://localhost:5050/requests/host/${hostId}`
   const res = await fetch(url)
  
@@ -247,7 +246,7 @@ export async function getHostRequest(requestId){
       }
   }
   const data1 = await res1.json()
-  console.log(data1)
+
   const url2 = `http://localhost:5050/vans/${data1.requestedVanId}`
   const res2 = await fetch(url2)
   if (!res2.ok) {
@@ -264,15 +263,15 @@ export async function getHostRequest(requestId){
 }
 
 //host sends request status to user
-export async function updateRequestStatus(requestId, hostId, status){
-  console.log(hostId)
-  const url = `http://localhost:5050/host/request`
+export async function updateRequestStatus(requestId, status){
+
+  const url = `http://localhost:5050/requests`
   const res = await fetch(url,{
     method: "PUT",
       headers:{
         "Content-Type" : "application/json"
       }, 
-      body: JSON.stringify({requestId:requestId,hostId:hostId, status:status})
+      body: JSON.stringify({requestId:requestId,status:status})
   })
 }
 

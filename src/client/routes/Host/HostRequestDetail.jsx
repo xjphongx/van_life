@@ -40,7 +40,7 @@ export default function HostRequestDetail(){
       console.log(status)
       try{
         //send the status response to server
-        const data = await updateRequestStatus(request._id,request.vanHostId,status)
+        const data = await updateRequestStatus(request._id,status)
       }catch(err){
         console.log(err)
       }
@@ -75,7 +75,9 @@ export default function HostRequestDetail(){
             </div>
             
             <form onSubmit={(e)=>{handleSubmit(e,request)}} className="host-request-form-container">
-              {request.status==="accept"? <h1>Accepted</h1> : <div className="host-request-button-container">
+              {request.status==="accept"? <h1>Accepted</h1> 
+              : request.status ==="reject"? <h1>Rejected</h1> 
+              : <div className="host-request-button-container">
                 <button className="request-accept-button" type="submit" onClick={()=>{setStatus("accept")}}>Accept</button>
                 <button className="request-reject-button" type="submit" onClick={()=>{setStatus("reject")}}>Decline</button>
               </div> }
