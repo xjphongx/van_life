@@ -178,7 +178,20 @@ export async function getHostDashboardInfo(hostId){
     }
   }
   const hostUserVans = await res2.json()
-  const combinedDataPromise = {hostUser,hostUserVans}
+  
+  //get host requests
+  const url3 = `http://localhost:5050/requests/host/${hostId}`
+  const res3 = await fetch(url3)
+  if (!res3.ok) {
+    throw {
+        message: "Failed to fetch hostInfo",
+        statusText: res3.statusText,
+        status: res3.status
+    }
+  }
+  const hostUserRequests = await res3.json()
+
+  const combinedDataPromise = {hostUser,hostUserVans,hostUserRequests}
   /* console.log(combinedDataPromise) */
   return combinedDataPromise
 }
@@ -206,19 +219,14 @@ export async function uploadHostVan(formData){
 }
 
 //this returns the array of host requests, plural
-export async function getHostRequests(){
-  const url = "http://localhost:5050/host/requestHost"
-  const res = await fetch(url, { 
-      method: "POST",
-      headers:{
-        "Content-Type" : "application/json"
-      }, 
-      credentials: "include"
-    }
-  )
+export async function getHostRequests(hostId){
+  console.log(hostId)
+  const url = `http://localhost:5050/requests/host/${hostId}`
+  const res = await fetch(url)
+ 
   if (!res.ok) {
       throw {
-          message: "Failed to fetch reviews",
+          message: "Failed to fetch host requests",
           statusText: res.statusText,
           status: res.status
       }
@@ -229,7 +237,7 @@ export async function getHostRequests(){
 
 //this is to get a specific request from host requests
 export async function getHostRequest(requestId){
-  const url1 = `http://localhost:5050/host/request/${requestId}`
+  const url1 = `http://localhost:5050/requests/${requestId}`
   const res1 = await fetch(url1)
   if (!res1.ok) {
       throw {
@@ -239,7 +247,7 @@ export async function getHostRequest(requestId){
       }
   }
   const data1 = await res1.json()
-
+  console.log(data1)
   const url2 = `http://localhost:5050/vans/${data1.requestedVanId}`
   const res2 = await fetch(url2)
   if (!res2.ok) {
@@ -292,7 +300,7 @@ export async function getHostReviews(){
 export async function uploadUserRequest(formData){
   const result = Object.fromEntries(formData)//changes formData object to a JSON stringifyable object
   //create a request to the host
-  const res1 = await fetch("http://localhost:5050/host/request", {
+  const res1 = await fetch("http://localhost:5050/requests", {
     method: "POST",
     headers:{
       'Content-Type': 'application/json'
@@ -309,25 +317,9 @@ export async function uploadUserRequest(formData){
 }
   const host = await res1.json() //get the promised data
 
-  //create a request for the user
-  const res2 = await fetch("http://localhost:5050/user/request", {
-    method: "POST",
-    headers:{
-      'Content-Type': 'application/json'
-    },
-    credentials: "include", //this allows cookies to be sent over
-    body: JSON.stringify(result)
-  })
-  if (!res2.ok) {
-    throw {
-        message: "Failed to upload the request",
-        statusText: res2.statusText,
-        status: res2.status
-    }
-}
-  const user = await res2.json() //get the promised data
 
-  const data ={hostRequest:host,userRequest:user}
+
+  const data ={hostRequest:host}
   return data
 }
 

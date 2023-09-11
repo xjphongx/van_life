@@ -1,6 +1,7 @@
 import express from "express"
 import Van from "../model/van.mjs"
 import User from "../model/user.mjs"
+import Request from "../model/request.mjs"
 import jwt from "jsonwebtoken"
 
 const router = express.Router()
@@ -124,35 +125,7 @@ router.post("/review", getUser, async (req,res)=>{
 
 
 
-//any user can post a new request to host's request array
-router.post('/request', getUser, async(req,res)=>{
-  console.log("updating host user's request array with new request")
-  try{
-    let user = req.user
-    const {requestObjectId, requestSubmissionDate,requestedVanName, description, requestedDateArray, requestedVanId, vanHostId} = req.body
-    //create a request object
-    const request = {
-      _id:requestObjectId,
-      status:"pending",
-      submissionDate:requestSubmissionDate,
-      requestedUserId:user.id,
-      requestedUserFirstName:user.firstName,
-      requestedUserLastName:user.lastName,
-      description: description,
-      vanHostId:vanHostId,
-      requestedVanName:requestedVanName,
-      requestedVanId:requestedVanId,
-      requestedDatesArray: JSON.parse(requestedDateArray)
-    }
-    const results = await User.updateOne(
-      { _id:vanHostId },
-      { $push: { requests: request} }
-    )
-    return res.status(201).json(results)
-  }catch(err){
-    res.status(500).json({message: err.message})
-  }
-})
+
 
 router.get('/request/:id', async (req,res)=>{
   //getting specific request

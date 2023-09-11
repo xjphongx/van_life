@@ -26,6 +26,7 @@ export default function HostDashboard(){
 
   /* rendering listed vans */
   const renderHostDashboard = (hostInfo)=>{
+    console.log(hostInfo)
     const hostUserVans = hostInfo.hostUserVans
 
     /* code needed to calculate reviews */
@@ -39,32 +40,25 @@ export default function HostDashboard(){
     let dashboardReviewScore = getReviewScore(hostVansWithReviews)
 
     /* code needed to get request */
-    const hostUserRequest = hostInfo.hostUser.requests
+    const hostUserRequest = hostInfo.hostUserRequests
     /* console.log(hostUserRequest) */
 
     let requestCounter=0;
     const renderDashboardHostRequestElements = hostUserRequest.map(request=>{
-      let requestedVan = hostUserVans.filter((van)=>{
-        if(van._id===request.requestedVanId){
-          return van
-        }
-      })
       if(requestCounter<3){
         requestCounter+=1
         return(
         <div key={request._id} className="host-dashboard-request-tile">
-          <h2>A user has sent a request for {requestedVan[0].name}</h2>
+          <h2>A user has sent a request for {request.requestedVanName} </h2>
           <NavLink to='request' 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
           state={request}
           >Details</NavLink>
         </div>
-        
       )
       } else {
         return
       }
-      
     })
 
 

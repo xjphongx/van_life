@@ -64,7 +64,7 @@ export default function UserVanRent(){
     e.preventDefault()
     const requestDescription = document.getElementById("requestDesciption").value
     const formData = new FormData()
-    formData.append('requestObjectId', uuid.v4())
+    //formData.append('requestObjectId', uuid.v4())
     formData.append('requestSubmissionDate', moment().format("MM-DD-YYYY"))
     formData.append('vanHostId', requestedVan.hostId)
     formData.append('requestedVanName', requestedVan.name)

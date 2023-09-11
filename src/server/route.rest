@@ -99,3 +99,8 @@ Content-Type: application/json
 {
   "hostId":"64d713ebb8e2c2a3e9dddbf8"
 }
+
+### 
+
+
+GET http://localhost:5050/requests/64fe75296e8bb96d76568c74
