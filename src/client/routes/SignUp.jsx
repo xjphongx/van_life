@@ -1,6 +1,6 @@
 import React from "react";
 import {Form,Link, redirect, useActionData, useNavigate} from "react-router-dom"
-import {FaShuttleVan} from "react-icons/Fa"
+import {FaShuttleVan} from "react-icons/fa"
 import { signUpUser } from "../../server/api";
 import {toast, Toaster } from "react-hot-toast";
 
