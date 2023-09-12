@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink,useNavigate } from 'react-router-dom';
-import {BiUserCircle} from 'react-icons/Bi';
+import {BiUserCircle} from 'react-icons/bi';
 import { LoginContext } from "..";
 import { logOut } from "../../server/api";
 
