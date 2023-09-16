@@ -4,13 +4,10 @@ import * as uuid from "uuid"
 
 export default function UserVanPhotos(){
   const [van, setVan] = React.useState(useOutletContext())
-  console.log(van)
-
   const renderVanImagesElements = van.imageUrl.map((image)=>{
     return(
       <img key={uuid.v4} className="user-single-photo" src={image}/>
     )
-    
   })
 
   return(

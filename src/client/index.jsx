@@ -198,7 +198,18 @@ function App() {
           path='request/:id'
           element={<UserRequestDetail/>}
           loader={userRequestDetailPageLoader}>
-
+            <Route index 
+              element={<UserVanInfo/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
+            <Route 
+              path='pricing' 
+              element={<UserVanPricing/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
+              
+            <Route 
+              path='photos' 
+              element= {<UserVanPhotos/>} 
+              loader={async ({request})=> await requireAuth(request)}/>
          
             
 
