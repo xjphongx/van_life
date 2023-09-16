@@ -37,6 +37,16 @@ router.put('/', async (req,res)=>{
   }
 })
 
+router.get('/user/:id', async (req, res)=>{
+  console.log("getting all of the user's requests")
+  try{
+    const requests = await Request.find({requestedUserId:req.params.id})
+    return res.status(200).json(requests)
+  }catch(err){
+    return res.status(500).json({message: err.message})
+  }
+})
+
 router.get('/host/:hostId', async (req, res)=>{
   console.log("getting request with specific hostId")
   try{

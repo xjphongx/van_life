@@ -123,12 +123,12 @@ border-radius: 10px;
   gap:20px;
   min-width: 700px;
 }
-.user-van-detail-label-container{
+.host-van-detail-label-container, .user-van-detail-label-container{
   justify-content: space-between;
   align-items: center;
 }
 
-.user-van-detail-label-container > div {
+.host-van-detail-label-container > div, .user-van-detail-label-container > div {
   display: flex;
   flex-direction: row;
   gap: 15px;

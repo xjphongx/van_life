@@ -45,7 +45,7 @@ export default function HostRequest(){
     return(
       <>
         <h1>Your Requests ({hostRequests.length})</h1>
-        <div className="host-request-list-scroller">
+        <div className="request-list-scroller">
         {requestElements}
        </div>
       </>
@@ -57,7 +57,6 @@ export default function HostRequest(){
   return(
     <>
       <div className="host-request-container">
-        
           <React.Suspense fallback={<h1>Loading Requests...</h1>}>
             <Await resolve={dataPromise.hostRequests} >
                 {renderRequestElements}

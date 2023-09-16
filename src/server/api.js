@@ -234,13 +234,30 @@ export async function getHostRequests(hostId){
   return dataPromise
 }
 
+//Used to get all Requests with user id
+export async function getAllUserRequests(userId){
+  const url =  `http://localhost:5050/requests/user/${userId}`
+  const res = await fetch(url)
+  if (!res.ok) {
+    throw {
+        message: "Failed to fetch requests",
+        statusText: res.statusText,
+        status: res.status
+    }
+}
+const data = await res.json()
+console.log(data)
+return data
+}
+
+
 //this is to get a specific request from host requests
-export async function getHostRequest(requestId){
+export async function getRequest(requestId){
   const url1 = `http://localhost:5050/requests/${requestId}`
   const res1 = await fetch(url1)
   if (!res1.ok) {
       throw {
-          message: "Failed to fetch specific request",
+          message: "Failed to fetch requests",
           statusText: res.statusText,
           status: res.status
       }

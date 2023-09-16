@@ -35,7 +35,7 @@ import UserVanPhotos from './routes/User/UserVanPhotos';
 import UserVanRent, {loader as userVanRentLoader} from './routes/User/UserVanRent';
 
 import UserRequest, {loader as userRequestLoader} from './routes/User/UserRequest';
-
+import UserRequestDetail, {loader as userRequestDetailPageLoader} from './routes/User/UserRequestDetail';
 
 
 import About from './routes/About';
@@ -193,6 +193,16 @@ function App() {
           path='request' 
           element={<UserRequest/>} 
           loader={userRequestLoader}/> 
+        
+        <Route
+          path='request/:id'
+          element={<UserRequestDetail/>}
+          loader={userRequestDetailPageLoader}>
+
+         
+            
+
+        </Route>
         
         
       </Route>

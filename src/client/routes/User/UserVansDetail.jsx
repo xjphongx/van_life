@@ -31,7 +31,7 @@ export default function UserVansDetail(){
         <section className="user-van-detail-container">
           {/* This is the container for the van images and labels  */}
           <div className="user-van-detail-label-container">
-            <div>
+            <div >
               <img className="user-van-detail-image-icon" src={userVan.imageUrl[0]}/>
               <div className="vertical-container">
                 <div className={`user-type-tag-${userVan.type}`}>{userVan.type}</div>

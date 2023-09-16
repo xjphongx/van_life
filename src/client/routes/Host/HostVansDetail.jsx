@@ -39,12 +39,15 @@ export default function HostVansDetail(){
         <section className="host-van-detail-container">
           {/* This is the container for the van images and labels  */}
           <div className="host-van-detail-label-container">
-            <img className="host-van-detail-image-icon" src={hostVan.imageUrl[0]}/>
-            <div className="vertical-container">
-              <div className={`host-type-tag-${hostVan.type}`}>{hostVan.type}</div>
-              <h1>{hostVan.name}</h1>
-              <p className= 'detail-info-price'>${hostVan.price} <span>/day</span></p>
+            <div>
+              <img className="host-van-detail-image-icon" src={hostVan.imageUrl[0]}/>
+              <div className="vertical-container">
+                <div className={`host-type-tag-${hostVan.type}`}>{hostVan.type}</div>
+                <h1>{hostVan.name}</h1>
+                <p className= 'detail-info-price'>${hostVan.price} <span>/day</span></p>
+              </div>
             </div>
+            
           </div>
           {/* Everything below to other comment line... Is a van detail layout */}
           <nav className="host-subnavbar-container">

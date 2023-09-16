@@ -2,7 +2,7 @@
 .host-request-container > h1{
   margin-left: 45px;
 }
-.host-request-list-scroller{
+.request-list-scroller{
   display:flex;
   flex-direction: column;
   margin-top: 30px;
@@ -14,19 +14,19 @@
   overflow-y:auto;
   overscroll-behavior-inline: contain;
 }
-.host-request-list-scroller::-webkit-scrollbar{
+.request-list-scroller::-webkit-scrollbar{
   width: 1em;
   background: rgb(255, 127, 22);
   border-radius: 100vw;
 }
-.host-request-list-scroller::-webkit-scrollbar-thumb{
+.request-list-scroller::-webkit-scrollbar-thumb{
   width: 2em;
   background: rgb(255, 238, 224);
   border-radius: 100vw;
   border: .15em solid rgb(255, 127, 22);
   
 }
-.host-request-tile{
+.host-request-tile, .user-request-tile{
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -36,12 +36,12 @@
   height: 150px;
   padding:40px;
 }
-.host-request-submit-container{
+.host-request-submit-container, .user-request-submit-container{
   display:flex;
   flex-direction: column;
   gap:10px;
 }
-.host-request-label{
+.host-request-label, .user-request-label{
   font-size: 25px;
   font-family: Inter, 'Times New Roman', Times, serif;
 }
@@ -58,37 +58,35 @@
   margin-bottom: 45px;
   
 }
-.host-request-detail-container{
-
+.host-request-detail-container,.user-request-detail-container{
   display:flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
   margin-bottom: 30px;
 }
-.host-request-detail-container{
+.host-request-detail-container,.user-request-detail-container{
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  
   min-height: 100px;
 }
-.host-request-info-container{
+.host-request-info-container, .user-request-info-container{
   display: flex;
   flex-direction: column;
   gap:10px;
 }
-.host-request-info-container > p {
+.host-request-info-container > p, .user-request-info-container > p {
   font-size: 20px;
 }
-.host-request-daterange-container>h4{
+.host-request-daterange-container>h4, .user-request-daterange-container>h4{
   font-size: 18px;
 }
 
-.host-request-user-detail-container{
+.host-request-user-detail-container,.user-request-user-detail-container{
   width: 500px;
 }
-.host-request-user-detail-container >pre{
+.host-request-user-detail-container >pre, .user-request-user-detail-container >pre{
   font-size: 13px;
   overflow-x: auto;
   white-space: pre-wrap;
