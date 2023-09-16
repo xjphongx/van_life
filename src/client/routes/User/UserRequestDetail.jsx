@@ -53,6 +53,11 @@ export default function UserRequestDetail(){
               <h3>User's Request Response</h3>
               <pre>{request.description}</pre>
             </div>
+            <div className="user-request-status-container">
+                {request.status==="accept"? <h1 className="user-accept-status">Accepted</h1> 
+                :request.status==="reject"? <h1 className="user-reject-status">Rejected</h1>
+                :<h1 className="user-pending-status">Pending</h1> }
+            </div>
           </div>
           
           <div className="user-van-detail-label-container">

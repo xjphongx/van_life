@@ -111,7 +111,7 @@
   color: white;
   padding:5px 30px;
   width: 120px;
-  border-radius: 5px;;
+  border-radius: 5px;
 }
 .request-accept-button{
   background-color: green;
@@ -121,4 +121,23 @@
 }
 .request-accept-button:hover,.request-reject-button:hover{
   transform: translate(1px, 1px)
+}
+
+/* User request page */
+.user-request-status-container{
+  color: white;
+}
+.user-accept-status, .user-reject-status, .user-pending-status{
+  width: 100%;
+  padding:5px 30px;
+  border-radius: 5px;
+}
+.user-accept-status{
+  background-color: green;
+}
+.user-reject-status{
+  background-color: red;
+}
+.user-pending-status{
+  background-color: purple;
 }
