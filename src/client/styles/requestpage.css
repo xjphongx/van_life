@@ -141,3 +141,14 @@
 .user-pending-status{
   background-color: purple;
 }
+
+/* status color */
+.status-accept{
+  color: green;
+}
+.status-reject{
+  color: red;
+}
+.status-pending{
+  color: purple;
+}

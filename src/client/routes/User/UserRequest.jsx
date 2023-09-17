@@ -3,6 +3,7 @@ import {useLoaderData,defer, Await,NavLink} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
 import { getAllUserRequests } from "../../../server/api";
+import moment from "moment"
 
 export async function loader({request}){
   const user = await requireAuth(request)
@@ -21,14 +22,16 @@ export default function UserRequest(){
   const renderUserRequests = (userRequests) =>{
 
     const requestElements = userRequests.map((request)=>{
+      console.log(request)
+      const startDate = moment(new Date(request.requestedDatesArray[0])).format("MMM Do, YYYY")
+      const endDate = moment(new Date(request.requestedDatesArray[request.requestedDatesArray.length-1])).format("MMM Do, YYYY")
       return(
         <li key={request._id} className="user-request-tile">
           <div className="user-request-submit-container">
-            <p className="user-request-label">
-            {`${request.requestedUserFirstName} ${request.requestedUserLastName}`} sents a request for  {request.requestedVanName}
-            </p>
+            <p className="user-request-label"> Van Name: {request.requestedVanName}</p>
+            <p>Requested Dates: {`${startDate} to ${endDate}`}</p>
             <p>Submission Date: {request.submissionDate}</p>
-            <p>Status: {request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."}</p>
+            <p>Status: <span className={`status-${request.status}`}>{request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."} </span></p>
           </div>
           
           <NavLink to={request._id} 

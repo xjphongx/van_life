@@ -30,7 +30,7 @@ export default function HostRequest(){
             {`${request.requestedUserFirstName} ${request.requestedUserLastName}`} sents a request for  {request.requestedVanName}
             </p>
             <p>Submission Date: {request.submissionDate}</p>
-            <p>Status: {request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."}</p>
+            <p>Status: <span className={`status-${request.status}`}>{request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."} </span></p>
           </div>
           
           <NavLink to={request._id} 
