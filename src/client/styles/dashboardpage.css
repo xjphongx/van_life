@@ -1,19 +1,18 @@
-/* .host-dashboard-container{
 
-} */
-/* income */
-.host-dashboard-income-container{
+/* dashboard */
+.host-dashboard-income-container, .user-dashboard-van-container{
   background-color: rgb(255,234,208) ;
   padding: 30px 45px ;
   height: 200px;
   width: 100%;
-}.host-dashboard-income-container > h1{
+}.host-dashboard-income-container > h1, .user-dashboard-van-container > h1{
   font-size: 50px;
 }
 .host-dashboard-income-detail-container, 
 .host-dashboard-review-detail-container,
 .host-dashboard-request-detail-container,
-.host-dashboard-listed-van-detail-container {
+.host-dashboard-listed-van-detail-container,
+.user-dashboard-van-detail-container{
   display: flex;
   width: 100%;
   justify-content: space-between;
