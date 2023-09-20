@@ -140,8 +140,12 @@ export async function logOut(){
   return data
 }
 
+export async function getUserDashboardInfo(userId){
+  console.log(userId)
+  return "test"
+}
+
 export async function getHostDashboardInfo(hostId){
-  /* console.log(hostId) */
   const url1 = `http://localhost:5050/users/${hostId}`
   const res1 = await fetch(url1, { 
       method: "GET",
@@ -149,7 +153,6 @@ export async function getHostDashboardInfo(hostId){
         "Content-Type" : "application/json"
       }, 
       credentials: "include",
-      /* body: JSON.stringify(hostId) */
     }
   )
   if (!res1.ok) {

@@ -139,7 +139,7 @@ export default function HostDashboard(){
 
 
   return (
-      <div className="host-dashboard-container">
+      <div className="dashboard-container">
           <React.Suspense fallback={<h1>Loading Dashboard...</h1>}>
             <Await resolve={dataPromise.hostInfo}>
               {renderHostDashboard}
