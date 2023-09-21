@@ -20,16 +20,33 @@ export default function UserDashboard(){
 
   const renderUserDashboard = (userInfo)=>{
     console.log(userInfo)
+    const userRequests = userInfo.userRequests
+
+    let requestCounter=0;
+    const renderDashboardUserRequestElements = userRequests.map((request)=>{
+      if(requestCounter<4){
+        requestCounter+=1
+        return(
+        <div key={request._id} className="user-dashboard-request-tile">
+          <h2>A user has sent a request for {request.requestedVanName} </h2>
+          <NavLink to='request' 
+          className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
+          state={request}
+          >Details</NavLink>
+        </div>
+      )
+      } else {
+        return
+      }
+    })
+
 
     return(
       <>
         {/* Welcome */}
         <div className="user-dashboard-welcome-container">
           <h1>Welcome!</h1>
-          <div className="user-dashboard-welcome-detail-container">
-            
-          </div>
-          
+          <div className="user-dashboard-welcome-detail-container"></div>
         </div>
 
         {/* current van rented status */}
@@ -41,14 +58,19 @@ export default function UserDashboard(){
               <h3>Example Van image</h3>
             </div>
           </div>
-          
-          
           <NavLink to='van' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}>See Details</NavLink>
-          
         </div>
+
         {/* User van requests */}
-
-
+        <div className='host-dashboard-request-container'>
+          <div className="host-dashboard-request-detail-container">
+            <h2>Your Requests</h2>
+            <NavLink to='request' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}> See All Request</NavLink>
+          </div>
+          <div className="host-dashboard-request-list-container">
+            {renderDashboardUserRequestElements}
+          </div>
+        </div>
       </>
     )
   }

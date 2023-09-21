@@ -55,7 +55,7 @@
   flex-direction: column;
   gap: 15px;
 }
-.host-dashboard-request-tile{
+.host-dashboard-request-tile,.user-dashboard-request-tile{
   background-color: white;
   display: flex;
   flex-direction: row;

@@ -142,7 +142,23 @@ export async function logOut(){
 
 export async function getUserDashboardInfo(userId){
   console.log(userId)
-  return "test"
+
+  //fetch the request with this matching id
+  const url1 = `http://localhost:5050/requests/user/${userId}`
+  const res1 = await fetch(url1)
+  if (!res1.ok) {
+    throw {
+        message: "Failed to fetch hostInfo",
+        statusText: res1.statusText,
+        status: res1.status
+    }
+  }
+  const userRequests = await res1.json()
+
+  //current van if it exists
+
+  const data = {userRequests:userRequests}
+  return data
 }
 
 export async function getHostDashboardInfo(hostId){
