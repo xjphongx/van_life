@@ -41,16 +41,14 @@ export default function UserRequestDetail(){
           <div className="user-request-detail-container">
             <div className="user-request-info-container">
               <h4>Request Id: {request._id}</h4>
-              <p>{request.requestedUserFirstName} 
-                {request.requestedUserLastName} is requesting {request.requestedVanName}
-              </p>
+              
               <div className="user-request-daterange-container">
                 <h4>Start: {startDate} </h4>
                 <h4>End: {endDate}</h4>
               </div>
             </div>
             <div className="user-request-user-detail-container"> 
-              <h3>User's Request Response</h3>
+              <h3>Your Request Response</h3>
               <pre>{request.description}</pre>
             </div>
             <div className="user-request-status-container">
