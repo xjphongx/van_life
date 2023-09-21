@@ -23,16 +23,32 @@ export default function UserDashboard(){
 
     return(
       <>
-        {/* Current Van rented status */}
-        <div className="user-dashboard-van-container">
+        {/* Welcome */}
+        <div className="user-dashboard-welcome-container">
           <h1>Welcome!</h1>
-          <div className="user-dashboard-van-detail-container">
-            <h2>Current Van Rented</h2>
-            <NavLink to='income' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}>See Details</NavLink>
-
+          <div className="user-dashboard-welcome-detail-container">
+            
           </div>
-          <h2>Example Van image</h2>
+          
         </div>
+
+        {/* current van rented status */}
+        <div className="user-dashboard-van-container">
+          <div>
+            <h2>Current Van Rented</h2>
+            <div>
+              <h3>Dreamcatcher</h3>
+              <h3>Example Van image</h3>
+            </div>
+          </div>
+          
+          
+          <NavLink to='van' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}>See Details</NavLink>
+          
+        </div>
+        {/* User van requests */}
+
+
       </>
     )
   }

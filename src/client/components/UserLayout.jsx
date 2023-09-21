@@ -14,6 +14,10 @@ export default function UserLayout(){
           className={({isActive})=>isActive? "active-user-link-route" :"pending-user-link-route"}
         >Browse Vans</NavLink>
 
+        <NavLink to='van'
+          className={({isActive})=>isActive? "active-user-link-route" :"pending-user-link-route"}
+        >Current Van</NavLink>
+
         <NavLink to='request'
           className={({isActive})=>isActive? "active-user-link-route" :"pending-user-link-route"}
         >Request</NavLink>
