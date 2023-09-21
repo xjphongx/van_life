@@ -148,16 +148,27 @@ export async function getUserDashboardInfo(userId){
   const res1 = await fetch(url1)
   if (!res1.ok) {
     throw {
-        message: "Failed to fetch hostInfo",
+        message: "Failed to fetch user requests",
         statusText: res1.statusText,
         status: res1.status
     }
   }
   const userRequests = await res1.json()
 
+  //fetch user info
+  const url2 =  `http://localhost:5050/users/${userId}`
+  const res2 = await fetch(url2)
+  if (!res2.ok) {
+    throw {
+        message: "Failed to fetch user info",
+        statusText: res1.statusText,
+        status: res1.status
+    }
+  }
+  const user = await res2.json()
   //current van if it exists
 
-  const data = {userRequests:userRequests}
+  const data = {user:user, userRequests:userRequests}
   return data
 }
 

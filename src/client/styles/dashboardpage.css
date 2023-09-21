@@ -23,6 +23,9 @@
 .user-dashboard-van-container{
   align-items: center;
 }
+.user-dashboard-welcome-detail-container > h2 {
+  font-size: 30px;
+}
 .host-dashboard-income-detail-container > h4{
   color: #4D4D4D;
 }

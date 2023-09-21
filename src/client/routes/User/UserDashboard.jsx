@@ -3,6 +3,7 @@ import {useLocation,NavLink,Await,defer,useLoaderData} from "react-router-dom"
 import { requireAuth } from "../../utils";
 import { LoginContext } from "../..";
 import { getUserDashboardInfo } from "../../../server/api";
+import user from "../../../server/model/user.mjs";
 
 
 export async function loader({request}){
@@ -20,6 +21,7 @@ export default function UserDashboard(){
 
   const renderUserDashboard = (userInfo)=>{
     console.log(userInfo)
+    const user = userInfo.user
     const userRequests = userInfo.userRequests
 
     let requestCounter=0;
@@ -29,7 +31,7 @@ export default function UserDashboard(){
         return(
         <div key={request._id} className="user-dashboard-request-tile">
           <h2>A user has sent a request for {request.requestedVanName} </h2>
-          <NavLink to='request' 
+          <NavLink to={`request/${request._id}`} 
           className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
           state={request}
           >Details</NavLink>
@@ -46,7 +48,9 @@ export default function UserDashboard(){
         {/* Welcome */}
         <div className="user-dashboard-welcome-container">
           <h1>Welcome!</h1>
-          <div className="user-dashboard-welcome-detail-container"></div>
+          <div className="user-dashboard-welcome-detail-container">
+              <h2>{user.firstName} {user.lastName}</h2>
+          </div>
         </div>
 
         {/* current van rented status */}
@@ -64,7 +68,7 @@ export default function UserDashboard(){
         {/* User van requests */}
         <div className='host-dashboard-request-container'>
           <div className="host-dashboard-request-detail-container">
-            <h2>Your Requests</h2>
+            <h2>Your Requests ({userRequests.length})</h2>
             <NavLink to='request' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}> See All Request</NavLink>
           </div>
           <div className="host-dashboard-request-list-container">
