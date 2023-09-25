@@ -13,7 +13,9 @@
 .host-dashboard-review-detail-container,
 .host-dashboard-request-detail-container,
 .host-dashboard-listed-van-detail-container,
-.user-dashboard-welcome-detail-container,.user-dashboard-van-container{
+.user-dashboard-welcome-detail-container,
+.user-dashboard-van-container,
+.user-dashboard-request-detail-container{
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -48,10 +50,13 @@
 }
 
 /* Requests */
-.host-dashboard-request-container{
+.host-dashboard-request-container,.user-dashboard-request-container{
   padding: 15px 45px ;
   /* background-color: rgb(255,234,208) ; */
   /* height: 250px; */
+}
+.user-dashboard-request-container{
+  padding-bottom: 50px;
 }
 .host-dashboard-request-list-container{
   display:flex;

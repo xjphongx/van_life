@@ -66,8 +66,8 @@ export default function UserDashboard(){
         </div>
 
         {/* User van requests */}
-        <div className='host-dashboard-request-container'>
-          <div className="host-dashboard-request-detail-container">
+        <div className='user-dashboard-request-container'>
+          <div className="user-dashboard-request-detail-container">
             <h2>Your Requests ({userRequests.length})</h2>
             <NavLink to='request' className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}> See All Request</NavLink>
           </div>
