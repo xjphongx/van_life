@@ -30,7 +30,10 @@ export default function VansDetail(){
         <>
           <div className='detail-back-container'>
             <p className='arrow'> &larr; </p>
-            <Link to={`..${search}`} relative="path" className='detail-back-button'>Back to {type} Vans</Link>
+            <Link to={`..${search}`} 
+              relative="path" 
+              className='detail-back-button'>Back to {type} Vans
+            </Link>
           </div>
           <div className='detail-info-container'>
             <img className='detail-image' src={van.imageUrl[0]} />

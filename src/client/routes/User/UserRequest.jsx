@@ -1,5 +1,5 @@
 import React from "react"
-import {useLoaderData,defer, Await,NavLink} from "react-router-dom"
+import {useLoaderData,defer, Await,NavLink, useSearchParams} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
 import { getAllUserRequests } from "../../../server/api";
@@ -18,11 +18,14 @@ export default function UserRequest(){
   },[])
 
   const dataPromise = useLoaderData()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const renderUserRequests = (userRequests) =>{
-
+    //Sort the user Request by date
+    console.log(userRequests)
+    
     const requestElements = userRequests.map((request)=>{
-      console.log(request)
+      //console.log(request)
       const startDate = moment(new Date(request.requestedDatesArray[0])).format("MMM Do, YYYY")
       const endDate = moment(new Date(request.requestedDatesArray[request.requestedDatesArray.length-1])).format("MMM Do, YYYY")
       return(
@@ -45,6 +48,7 @@ export default function UserRequest(){
     return(
       <>
         <h1>Your Requests ({userRequests.length})</h1>
+        <div className="filter-request-container"></div>
         <div className="request-list-scroller">
         {requestElements}
        </div>

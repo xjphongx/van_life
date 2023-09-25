@@ -1,5 +1,5 @@
 import React from "react"
-import {Link, NavLink, Outlet, useParams,useLoaderData,defer, Await } from "react-router-dom";
+import {Link, NavLink, Outlet, useParams,useLoaderData,defer, Await,useLocation } from "react-router-dom";
 import { requireAuth } from "../../utils"
 import { getUserVan } from "../../../server/api"
 import { LoginContext } from "../..";
@@ -18,13 +18,17 @@ export default function UserVansDetail(){
   const dataPromise = useLoaderData()
 
   function renderUserVanDetail(userVan){
+    //Keep the state search params the same from one page to another
+    const location = useLocation()
+    const search = location.state? location.state.search: ""
+    const type = location.state.type? location.state.type:"all"
     return(
       <>
         <div className='user-detail-back-container'>
           <p className='arrow'> &larr; </p>
-          <Link to='/user/vans' 
+          <Link to={`..${search}`} 
             relative="path" //tell react to go back in one level in PATH and NOT in ROUTE hierarchy
-            className='detail-back-button'>Back to all vans
+            className='detail-back-button'>Back to {type} vans
           </Link>
         </div> 
 
