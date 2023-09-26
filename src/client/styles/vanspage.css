@@ -26,6 +26,7 @@
   cursor: pointer;
   font-weight: 600;
 }
+/* filter buttons for vans */
 .filter-button.Simple.selected{
   background-color: #E17654;
   color:white;

@@ -19,6 +19,8 @@ export default function UserRequest(){
 
   const dataPromise = useLoaderData()
   const [searchParams, setSearchParams] = useSearchParams()
+  const statusFilter = searchParams.get("status")
+  const dateFilter = searchParams.get("date")
 
   const renderUserRequests = (userRequests) =>{
     //Sort the user Request by date
@@ -48,7 +50,44 @@ export default function UserRequest(){
     return(
       <>
         <h1>Your Requests ({userRequests.length})</h1>
-        <div className="filter-request-container"></div>
+        <div className="request-header-container">
+          <div className="filter-request-container">
+            <p>Sort By:</p>
+            <button onClick={()=>{
+                searchParams.set("status","accept")
+                setSearchParams(searchParams)
+              }} 
+              className={`filter-button Accept ${statusFilter==="accept"?"selected":""}`}
+              >Accepted</button> 
+            <button onClick={()=>{
+                searchParams.set("status","reject")
+                setSearchParams(searchParams)
+              }} 
+              className={`filter-button Reject ${statusFilter==="reject"?"selected":""}`}
+              >Rejected</button>
+            <button onClick={()=>{
+                searchParams.set("status","pending")
+                setSearchParams(searchParams)
+              }} 
+              className={`filter-button Pending ${statusFilter==="pending"?"selected":""}`}
+              >Pending</button>
+          </div>
+          <div className="filter-date-container">
+            <button onClick={()=>{
+                searchParams.set("date","newest")
+                setSearchParams(searchParams)
+              }}
+              className={`filter-button Newest ${dateFilter==="newest"?"selected":""}`}
+              >Newest</button> 
+            <button onClick={()=>{
+                searchParams.set("date","oldest")
+                setSearchParams(searchParams)
+              }}
+              className={`filter-button Oldest ${dateFilter==="oldest"?"selected":""}`}
+              >Oldest</button> 
+          </div>
+          {(statusFilter||dateFilter)&&<button onClick={()=>setSearchParams({})} className='clear-filter-button'>Clear filters</button>}
+        </div>
         <div className="request-list-scroller">
         {requestElements}
        </div>

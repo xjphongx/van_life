@@ -2,6 +2,7 @@
 .host-request-container > h1{
   margin-left: 45px;
 }
+
 .request-list-scroller{
   display:flex;
   flex-direction: column;
@@ -124,6 +125,15 @@
 }
 
 /* User request page */
+.request-header-container{
+  display: flex;
+  gap: 30px;
+}
+.filter-request-container,.filter-date-container{
+  display: flex;
+  gap:5px;
+  align-items: center;
+}
 .user-request-status-container{
   color: white;
 }
@@ -151,4 +161,60 @@
 }
 .status-pending{
   color: purple;
+}
+
+/* filter request buttons */
+.filter-button.Reject,.filter-button.Accept,.filter-button.Pending,
+.filter-button.Newest,.filter-button.Oldest{
+  background-color: #FFEAD0 ;
+  border-radius: 5px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.filter-button.Reject.selected{
+  background-color: red;
+  color:white;
+}
+.filter-button.Accept.selected{
+  background-color: green;
+  color:white;
+}
+.filter-button.Pending.selected{
+  background-color: purple;
+  color:white;
+}
+.filter-button.Newest.selected{
+  background-color: orange;
+  color:white
+}
+.filter-button.Oldest.selected{
+  background-color: blue;
+  color:white
+}
+
+.filter-button.Reject:hover {
+  background-color: red;
+  transition: background-color .2s;
+  color:white;
+}
+.filter-button.Accept:hover{
+  background-color: green;
+  transition: background-color .2s;
+  color:white;
+}
+.filter-button.Pending:hover{
+  background-color: purple;
+  transition: background-color .2s;
+  color:white;
+}
+.filter-button.Newest:hover{
+  background-color: orange;
+  transition: background-color .2s;
+  color:white
+}
+.filter-button.Oldest:hover{
+  background-color: blue;
+  transition: background-color .2s;
+  color:white
 }
