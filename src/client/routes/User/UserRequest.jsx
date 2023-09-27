@@ -24,7 +24,6 @@ export default function UserRequest(){
 
   const renderUserRequests = (userRequests) =>{
     //filter the status type
-    //console.log(userRequests)
     let filterRequestsList = statusFilter 
       ? userRequests.filter(request=>request.status === statusFilter) 
       : userRequests
@@ -113,7 +112,7 @@ export default function UserRequest(){
 
   return(
     <>
-      <div className='detail-page-container'>
+      <div className='user-request-container'>
         <React.Suspense fallback={<h1>Loading User Requests...</h1>}>
           <Await resolve={dataPromise.userRequests}>
             {renderUserRequests}

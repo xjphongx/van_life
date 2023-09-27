@@ -1,5 +1,5 @@
 
-.host-request-container > h1{
+.host-request-container > h1, .user-request-container>h1{
   margin-left: 45px;
 }
 
@@ -128,6 +128,7 @@
 .request-header-container{
   display: flex;
   gap: 30px;
+  margin-left: 45px;
 }
 .filter-request-container,.filter-date-container{
   display: flex;
