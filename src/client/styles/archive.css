@@ -1,0 +1,17 @@
+.archive-container{
+  min-height: 750px;
+  width: 100%;
+  padding-right: 90px;
+}
+.archive-container >h1{
+  margin-left: 45px;
+}
+.host-archive-back-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 170px;
+  width:300px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+}

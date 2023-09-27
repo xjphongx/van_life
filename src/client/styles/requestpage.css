@@ -1,5 +1,10 @@
-
-.host-request-container > h1, .user-request-container>h1{
+.request-title-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 45px;
+}
+.request-title-container > h1, .user-request-container>h1{
   margin-left: 45px;
 }
 

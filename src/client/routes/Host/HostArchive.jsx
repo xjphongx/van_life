@@ -1,16 +1,14 @@
 import React from "react"
-import {useLoaderData,defer, Await,NavLink,useSearchParams} from "react-router-dom"
+import {useLoaderData, defer, Await,NavLink, Link, useSearchParams} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
-import { getHostRequests } from "../../../server/api";
 
 export async function loader({request}){
   const user = await requireAuth(request)
-  return defer({hostRequests:getHostRequests(user.id)})
 }
 
 
-export default function HostRequest(){
+export default function HostArchive(){
   const [loggedIn, setLoggedIn] = React.useContext(LoginContext)
   React.useEffect(()=>{
     setLoggedIn(true) //fixes the component and bad state error
@@ -24,55 +22,20 @@ export default function HostRequest(){
   const statusFilter = searchParams.get("status")
   const dateFilter = searchParams.get("date")
 
-  const renderRequestElements = (hostRequests) =>{
-    //filter the status type
-    let filterRequestsList = statusFilter 
-      ? hostRequests.filter(request=>request.status === statusFilter) 
-      : hostRequests
-    
-    //sort by least and greatest date
-    filterRequestsList = dateFilter==="newest" 
-      ? filterRequestsList.sort((a,b)=>{
-        return new Date(a.requestedDatesArray[0]) - new Date(b.requestedDatesArray[0])
-      })
-      : dateFilter==="oldest" 
-      ? filterRequestsList.sort((b,a)=>{
-        return new Date(a.requestedDatesArray[0]) - new Date(b.requestedDatesArray[0])
-      })
-      : filterRequestsList
-
-
-
-
-    const requestElements = filterRequestsList.map((request)=>{
-      return(
-        <li key={request._id} className="host-request-tile">
-          <div className="host-request-submit-container">
-            <p className="host-request-label">
-            {`${request.requestedUserFirstName} ${request.requestedUserLastName}`} sents a request for  {request.requestedVanName}
-            </p>
-            <p>Submission Date: {request.submissionDate}</p>
-            <p>Status: <span className={`status-${request.status}`}>{request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."} </span></p>
-          </div>
-          
-          <NavLink to={request._id} 
-            className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
-            >Details</NavLink>
-      </li>
-      )
-    })
-
+  const renderHostArchive = () => {
 
 
     return(
       <>
-        <div className="request-title-container">
-          <h1>Your Requests ({hostRequests.length})</h1>
-          <NavLink to="archive" 
-            className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
-            >View Request Archive</NavLink>
+        <div className='host-archive-back-container'>
+          <p className='arrow'> &larr; </p>
+          <Link to='..' 
+            relative="path" //tell react to go back in one level in PATH and NOT in ROUTE hierarchy
+            className='detail-back-button'>Back to all requests
+          </Link>
         </div>
-        
+        <h1>Request Archive</h1>
+
         <div className="request-header-container">
           <div className="filter-request-container">
           <p>Filter By:</p>
@@ -112,24 +75,20 @@ export default function HostRequest(){
           </div>
           {(statusFilter||dateFilter)&&<button onClick={()=>setSearchParams({})} className='clear-filter-button'>Clear filters</button>}
         </div>
-        <div className="request-list-scroller">
-        {requestElements}
-       </div>
       </>
-      
     )
   }
 
 
   return(
     <>
-      <div className="host-request-container">
-          <React.Suspense fallback={<h1>Loading Requests...</h1>}>
-            <Await resolve={dataPromise.hostRequests} >
-                {renderRequestElements}
-            </Await>
-          </React.Suspense>
-      </div>
+      <div className='archive-container'>
+      <React.Suspense fallback={<h1>Loading request details...</h1>}>
+        <Await >
+          {renderHostArchive}
+        </Await>
+      </React.Suspense>
+    </div>
     </>
   )
 }

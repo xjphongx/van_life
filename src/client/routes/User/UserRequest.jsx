@@ -65,7 +65,7 @@ export default function UserRequest(){
         <h1>Your Requests ({userRequests.length})</h1>
         <div className="request-header-container">
           <div className="filter-request-container">
-            <p>Sort By:</p>
+            <p>Filter By:</p>
             <button onClick={()=>{
                 searchParams.set("status","accept")
                 setSearchParams(searchParams)
@@ -86,6 +86,7 @@ export default function UserRequest(){
               >Pending</button>
           </div>
           <div className="filter-date-container">
+            <p>Sort By:</p>
             <button onClick={()=>{
                 searchParams.set("date","newest")
                 setSearchParams(searchParams)

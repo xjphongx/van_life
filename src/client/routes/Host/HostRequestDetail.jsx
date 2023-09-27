@@ -52,7 +52,7 @@ export default function HostRequestDetail(){
       <>
         <div className='host-detail-back-container'>
           <p className='arrow'> &larr; </p>
-          <Link to='/host/request' 
+          <Link to='..' 
             relative="path" //tell react to go back in one level in PATH and NOT in ROUTE hierarchy
             className='detail-back-button'>Back to all requests
           </Link>

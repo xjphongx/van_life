@@ -22,6 +22,7 @@ import HostVanPricing from './routes/Host/HostVanPricing';
 import HostVanPhotos from './routes/Host/HostVanPhotos';
 import HostRequest, {loader as hostRequestPageLoader} from './routes/Host/HostRequest';
 import HostRequestDetail,{loader as hostRequestDetailPageLoader} from './routes/Host/HostRequestDetail';
+import HostArchive, {loader as hostArchivePageLoader} from './routes/Host/HostArchive';
 import HostReview, {loader as hostReviewPageLoader} from './routes/Host/HostReview';
 import HostVanUpload from './routes/Host/HostVanUpload';
 
@@ -104,6 +105,11 @@ function App() {
           element={<HostRequest/>} 
           loader={hostRequestPageLoader}/>
         <Route
+          path='request/archive'
+          element={<HostArchive/>}
+          loader={hostArchivePageLoader}
+        />
+        <Route
           path='request/:id'
           element={<HostRequestDetail/>}
           loader={hostRequestDetailPageLoader}>
@@ -114,7 +120,6 @@ function App() {
               path='pricing' 
               element={<HostVanPricing/>} 
               loader={async ({request})=> await requireAuth(request)}/>
-              
             <Route 
               path='photos' 
               element= {<HostVanPhotos/>} 
