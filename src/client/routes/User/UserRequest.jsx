@@ -23,10 +23,24 @@ export default function UserRequest(){
   const dateFilter = searchParams.get("date")
 
   const renderUserRequests = (userRequests) =>{
-    //Sort the user Request by date
-    console.log(userRequests)
+    //filter the status type
+    //console.log(userRequests)
+    let filterRequestsList = statusFilter 
+      ? userRequests.filter(request=>request.status === statusFilter) 
+      : userRequests
     
-    const requestElements = userRequests.map((request)=>{
+    //sort by least and greatest date
+    filterRequestsList = dateFilter==="newest" 
+      ? filterRequestsList.sort((a,b)=>{
+        return new Date(a.requestedDatesArray[0]) - new Date(b.requestedDatesArray[0])
+      })
+      : dateFilter==="oldest" 
+      ? filterRequestsList.sort((b,a)=>{
+        return new Date(a.requestedDatesArray[0]) - new Date(b.requestedDatesArray[0])
+      })
+      : filterRequestsList
+
+    const requestElements = filterRequestsList.map((request)=>{
       //console.log(request)
       const startDate = moment(new Date(request.requestedDatesArray[0])).format("MMM Do, YYYY")
       const endDate = moment(new Date(request.requestedDatesArray[request.requestedDatesArray.length-1])).format("MMM Do, YYYY")
