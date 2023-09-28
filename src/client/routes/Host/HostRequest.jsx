@@ -34,12 +34,9 @@ export default function HostRequest(){
     }
   }
 
-
   const renderRequestElements = (hostRequests) =>{
     //filter out the archieved requests
-    console.log(hostRequests)
     let filterRequestsList = hostRequests.filter(request=>request.isArchived===false)
-    console.log(filterRequestsList)
 
     //filter the status type
      filterRequestsList = statusFilter 

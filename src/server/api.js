@@ -333,8 +333,7 @@ export async function updateRequestArchiveStatus(requestId, archiveStatus){
       }, 
       body: JSON.stringify({requestId:requestId, archiveStatus:archiveStatus})
   })
-  const data = await res.json()
-  return data
+  
 }
 
 export async function getArchivedRequests(userId){
