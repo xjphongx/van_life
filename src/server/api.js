@@ -311,7 +311,6 @@ export async function getRequest(requestId){
 
 //host sends request status to user
 export async function updateRequestStatus(requestId, status){
-
   const url = `http://localhost:5050/requests`
   const res = await fetch(url,{
     method: "PUT",
@@ -320,6 +319,31 @@ export async function updateRequestStatus(requestId, status){
       }, 
       body: JSON.stringify({requestId:requestId,status:status})
   })
+  const data = await res.json()
+  return data
+}
+
+//update request archive status
+export async function updateRequestArchiveStatus(requestId, archiveStatus){
+  const url = 'http://localhost:5050/requests/updateArchiveStatus'
+  const res = await fetch(url,{
+    method: "PUT",
+      headers:{
+        "Content-Type" : "application/json"
+      }, 
+      body: JSON.stringify({requestId:requestId, archiveStatus:archiveStatus})
+  })
+  const data = await res.json()
+  return data
+}
+
+export async function getArchivedRequests(userId){
+  const url = `http://localhost:5050/requests/${userId}/isArchive/${true}`
+  const res = await fetch(url)
+  const data = await res.json()
+  console.log(data)
+  return data
+
 }
 
 export async function getHostReviews(){

@@ -22,6 +22,7 @@ router.get('/:id', async (req,res)=>{
     res.status(500).json({message: err.message})
   }
 })
+
 router.put('/', async (req,res)=>{
   console.log("updating request status")
   try{
@@ -32,6 +33,28 @@ router.put('/', async (req,res)=>{
       $set: {status:status}
     })
     return res.status(204).json({message:"Status updated successfully"})
+  }catch(err){
+    return res.status(500).json({message: err.message})
+  }
+})
+
+router.put('/updateArchiveStatus', async (req,res)=>{
+  try{
+    const {requestId,archiveStatus} = req.body
+    const result = await Request.findOneAndUpdate({
+      _id:requestId
+    },{
+      $set: {isArchived:!archiveStatus}
+    })
+    return res.status(204).json({message:"Archive status updated successfully"})
+  }catch(err){
+    return res.status(500).json({message: err.message})
+  }
+})
+router.get('/:id/isArchive/:isArchived', async (req,res)=>{
+  try{
+    const requests = await Request.find({vanHostId:req.params.id, isArchived:req.params.isArchived})
+    return res.status(200).json(requests)
   }catch(err){
     return res.status(500).json({message: err.message})
   }

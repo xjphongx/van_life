@@ -6,6 +6,23 @@
 .archive-container >h1{
   margin-left: 45px;
 }
+.detail-archive-container{
+  display: flex;
+  align-items: center; 
+  gap: 15px;
+}
+.archive-button{
+  background-color: transparent;
+  color:rgb(83, 83, 83);
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+}
+.archive-button:hover{
+  color:#161616;
+  text-decoration: underline;
+}
+
 .host-archive-back-container{
   display: flex;
   flex-direction: row;

@@ -2,7 +2,7 @@ import React from "react"
 import {useLoaderData,defer, Await,NavLink,useSearchParams} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
-import { getHostRequests } from "../../../server/api";
+import { getHostRequests, updateRequestArchiveStatus } from "../../../server/api";
 
 export async function loader({request}){
   const user = await requireAuth(request)
@@ -24,11 +24,27 @@ export default function HostRequest(){
   const statusFilter = searchParams.get("status")
   const dateFilter = searchParams.get("date")
 
+  const submitRequestArchiveUpdate = async (requestId, archiveStatus) => {
+    //update the request isArchive prop to true
+    try{
+      const updatedData = await updateRequestArchiveStatus(requestId, archiveStatus)
+      window.location.reload(false);
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+
   const renderRequestElements = (hostRequests) =>{
+    //filter out the archieved requests
+    console.log(hostRequests)
+    let filterRequestsList = hostRequests.filter(request=>request.isArchived===false)
+    console.log(filterRequestsList)
+
     //filter the status type
-    let filterRequestsList = statusFilter 
-      ? hostRequests.filter(request=>request.status === statusFilter) 
-      : hostRequests
+     filterRequestsList = statusFilter 
+      ? filterRequestsList.filter(request=>request.status === statusFilter) 
+      : filterRequestsList
     
     //sort by least and greatest date
     filterRequestsList = dateFilter==="newest" 
@@ -41,12 +57,15 @@ export default function HostRequest(){
       })
       : filterRequestsList
 
-
+    
 
 
     const requestElements = filterRequestsList.map((request)=>{
+      //console.log(request)
+      
       return(
-        <li key={request._id} className="host-request-tile">
+       
+          <li key={request._id} className="host-request-tile">
           <div className="host-request-submit-container">
             <p className="host-request-label">
             {`${request.requestedUserFirstName} ${request.requestedUserLastName}`} sents a request for  {request.requestedVanName}
@@ -54,11 +73,14 @@ export default function HostRequest(){
             <p>Submission Date: {request.submissionDate}</p>
             <p>Status: <span className={`status-${request.status}`}>{request.status==="accept"?"Accepted": request.status==="reject"?"Rejected":"Pending..."} </span></p>
           </div>
-          
-          <NavLink to={request._id} 
-            className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
-            >Details</NavLink>
-      </li>
+          <div className="detail-archive-container">
+            <NavLink to={request._id} 
+              className={({isActive})=> isActive ? "active-nav-link-route" :"pending-nav-link-route"}
+              >Details</NavLink>
+            <button className="archive-button" onClick={()=>{
+              submitRequestArchiveUpdate(request._id, request.isArchived)}}>Archive</button>
+          </div>  
+      </li> 
       )
     })
 

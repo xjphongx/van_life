@@ -2,9 +2,11 @@ import React from "react"
 import {useLoaderData, defer, Await,NavLink, Link, useSearchParams} from "react-router-dom"
 import { requireAuth } from "../../utils"
 import { LoginContext } from "../..";
+import { getArchivedRequests } from "../../../server/api";
 
 export async function loader({request}){
   const user = await requireAuth(request)
+  return defer({archivedRequests: getArchivedRequests(user.id)})
 }
 
 
@@ -22,8 +24,8 @@ export default function HostArchive(){
   const statusFilter = searchParams.get("status")
   const dateFilter = searchParams.get("date")
 
-  const renderHostArchive = () => {
-
+  const renderHostArchive = (archivedRequests) => {
+    console.log(archivedRequests)
 
     return(
       <>
@@ -84,7 +86,7 @@ export default function HostArchive(){
     <>
       <div className='archive-container'>
       <React.Suspense fallback={<h1>Loading request details...</h1>}>
-        <Await >
+        <Await resolve={dataPromise.archivedRequests} >
           {renderHostArchive}
         </Await>
       </React.Suspense>

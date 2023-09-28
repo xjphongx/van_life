@@ -10,8 +10,8 @@ const requestSchema = new mongoose.Schema({
   vanHostId: String,
   requestedVanName: String,
   requestedVanId: String,
-  requestedDatesArray: Array
-
+  requestedDatesArray: Array,
+  isArchived: Boolean
 })
 
 export default mongoose.model('Request', requestSchema)
