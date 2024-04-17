@@ -23,7 +23,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "*",
     "nodemon": "^3.0.1",
-    "vite": "^5.0.12"
+    "vite": "^5.2.9"
   },
   "scripts": {
     "start": "vite",
