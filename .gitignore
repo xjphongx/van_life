@@ -25,4 +25,5 @@ src/server/.env
 *.njsproj
 *.sln
 *.sw?
+.env
 
